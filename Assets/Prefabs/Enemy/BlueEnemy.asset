@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcfd43daa243ab446b4b3ec18d7fff68, type: 3}
+  m_Name: BlueEnemy
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 0966982b9c8e06b4ba6750ef9b9489eb, type: 3}
+  color: {r: 0.089711644, g: 0.15017521, b: 0.9056604, a: 1}
+  spriteScale: {x: 2, y: 2}
+  animations: {fileID: 9100000, guid: e0c162c857128434cbac230d77eaebe1, type: 2}
+  moveSpeed: 2
+  hp: 1
+  score: 1
+  radius: 0.19

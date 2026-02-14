@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcfd43daa243ab446b4b3ec18d7fff68, type: 3}
+  m_Name: Predator
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 50e52cbddc31cae4993eeae1af4b7bbd, type: 3}
+  color: {r: 0.27711993, g: 0.9339623, b: 0.13656995, a: 1}
+  spriteScale: {x: 0.2, y: 0.2}
+  animations: {fileID: 9100000, guid: d9cc35734517d994295a5085c5078e2c, type: 2}
+  moveSpeed: 5
+  hp: 30
+  score: 30
+  radius: 2
