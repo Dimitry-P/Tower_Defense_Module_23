@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TowerDefense;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SpaceShooter
 {
@@ -9,8 +12,10 @@ namespace SpaceShooter
     /// </summary>
     public class Player : MonoSingleton<Player>
     {
-
         [SerializeField] private int m_NumLives;
+        public int NumLives {  get { return m_NumLives; }}
+        public event Action OnPlayerDead;
+
         [SerializeField] private SpaceShip m_Ship;
         public SpaceShip ActiveShip => m_Ship;
 
@@ -18,10 +23,25 @@ namespace SpaceShooter
 
         //[SerializeField] private CameraController m_CameraController;
         //[SerializeField] private MovementController m_MovementController;
+        [SerializeField] private GameObject loosePanel;
+        public GameObject victoryPanel;
 
         private void Start()
         {
-            m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            if (m_Ship)
+                SubscribeToShip(m_Ship);
+        }
+
+        private void SubscribeToShip(SpaceShip ship)
+        {
+            ship.EventOnDeath.RemoveListener(OnShipDeath);
+            ship.EventOnDeath.AddListener(OnShipDeath);
+        }
+
+        private void OnDestroy()
+        {
+            if (m_Ship != null)
+                m_Ship.EventOnDeath.RemoveListener(OnShipDeath);
         }
 
         private void OnShipDeath()
@@ -31,22 +51,20 @@ namespace SpaceShooter
             if (m_NumLives > 0)
                 Respawn();
             else
+            {
                 LevelSequenceController.Instance.FinishCurrentLevel(false);
+                //GameReset.ResetStatics();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            }
         }
 
         private void Respawn()
         {
             var newPlayerShip = Instantiate(m_PlayerShipPrefab.gameObject);
-
             m_Ship = newPlayerShip.GetComponent<SpaceShip>();
-
-            //m_CameraController.SetTarget(m_Ship.transform);
-            //m_MovementController.SetTargetShip(m_Ship);
-
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
         }
             
-
         #region Score (current level only)
 
         public int Score { get; private set; }
@@ -63,6 +81,19 @@ namespace SpaceShooter
             Score += num;
         }
 
+        int smallEnemyCounter = 0;
+        int middleEnemyCounter = 0;
+        int bossEnemyCounter = 0;
+        protected void TakeDamage(int m_damage)
+        {
+            m_NumLives -= m_damage;
+
+            if (m_NumLives <= 0)
+            {
+                m_NumLives = 0;
+                OnPlayerDead?.Invoke();
+            }
+        }
         #endregion
     }
 }

@@ -25,31 +25,17 @@ namespace SpaceShooter
         /// <param name="result"></param>
         public void Show(bool result)
         {
-            if (result)
-            {
-                UpdateCurrentLevelStats();
-                UpdateVisualStats();
-            }
+            //if (result)
+            //{
+            //    UpdateCurrentLevelStats();
+            //    UpdateVisualStats();
+            //}
 
             m_PanelSuccess?.gameObject.SetActive(result);
             m_PanelFailure?.gameObject.SetActive(!result);
         }
 
-        /// <summary>
-        /// Запускаем следующий уровен. Дергается эвентом с кнопки play next.
-        /// </summary>
-        public void OnPlayNext()
-        {
-            LevelSequenceController.Instance.AdvanceLevel();
-        }
-
-        /// <summary>
-        /// Рестарт уровня. Дергается эвентом с кнопки restart в случае фейла уровня.
-        /// </summary>
-        public void OnRestartLevel()
-        {
-            LevelSequenceController.Instance.RestartLevel();
-        }
+      
 
 
         public class Stats

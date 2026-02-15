@@ -37,7 +37,7 @@ namespace SpaceShooter
         /// <summary>
         /// Событие которое будет вызвано когда уровень будет выполнен. Вызывается один раз.
         /// </summary>
-        [SerializeField] private UnityEvent m_EventLevelCompleted;
+        public UnityEvent m_EventLevelCompleted;
 
         /// <summary>
         /// Массив условий для успешного прохождения уровня.
@@ -51,7 +51,7 @@ namespace SpaceShooter
 
         #region Unity events
 
-        private void Start()
+        protected void Start()
         {
             m_Conditions = GetComponentsInChildren<ILevelCondition>();
         }
@@ -89,7 +89,6 @@ namespace SpaceShooter
             if(numCompleted == m_Conditions.Length)
             {
                 m_IsLevelCompleted = true;
-                m_EventLevelCompleted?.Invoke();
 
                 // Notify level sequence Unit3 code
                 LevelSequenceController.Instance?.FinishCurrentLevel(true);

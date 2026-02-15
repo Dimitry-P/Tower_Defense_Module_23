@@ -1,16 +1,17 @@
-using TowerDefense;
+п»їusing TowerDefense;
 using UnityEngine;
 using SpaceShooter;
 using UnityEditor;
 using UnityEngine.UIElements;
-
 
 namespace TowerDefense
 {
     [RequireComponent(typeof(TDController))]
     public class Enemy : MonoBehaviour
     {
-        public void Use(EnemyAsset asset)//эта функция осущ-ет подцепление настроек для врагов.
+        private int m_damage;
+        private string m_name;  
+        public void Use(EnemyAsset asset)//СЌС‚Р° С„СѓРЅРєС†РёСЏ РѕСЃСѓС‰-РµС‚ РїРѕРґС†РµРїР»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РґР»СЏ РІСЂР°РіРѕРІ.
         {
             var sr = transform.Find("Sprite").GetComponent<SpriteRenderer>();
             sr.color = asset.color;
@@ -18,14 +19,22 @@ namespace TowerDefense
 
             sr.sprite = asset.sprite;
 
-            //Для того, чтобы можно было переключать ассеты в инспекторе префаба, нужно
-            //закомментить передачу анимации:
-            //Анимация перекрывает спрайт, поэтому тут мы её не передаём
+            m_name = asset.enemyName;
+            m_damage = asset.damage;
+
+            //Р”Р»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ РїРµСЂРµРєР»СЋС‡Р°С‚СЊ Р°СЃСЃРµС‚С‹ РІ РёРЅСЃРїРµРєС‚РѕСЂРµ РїСЂРµС„Р°Р±Р°, РЅСѓР¶РЅРѕ
+            //Р·Р°РєРѕРјРјРµРЅС‚РёС‚СЊ РїРµСЂРµРґР°С‡Сѓ Р°РЅРёРјР°С†РёРё:
+            //РђРЅРёРјР°С†РёСЏ РїРµСЂРµРєСЂС‹РІР°РµС‚ СЃРїСЂР°Р№С‚, РїРѕСЌС‚РѕРјСѓ С‚СѓС‚ РјС‹ РµС‘ РЅРµ РїРµСЂРµРґР°С‘Рј
             sr.GetComponent<Animator>().runtimeAnimatorController = asset.animations;
 
             GetComponent<SpaceShip>().Use(asset);
 
             GetComponentInChildren<CircleCollider2D>().radius = asset.radius;
+        }
+
+        public void DamagePlayer()
+        {
+            TDPlayer.Instance.ReduceLife(m_damage, m_name);
         }
     }
     [CustomEditor(typeof(Enemy))]

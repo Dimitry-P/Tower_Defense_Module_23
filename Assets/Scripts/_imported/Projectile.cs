@@ -51,13 +51,13 @@ namespace SpaceShooter
 
                     // #Score
                     // добавляем очки за уничтожение
-                    if(Player.Instance != null && destructible.HitPoints < 0)
+                    if (Player.Instance != null && destructible.HitPoints < 0)
                     {
                         // проверяем что прожектайл принадлежит кораблю игрока. 
                         // здесь есть нюанс - если мы выстрелим прожектайл и после умрем
                         // то новый корабль игрока будет другим, в случае если прожектайл запущенный из предыдущего шипа
                         // добьет то очков не дадут. Можно отправить пофиксить на ДЗ. (например тупо воткнув флаг что прожектайл игрока)
-                        if(m_Parent == Player.Instance.ActiveShip)
+                        if (m_Parent == Player.Instance.ActiveShip)
                         {
                             Player.Instance.AddScore(destructible.ScoreValue);
                         }

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
 namespace SpaceShooter
 {
@@ -27,25 +24,25 @@ namespace SpaceShooter
         /// Метод запуска первого уровня эпизода.
         /// </summary>
         /// <param name="e"></param>
-        public void StartEpisode(Episode e)
-        {
-            CurrentEpisode = e;
-            CurrentLevel = 0;
+        //public void StartEpisode(Episode e)
+        //{
+        //    CurrentEpisode = e;
+        //    CurrentLevel = 0;
 
-            // сбрасываем статы перед началом эпизода.
-            LevelResultController.ResetPlayerStats();
+        //    // сбрасываем статы перед началом эпизода.
+        //    LevelResultController.ResetPlayerStats();
 
-            // запускаем первый уровень эпизода.
-            SceneManager.LoadScene(e.Levels[CurrentLevel]);
-        }
+        //    // запускаем первый уровень эпизода.
+        //    SceneManager.LoadScene(e.Levels[CurrentLevel]);
+        //}
 
         /// <summary>
         /// Принудительный рестарт уровня.
         /// </summary>
-        public void RestartLevel()
-        {
-            SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
-        }
+        //public void RestartLevel()
+        //{
+        //    SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
+        //}
 
         /// <summary>
         /// Завершаем уровень. В зависимости от результата будет показано окошко результатов.
@@ -60,20 +57,20 @@ namespace SpaceShooter
         /// <summary>
         /// Запускаем следующий уровень или выходим в главное меню если больше уровней нету.
         /// </summary>
-        public void AdvanceLevel()
-        {
-            CurrentLevel++;
+        //public void AdvanceLevel()
+        //{
+        //    CurrentLevel++;
 
-            // конец эпизода вываливаемся в главное меню.
-            if(CurrentEpisode.Levels.Length <= CurrentLevel)
-            {
-                SceneManager.LoadScene(MainMenuSceneNickname);
-            }
-            else
-            {
-                SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
-            }
-        }
+        //    // конец эпизода вываливаемся в главное меню.
+        //    if (CurrentEpisode.Levels.Length <= CurrentLevel)
+        //    {
+        //        SceneManager.LoadScene(MainMenuSceneNickname);
+        //    }
+        //    else
+        //    {
+        //        SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
+        //    }
+        //}
 
         #region Ship select
 
