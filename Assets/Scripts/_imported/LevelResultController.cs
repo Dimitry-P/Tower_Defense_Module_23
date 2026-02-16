@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SpaceShooter
@@ -19,6 +20,7 @@ namespace SpaceShooter
         [SerializeField] private Text m_TotalScore;
         [SerializeField] private Text m_TotalKills;
 
+
         /// <summary>
         /// Показываем окошко результатов. Выставляем нужные кнопочки в зависимости от успеха.
         /// </summary>
@@ -34,8 +36,6 @@ namespace SpaceShooter
             m_PanelSuccess?.gameObject.SetActive(result);
             m_PanelFailure?.gameObject.SetActive(!result);
         }
-
-      
 
 
         public class Stats
@@ -56,6 +56,18 @@ namespace SpaceShooter
         public static void ResetPlayerStats()
         {
             TotalStats = new Stats();
+        }
+
+        public void OnPlayNext()
+        {
+            LevelSequenceController.Instance.AdvancedLevel();
+        }
+
+        public void OnRestartLevel()
+        {
+            Debug.Log("BUTTON CLICKED");
+            Debug.Log(LevelSequenceController.Instance);
+            LevelSequenceController.Instance.RestartLevel();
         }
 
         /// <summary>

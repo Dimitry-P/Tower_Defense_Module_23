@@ -1,4 +1,6 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System.Diagnostics;
+using UnityEngine.SceneManagement;
+using UnityEngine;
 
 namespace SpaceShooter
 {
@@ -20,29 +22,46 @@ namespace SpaceShooter
         /// </summary>
         public int CurrentLevel { get; private set; }
 
+        [SerializeField] private Episode m_TestEpisode;
+
         /// <summary>
         /// Метод запуска первого уровня эпизода.
         /// </summary>
         /// <param name="e"></param>
-        //public void StartEpisode(Episode e)
-        //{
-        //    CurrentEpisode = e;
-        //    CurrentLevel = 0;
+        /// 
 
-        //    // сбрасываем статы перед началом эпизода.
-        //    LevelResultController.ResetPlayerStats();
+        private void Start()
+        {
+            if (CurrentEpisode == null && m_TestEpisode != null)
+            {
+                CurrentEpisode = m_TestEpisode;
+                CurrentLevel = 0;
+            }
+        }
 
-        //    // запускаем первый уровень эпизода.
-        //    SceneManager.LoadScene(e.Levels[CurrentLevel]);
-        //}
+        public void StartEpisode(Episode e)
+        {
+            CurrentEpisode = e;
+            CurrentLevel = 0;
+
+            // сбрасываем статы перед началом эпизода.
+            LevelResultController.ResetPlayerStats();
+
+            // запускаем первый уровень эпизода.
+            SceneManager.LoadScene(e.Levels[CurrentLevel]);
+        }
 
         /// <summary>
         /// Принудительный рестарт уровня.
         /// </summary>
-        //public void RestartLevel()
-        //{
-        //    SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
-        //}
+        public void RestartLevel()
+        {
+            UnityEngine.Debug.Log("Instance: " + Instance);
+            UnityEngine.Debug.Log("m_CurrentLevel: " + CurrentLevel);
+            UnityEngine.Debug.Log("m_LevelSequence: " + CurrentEpisode);
+
+            SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
+        }
 
         /// <summary>
         /// Завершаем уровень. В зависимости от результата будет показано окошко результатов.
@@ -57,20 +76,20 @@ namespace SpaceShooter
         /// <summary>
         /// Запускаем следующий уровень или выходим в главное меню если больше уровней нету.
         /// </summary>
-        //public void AdvanceLevel()
-        //{
-        //    CurrentLevel++;
+        public void AdvancedLevel()
+        {
+            CurrentLevel++;
 
-        //    // конец эпизода вываливаемся в главное меню.
-        //    if (CurrentEpisode.Levels.Length <= CurrentLevel)
-        //    {
-        //        SceneManager.LoadScene(MainMenuSceneNickname);
-        //    }
-        //    else
-        //    {
-        //        SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
-        //    }
-        //}
+            // конец эпизода вываливаемся в главное меню.
+            if (CurrentEpisode.Levels.Length <= CurrentLevel)
+            {
+                SceneManager.LoadScene(MainMenuSceneNickname);
+            }
+            else
+            {
+                SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
+            }
+        }
 
         #region Ship select
 

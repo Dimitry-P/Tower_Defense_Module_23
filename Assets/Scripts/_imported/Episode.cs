@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SpaceShooter
 {
@@ -14,6 +15,7 @@ namespace SpaceShooter
         /// Название эпизода.
         /// </summary>
         [SerializeField] private string m_EpisodeName;
+
         public string EpisodeName => m_EpisodeName;
 
         /// <summary>
