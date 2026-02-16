@@ -10,7 +10,7 @@ namespace SpaceShooter
     /// </summary>
     public class LevelSequenceController : MonoSingleton<LevelSequenceController>
     {
-        public static string MainMenuSceneNickname = "scene_main_menu";
+        public static string MainMenuSceneNickname = "LevelMap";
 
         /// <summary>
         /// Текущий эпизод. Выставляется контроллером выбора эпизода перед началом игры.
