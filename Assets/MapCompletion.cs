@@ -10,7 +10,7 @@ namespace TowerDefense
 {
     public class MapCompletion : MonoSingleton<MapCompletion>
     {
-        const string filename = "completion.dat";
+        public const string filename = "completion.dat";
 
         [Serializable]
         private class EpisodeScore
