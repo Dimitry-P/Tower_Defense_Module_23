@@ -10,6 +10,8 @@ namespace TowerDefense
 {
     public class MapCompletion : MonoSingleton<MapCompletion>
     {
+        const string filename = "completion.dat";
+
         [Serializable]
         private class EpisodeScore
         {
@@ -22,7 +24,32 @@ namespace TowerDefense
             Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore);
         }
 
+        private void SaveResult(Episode currentEpisode, int levelScore)
+        {
+            foreach (var item in completionData)
+            {
+                if (item.episode == currentEpisode)
+                {
+                    if (levelScore > item.score)
+                    {
+                        item.score = levelScore;
+                        Saver<EpisodeScore[]>.Save(filename, completionData);
+                    } 
+                }
+            }
+        }
+
         [SerializeField] private EpisodeScore[] completionData;
+
+        private new void Awake()
+        {
+            base.Awake();
+            Saver<EpisodeScore[]>.TryLoad(filename, ref completionData);  //Обращаемся к какому-то классу и дёргаем на нём 
+            //статичную функцию TryLoad, которая должна из конкретного файла с конкретным именем загрузить данные completionData
+            //при этом мы completionData передаём как ref для того чтобы в случае если нам удаётся успешно загрузить, у нас эта
+            //completionData загрузилась. А если не удаётся, то осталась бы такой, какой она была изначально.
+        }
+
         public bool TryIndex(int id, out Episode episode, out int score)
         {
             if(id >= 0 && id < completionData.Length)
@@ -36,17 +63,6 @@ namespace TowerDefense
                 episode = null;
                 score = 0;
                 return false;
-            }
-        }
-      
-        private void SaveResult(Episode currentEpisode, int levelScore)
-        {
-            foreach(var item in completionData)
-            {
-                if(item.episode == currentEpisode)
-                {
-                    if(levelScore > item.score) item.score = levelScore;    
-                }
             }
         }
     }
