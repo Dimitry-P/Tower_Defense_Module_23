@@ -83,7 +83,10 @@ namespace SpaceShooter
             foreach(var v in m_Conditions)
             {
                 if (v.IsCompleted)
+                {
                     numCompleted++;
+                    m_EventLevelCompleted?.Invoke();
+                }
             }
 
             if(numCompleted == m_Conditions.Length)
