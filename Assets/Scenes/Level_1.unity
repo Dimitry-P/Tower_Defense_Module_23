@@ -2514,7 +2514,8 @@ PrefabInstance:
       value: HUD
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5672809721795336246, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
