@@ -10,6 +10,7 @@ namespace TowerDefense
     {
         private Episode m_episode;
         [SerializeField] private Text text;
+        private int totalCount = 0;
         public void LoadLevel()
         {
             LevelSequenceController.Instance.StartEpisode(m_episode);

@@ -36,6 +36,17 @@ namespace TowerDefense
         {
             TDPlayer.Instance.ReduceLife(m_damage, m_name);
         }
+
+        public void GivePlayerGold()
+        {
+            TDPlayer.Instance.ChangeGold(1);
+            //(Player.Instance as TDPlayer).ChangeGold(m_gold);//достань игрока, представь его в виде класса TDPlayer и измени на нём золото.
+            //Т.е. когда запускаем сцену, TDPlayer сохраняется в Player.Instance, но Player.Instance - это переменная типа Player,
+            //поэтому просто так достать нельзя, когда он достаётся, он забывает, что он - TDPlayer. 
+            //но мы ему напоминаем, что он - TDPlayer вот этой строкой: Player.Instance as TDPlayer.
+            //после чего мы меняем на нём золото.
+        }
+
     }
     [CustomEditor(typeof(Enemy))]
     public class EnemyInspector : Editor

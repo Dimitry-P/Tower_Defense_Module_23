@@ -18,30 +18,26 @@ namespace TowerDefense
             }
         }
 
-      
+        //private void Awake()
+        //{
+        //    m_gold = totalGold;
+        //}
+
+        public int m_gold;
+
+        //public static int totalGold = 0;
 
         private static event Action<int> OnGoldUpdate;
         public static void GoldUpdateSubscribe(Action<int> act)
         {
             OnGoldUpdate += act;
             act(Instance.m_gold);
+            Debug.Log(Instance.m_gold);
         }
         public static void GoldUpdateUnsubscribe(Action<int> act)
         {
             OnGoldUpdate -= act;
         }
-
-        private static event Action<int> OnDPSKilledEnemiesUpdate;
-        public static void DPSKilledEnemiesUpdateSubscribe(Action<int> act)
-        {
-            OnDPSKilledEnemiesUpdate += act;
-            act(Instance.m_DPSkilled);
-        }
-        public static void DPSKilledEnemiesUpdateUnSubscribe(Action<int> act)
-        {
-            OnDPSKilledEnemiesUpdate -= act;
-        }
-
 
 
 
@@ -57,34 +53,10 @@ namespace TowerDefense
         }
 
 
-
-
-        private static event Action<int> TotalEnemiesKilledUpdate;
-        public static void TotalKilledEnemiesUpdateSubscribe(Action<int> act)
-        {
-            TotalEnemiesKilledUpdate += act;
-            act(Instance.m_Totalkilled);
-        }
-        public static void TotalKilledEnemiesUpdateUnSubscribe(Action<int> act)
-        {
-            TotalEnemiesKilledUpdate -= act;
-        }
-        
-
-
-
-        [SerializeField] private int m_gold;
         public void ChangeGold(int change)
         {
             m_gold += change;
             OnGoldUpdate?.Invoke(m_gold);
-        }
-
-        [SerializeField] private int m_DPSkilled;
-        public void ChangeKilledCount(int change)
-        {
-            m_DPSkilled = change;
-            OnDPSKilledEnemiesUpdate?.Invoke(m_DPSkilled);
         }
 
         public void ReduceLife(int change, string enemyName)
@@ -93,21 +65,6 @@ namespace TowerDefense
             OnLifeUpdate?.Invoke(Player.Instance.NumLives);
         }
 
-        [SerializeField] private int m_Totalkilled;
-        public void ChangeTotalKilledCount(int change)
-        {
-            m_Totalkilled = change;
-            TotalEnemiesKilledUpdate?.Invoke(m_Totalkilled);
-        }
-
-        // TODO: ����� � �� ��� ������ �� ��������� ����������
-        [SerializeField] private Tower m_towerPrefab;
-        private string towerName;
-        private Tower tower;
-
-       
-           
-        
 
         //public void TryBuild(TowerAsset towerAsset, Transform buildSite)
         //{

@@ -6,7 +6,9 @@ namespace TowerDefense
 {
     public class TDLevelController : LevelController
     {
-        public int levelScore => 1;
+        private int levelScore = 1;
+        private int totalCount = 0;
+       
         private new void Start()
         {
             base.Start();
@@ -18,11 +20,12 @@ namespace TowerDefense
             m_EventLevelCompleted.AddListener(() =>
             {
                 StopLevelActivity();
-                MapCompletion.SaveEpisodeResult(levelScore);
+                totalCount = TDPlayer.Instance.m_gold;
+                MapCompletion.SaveEpisodeResult(levelScore, totalCount);
             });
-                
-                
-               
+
+          
+
         }
         private void StopLevelActivity()
         {

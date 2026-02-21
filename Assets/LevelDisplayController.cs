@@ -13,6 +13,7 @@ namespace TowerDefense
                 MapCompletion.Instance.TryIndex(drawLevel, out var episode, out score))
             {
                 levels[drawLevel].SetLevelData(episode, score);
+               
                 drawLevel++;
             }
             for (int i = drawLevel; i < levels.Length; i++)

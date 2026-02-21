@@ -17,14 +17,15 @@ namespace TowerDefense
         {
             public Episode episode;
             public int score;
+            public int totalCount;
         }
 
-        public static void SaveEpisodeResult(int levelScore)
+        public static void SaveEpisodeResult(int levelScore, int totalCount)
         {
-            Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore);
+            Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore, totalCount);
         }
 
-        private void SaveResult(Episode currentEpisode, int levelScore)
+        private void SaveResult(Episode currentEpisode, int levelScore, int totalCount)
         {
             foreach (var item in completionData)
             {
@@ -33,7 +34,10 @@ namespace TowerDefense
                     if (levelScore > item.score)
                     {
                         item.score = levelScore;
+                        item.totalCount = totalCount;
+                        //TDPlayer.Instance.totalGold = totalCount;
                         Saver<EpisodeScore[]>.Save(filename, completionData);
+                        Debug.Log("asdf" + completionData[0].totalCount);
                     } 
                 }
             }

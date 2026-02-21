@@ -76,7 +76,9 @@ namespace SpaceShooter
             m_CurrentHitPoints -= damage;
 
             if (m_CurrentHitPoints < 0)
+            {
                 OnDeath();
+            }
         }
 
         public void AddHitPoints(float hp)
@@ -139,7 +141,6 @@ namespace SpaceShooter
         {
             m_HitPoints = asset.hp;
             m_ScoreValue = asset.score;
-           
         }
     }
 }

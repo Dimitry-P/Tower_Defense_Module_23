@@ -20,3 +20,5 @@ MonoBehaviour:
   hp: 30
   score: 30
   radius: 1.8
+  damage: 1
+  enemyName: 

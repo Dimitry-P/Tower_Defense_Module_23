@@ -5,7 +5,7 @@ using SpaceShooter;
 
 public class TimeLevelCondition : MonoBehaviour, ILevelCondition
 {
-    [SerializeField] private float timeLimit = 4f;
+    [SerializeField] private float timeLimit;
     private void Start()
     {
         timeLimit += Time.time;

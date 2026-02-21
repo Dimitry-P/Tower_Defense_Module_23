@@ -7,7 +7,6 @@ namespace TowerDefense
     [Serializable]  //Это означает, что представителя класса Saver можно сохранить на диск
     public class Saver<T>
     {
-       
         public static void TryLoad(string filename, ref T data)
         {
             var path = FileHandler.Path(filename);
@@ -30,8 +29,6 @@ namespace TowerDefense
             var dataString = JsonUtility.ToJson(wrapper);
             File.WriteAllText(FileHandler.Path(filename), dataString);
         }
-
-      
 
         public T data;
     }
