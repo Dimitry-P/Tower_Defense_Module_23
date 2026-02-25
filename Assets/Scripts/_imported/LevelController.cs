@@ -32,8 +32,8 @@ namespace SpaceShooter
         /// <summary>
         /// Время прохождения в секундах за которое будут начисляться очки.
         /// </summary>
-        [SerializeField] private int m_ReferenceTime;
-        public int ReferenceTime => m_ReferenceTime;
+        [SerializeField] protected float m_ReferenceTime;
+        public float ReferenceTime => m_ReferenceTime;
 
         /// <summary>
         /// Событие которое будет вызвано когда уровень будет выполнен. Вызывается один раз.

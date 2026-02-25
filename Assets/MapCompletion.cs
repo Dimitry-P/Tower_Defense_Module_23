@@ -22,7 +22,14 @@ namespace TowerDefense
 
         public static void SaveEpisodeResult(int levelScore, int totalCount)
         {
-            Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore, totalCount);
+            if (Instance)
+            {
+                Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore, totalCount);
+            }
+            else
+            {
+                Debug.Log($"Episode complete with score {levelScore}");
+            }
         }
 
         private void SaveResult(Episode currentEpisode, int levelScore, int totalCount)

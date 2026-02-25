@@ -41,7 +41,7 @@ namespace TowerDefense
 
 
 
-        private static event Action<int> OnLifeUpdate;
+        public static event Action<int> OnLifeUpdate;
         public static void LifeUpdateSubscribe(Action<int> act)
         {
             OnLifeUpdate += act;
