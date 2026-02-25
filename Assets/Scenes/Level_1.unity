@@ -1457,7 +1457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  m_ReferenceTime: 0
+  m_ReferenceTime: 6
   m_EventLevelCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3d50985ede3c54a91f89039b356f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 7
+  timeLimit: 3
 --- !u!1 &694817600
 GameObject:
   m_ObjectHideFlags: 0
