@@ -52,7 +52,16 @@ namespace TowerDefense
                 //Этому интерфейсу в треугольных скобках нужно указать ТИП ПЕРЕЧИСЛЯЕМЫХ данных:
                 //Например, КОРТЕЖ foreach ((EnemyAsset asset, int count, int PathIndex) in currentWave.EnumerateSquads())
         {
-            yield return (groups[0].squads[0].asset, groups[0].squads[0].count, 0);
+            for(int i = 0; i < groups.Length; i++)  //Здесь мы синхронизируем индексы групп с индексами путей
+            {
+                foreach(var squad in groups[i].squads)
+                {
+                    yield return (squad.asset, squad.count, i);
+                    //Здесь написано: как именно мы будем эти объекты ПО ОДНОМУ выдавать.
+                    //А именно: из наших отрядов вернётся самый первый.
+                    //!!!!! yield return - это воз-ть возвращать из функции значения НЕ сразу, а по одному.!!!!!!!!!!!
+                }
+            }
         }
 
         internal EnemyWave PrepareNext(Action spawnEnemies)

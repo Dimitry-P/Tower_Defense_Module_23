@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f986542a07242e4db6835dee5994868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startArea: {fileID: 1924377180}
   points:
   - {fileID: 621395381}
   - {fileID: 378339734}
@@ -388,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f986542a07242e4db6835dee5994868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startArea: {fileID: 0}
   points:
   - {fileID: 1397687016}
   - {fileID: 1206964369}
@@ -696,6 +698,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1924377179}
+  - {fileID: 1988275140}
   - {fileID: 1487082226}
   - {fileID: 1583831237}
   - {fileID: 796081991}
@@ -873,6 +876,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4534007163366116183, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5672809721795336246, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -990,6 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f986542a07242e4db6835dee5994868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startArea: {fileID: 0}
   points:
   - {fileID: 1107424739}
   - {fileID: 694817602}
@@ -1184,6 +1192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f986542a07242e4db6835dee5994868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startArea: {fileID: 0}
   points:
   - {fileID: 620359555}
   - {fileID: 1979289369}
@@ -2650,6 +2659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f986542a07242e4db6835dee5994868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startArea: {fileID: 0}
   points:
   - {fileID: 928271633}
   - {fileID: 343089563}
@@ -3053,7 +3063,12 @@ MonoBehaviour:
   groups:
   - squads:
     - asset: {fileID: 11400000, guid: ed3b56a26de293d4ba17f8d2c3cf1c54, type: 2}
+      count: 1
+    - asset: {fileID: 11400000, guid: 72cf142ae2b40ea49a5eaed25bc8966f, type: 2}
       count: 3
+  - squads:
+    - asset: {fileID: 11400000, guid: 72cf142ae2b40ea49a5eaed25bc8966f, type: 2}
+      count: 2
   prepareTime: 2
 --- !u!1 &1614517053
 GameObject:
@@ -3189,6 +3204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f986542a07242e4db6835dee5994868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startArea: {fileID: 0}
   points:
   - {fileID: 1744881880}
   - {fileID: 1687030533}
@@ -3612,7 +3628,7 @@ GameObject:
   - component: {fileID: 1924377179}
   - component: {fileID: 1924377180}
   m_Layer: 0
-  m_Name: SpawnArea
+  m_Name: RoadSpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3627,7 +3643,7 @@ Transform:
   m_GameObject: {fileID: 1924377178}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0, z: 0}
+  m_LocalPosition: {x: -0.11, y: 1.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3853,7 +3869,7 @@ Transform:
   m_GameObject: {fileID: 1984666058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 1.44, z: -0.026500028}
+  m_LocalPosition: {x: -2.93, y: -1.59, z: -0.026500028}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3901,6 +3917,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Radius: 4
+--- !u!1 &1988275139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988275140}
+  - component: {fileID: 1988275141}
+  m_Layer: 0
+  m_Name: ForestSpawnArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1988275140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988275139}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.89, y: -0.27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 394599048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1988275141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988275139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51cd7139c46aa854c8f32f1ccf634f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Radius: 1
 --- !u!1 &1999461833
 GameObject:
   m_ObjectHideFlags: 0
@@ -3945,6 +4006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f986542a07242e4db6835dee5994868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startArea: {fileID: 1988275141}
   points:
   - {fileID: 621395381}
   - {fileID: 1331635540}

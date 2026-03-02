@@ -26,7 +26,7 @@ namespace TowerDefense
                 {
                     for(int i = 0; i < count; i++)
                     { 
-                        var e = Instantiate(m_EnemyPrefab);
+                        var e = Instantiate(m_EnemyPrefab, paths[PathIndex].StartArea.RandomInsideZone, Quaternion.identity);
                         e.Use(asset);
                         e.GetComponent<TDController>().SetPath(paths[PathIndex]);
                     }
