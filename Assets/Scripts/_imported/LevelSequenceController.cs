@@ -59,8 +59,8 @@ namespace SpaceShooter
             UnityEngine.Debug.Log("Instance: " + Instance);
             UnityEngine.Debug.Log("m_CurrentLevel: " + CurrentLevel);
             UnityEngine.Debug.Log("m_LevelSequence: " + CurrentEpisode);
-
-            SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
+            SceneManager.LoadScene(MainMenuSceneNickname);
+            //SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
         }
 
         /// <summary>

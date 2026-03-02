@@ -50,17 +50,6 @@ namespace TowerDefense
             }
         }
 
-        public int GetTotalScore()
-        {
-            int sum = 0;
-            foreach (var item in completionData)
-            {
-                sum += item.score;
-            }
-            return sum;
-        }
-
-
         [SerializeField] private EpisodeScore[] completionData;
 
         private new void Awake()

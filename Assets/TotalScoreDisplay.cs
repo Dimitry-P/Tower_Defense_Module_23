@@ -16,8 +16,8 @@ namespace SpaceShooter
                 return;
             }
 
-            int total = MapCompletion.Instance.GetTotalScore();
-            totalScoreText.text = total.ToString();
+            //int total = MapCompletion.Instance.GetTotalScore();
+            //totalScoreText.text = total.ToString();
         }
     }
 }
