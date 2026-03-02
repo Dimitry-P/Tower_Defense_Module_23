@@ -64,9 +64,12 @@ namespace TowerDefense
             }
         }
 
-        internal EnemyWave PrepareNext(Action spawnEnemies)
+        [SerializeField] private EnemyWave next;
+        public EnemyWave PrepareNext(Action spawnEnemies)
         {
-            return null;
+            OnWaveReady -= spawnEnemies;
+            if(next) next.Prepare(spawnEnemies);
+            return next;  //возвращаю эту волну следующую для того, чтобы WaveManager уже мог с ней разобраться.
         }
     }
 }
