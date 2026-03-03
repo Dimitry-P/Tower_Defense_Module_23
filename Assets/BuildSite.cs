@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,7 +16,7 @@ public class BuildSite : MonoBehaviour, IPointerDownHandler
     }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        print($"Ì‡Ê‡ÚÓ {transform.root.name}");
+        print($"–Ω–∞–∂–∞—Ç–æ {transform.root.name}");
         OnClickEvent(transform.root);
     }
 }

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 34755a11309a7544db52ce7e264b6e26, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
-  spriteScale: {x: 0.14, y: 0.14}
+  spriteScale: {x: 0.09, y: 0.09}
   animations: {fileID: 9100000, guid: 53278fff6e9c6b34893aa1179af4ea91, type: 2}
-  moveSpeed: 4.5
+  moveSpeed: 1
   hp: 30
   score: 30
-  radius: 1.8
+  radius: 0.2
   damage: 1
   enemyName: 
