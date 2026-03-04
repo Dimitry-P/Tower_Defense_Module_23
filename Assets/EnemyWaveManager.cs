@@ -9,6 +9,15 @@ namespace TowerDefense
         [SerializeField] private Path[] paths;
         [SerializeField] private EnemyWave currentWave;
         [SerializeField] private Enemy m_EnemyPrefab;
+        private int activeEnemyCount = 0;
+        public event Action OnAllWavesDead;
+        private void RecordEnemyDead()
+        {
+            if(--activeEnemyCount == 0)
+            {
+                 ForceNextWave();
+            }
+        }
 
         private void Start()
         {
@@ -28,8 +37,10 @@ namespace TowerDefense
                     for(int i = 0; i < count; i++)
                     { 
                         var e = Instantiate(m_EnemyPrefab, paths[PathIndex].StartArea.RandomInsideZone, Quaternion.identity);
+                        e.OnEnd += RecordEnemyDead;
                         e.Use(asset);
                         e.GetComponent<TDController>().SetPath(paths[PathIndex]);
+                        activeEnemyCount += 1;
                     }
                 }
                 else
@@ -43,11 +54,21 @@ namespace TowerDefense
 
         public void ForceNextWave()
         {
-            TDPlayer.Instance.ChangeGold((int)currentWave.GetRemainingTime());
-            //1. Здесь мы хотим принудительно завершить текущую волну
-            //2. Затем вызвать следующую волну
-            SpawnEnemies();
-            //Награда за форс волны
+            if (currentWave)
+            {
+                TDPlayer.Instance.ChangeGold((int)currentWave.GetRemainingTime());
+                //1. Здесь мы хотим принудительно завершить текущую волну
+                //2. Затем вызвать следующую волну
+                SpawnEnemies();
+                //Награда за форс волны
+            }
+            else
+            {
+                if(activeEnemyCount == 0)
+                {
+                    OnAllWavesDead?.Invoke();
+                }
+            }
         }
     }
 }

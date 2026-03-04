@@ -3,6 +3,7 @@ using UnityEngine;
 using SpaceShooter;
 using UnityEditor;
 using UnityEngine.UIElements;
+using System;
 
 namespace TowerDefense
 {
@@ -10,7 +11,11 @@ namespace TowerDefense
     public class Enemy : MonoBehaviour
     {
         private int m_damage;
-        private string m_name;  
+        private string m_name;
+
+        public event Action OnEnd;
+        private void OnDestroy() { print(name);  OnEnd?.Invoke(); }
+
         public void Use(EnemyAsset asset)//эта функция осущ-ет подцепление настроек для врагов.
         {
             var sr = transform.Find("Sprite").GetComponent<SpriteRenderer>();
