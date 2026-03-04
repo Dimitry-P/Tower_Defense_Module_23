@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using SpaceShooter;
+using System;
 
 namespace TowerDefense
 {
@@ -38,6 +39,15 @@ namespace TowerDefense
             }
             currentWave = currentWave.PrepareNext(SpawnEnemies); //Текущая волна - готовься! 
             // SpawnEnemies -- вот тебе, как ты будешь спавниться.
+        }
+
+        public void ForceNextWave()
+        {
+            TDPlayer.Instance.ChangeGold((int)currentWave.GetRemainingTime());
+            //1. Здесь мы хотим принудительно завершить текущую волну
+            //2. Затем вызвать следующую волгну
+            SpawnEnemies();
+            //Награда за форс волны
         }
     }
 }
