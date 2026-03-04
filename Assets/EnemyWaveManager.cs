@@ -45,7 +45,7 @@ namespace TowerDefense
         {
             TDPlayer.Instance.ChangeGold((int)currentWave.GetRemainingTime());
             //1. Здесь мы хотим принудительно завершить текущую волну
-            //2. Затем вызвать следующую волгну
+            //2. Затем вызвать следующую волну
             SpawnEnemies();
             //Награда за форс волны
         }

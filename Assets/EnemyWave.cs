@@ -7,6 +7,8 @@ namespace TowerDefense
 {
     public class EnemyWave: MonoBehaviour
     {
+        public static Action<float> OnWavePrepare; //Все, кто на этот OnWavePrepare подпишутся, 
+        //будут получать инфу о том, сколько времени осталось до следующей волны
         [Serializable]
         private class Squad           //Это наш отряд. В каждой волне может быть много таких отрядов.
         {
@@ -36,6 +38,7 @@ namespace TowerDefense
 
         public void Prepare(Action spawnEnemies)  //включает волну
         {
+            OnWavePrepare?.Invoke(prepareTime);
             prepareTime += Time.time;
             enabled = true;
             OnWaveReady += spawnEnemies;
