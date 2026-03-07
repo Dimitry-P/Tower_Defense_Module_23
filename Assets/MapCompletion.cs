@@ -51,6 +51,9 @@ namespace TowerDefense
         }
 
         [SerializeField] private EpisodeScore[] completionData;
+        private int totalScore;
+        public int TotalScore {  get { return totalScore; } }
+       
 
         private new void Awake()
         {
@@ -59,22 +62,35 @@ namespace TowerDefense
             //статичную функцию TryLoad, которая должна из конкретного файла с конкретным именем загрузить данные completionData
             //при этом мы completionData передаём как ref для того чтобы в случае если нам удаётся успешно загрузить, у нас эта
             //completionData загрузилась. А если не удаётся, то осталась бы такой, какой она была изначально.
+            foreach (var episodeScore in completionData)
+            {
+                totalScore += episodeScore.score;
+            }
         }
 
-        public bool TryIndex(int id, out Episode episode, out int score)
+        //public bool TryIndex(int id, out Episode episode, out int score)
+        //{
+        //    if(id >= 0 && id < completionData.Length)
+        //    {
+        //        episode = completionData[id].episode;
+        //        score = completionData[id].score;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        episode = null;
+        //        score = 0;
+        //        return false;
+        //    }
+        //}
+
+        public int GetEpisodeScore(Episode m_episode)
         {
-            if(id >= 0 && id < completionData.Length)
+           foreach(var data in completionData)
             {
-                episode = completionData[id].episode;
-                score = completionData[id].score;
-                return true;
+                if (data.episode == m_episode) return data.score;
             }
-            else
-            {
-                episode = null;
-                score = 0;
-                return false;
-            }
+            return 0;
         }
     }
 }
