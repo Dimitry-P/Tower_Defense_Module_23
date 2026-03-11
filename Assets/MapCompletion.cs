@@ -17,14 +17,13 @@ namespace TowerDefense
         {
             public Episode episode;
             public int score;
-            public int totalCount;
         }
 
-        public static void SaveEpisodeResult(int levelScore, int totalCount)
+        public static void SaveEpisodeResult(int levelScore)
         {
             if (Instance)
             {
-                Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore, totalCount);
+                Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore);
             }
             else
             {
@@ -32,7 +31,7 @@ namespace TowerDefense
             }
         }
 
-        private void SaveResult(Episode currentEpisode, int levelScore, int totalCount)
+        private void SaveResult(Episode currentEpisode, int levelScore)
         {
             foreach (var item in completionData)
             {
@@ -41,16 +40,15 @@ namespace TowerDefense
                     if (levelScore > item.score)
                     {
                         item.score = levelScore;
-                        item.totalCount = totalCount;
-                        //TDPlayer.Instance.totalGold = totalCount;
                         Saver<EpisodeScore[]>.Save(filename, completionData);
-                        Debug.Log("asdf" + completionData[0].totalCount);
                     } 
                 }
             }
         }
 
         [SerializeField] private EpisodeScore[] completionData;
+        private int totalScore;
+        public int TotalScore { get { return totalScore; } }
 
         private new void Awake()
         {
@@ -59,6 +57,10 @@ namespace TowerDefense
             //статичную функцию TryLoad, которая должна из конкретного файла с конкретным именем загрузить данные completionData
             //при этом мы completionData передаём как ref для того чтобы в случае если нам удаётся успешно загрузить, у нас эта
             //completionData загрузилась. А если не удаётся, то осталась бы такой, какой она была изначально.
+            foreach (var episodeScore in completionData)
+            {
+                totalScore += episodeScore.score;
+            }
         }
 
         public bool TryIndex(int id, out Episode episode, out int score)
