@@ -17,14 +17,13 @@ namespace TowerDefense
         {
             public Episode episode;
             public int score;
-            public int totalCount;
         }
 
-        public static void SaveEpisodeResult(int levelScore, int totalCount)
+        public static void SaveEpisodeResult(int levelScore)
         {
             if (Instance)
             {
-                Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore, totalCount);
+                Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore);
             }
             else
             {
@@ -32,7 +31,7 @@ namespace TowerDefense
             }
         }
 
-        private void SaveResult(Episode currentEpisode, int levelScore, int totalCount)
+        private void SaveResult(Episode currentEpisode, int levelScore)
         {
             foreach (var item in completionData)
             {
@@ -41,10 +40,7 @@ namespace TowerDefense
                     if (levelScore > item.score)
                     {
                         item.score = levelScore;
-                        item.totalCount = totalCount;
-                        //TDPlayer.Instance.totalGold = totalCount;
                         Saver<EpisodeScore[]>.Save(filename, completionData);
-                        Debug.Log("asdf" + completionData[0].totalCount);
                     } 
                 }
             }
@@ -52,8 +48,7 @@ namespace TowerDefense
 
         [SerializeField] private EpisodeScore[] completionData;
         private int totalScore;
-        public int TotalScore {  get { return totalScore; } }
-       
+        public int TotalScore { get { return totalScore; } }
 
         private new void Awake()
         {
@@ -68,29 +63,20 @@ namespace TowerDefense
             }
         }
 
-        //public bool TryIndex(int id, out Episode episode, out int score)
-        //{
-        //    if(id >= 0 && id < completionData.Length)
-        //    {
-        //        episode = completionData[id].episode;
-        //        score = completionData[id].score;
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        episode = null;
-        //        score = 0;
-        //        return false;
-        //    }
-        //}
-
-        public int GetEpisodeScore(Episode m_episode)
+        public bool TryIndex(int id, out Episode episode, out int score)
         {
-           foreach(var data in completionData)
+            if(id >= 0 && id < completionData.Length)
             {
-                if (data.episode == m_episode) return data.score;
+                episode = completionData[id].episode;
+                score = completionData[id].score;
+                return true;
             }
-            return 0;
+            else
+            {
+                episode = null;
+                score = 0;
+                return false;
+            }
         }
     }
 }

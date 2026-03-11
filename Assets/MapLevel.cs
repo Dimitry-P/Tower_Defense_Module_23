@@ -17,7 +17,8 @@ namespace TowerDefense
         private int totalCount = 0;
 
         public bool IsComplete { get { return 
-                    gameObject.activeSelf && resultPanel.gameObject.activeSelf; } }
+                    gameObject.activeSelf && 
+                    resultPanel.gameObject.activeSelf; } }
 
         public void LoadLevel()
         {
@@ -32,7 +33,6 @@ namespace TowerDefense
             {
                 resultImages[i].color = Color.white;
             }
-            //text.text = $"{score}/3";
         }
     }
 }

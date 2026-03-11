@@ -26,6 +26,7 @@ namespace SpaceShooter
         //[SerializeField] private MovementController m_MovementController;
         [SerializeField] private GameObject loosePanel;
         public GameObject victoryPanel;
+        [SerializeField] private Tower towerPrefab;
 
         private void Start()
         {

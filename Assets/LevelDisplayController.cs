@@ -10,16 +10,18 @@ namespace TowerDefense
         {
             var drawLevel = 0;
             var score = 1;
-            while(score != 0 && drawLevel < levels.Length)
+            while(score != 0 && drawLevel < levels.Length )
             {
                 levels[drawLevel].Initialise();
                
                 drawLevel++;
             }
+
             for (int i = drawLevel; i < levels.Length; i++)
             {
                 levels[i].gameObject.SetActive(false);
             }
+
             for (int i = 0; i < branchLevels.Length; i++)
             {
                 branchLevels[i].TryActivate();

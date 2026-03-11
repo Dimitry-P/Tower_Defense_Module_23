@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using SpaceShooter;
 
 namespace TowerDefense
@@ -8,6 +6,7 @@ namespace TowerDefense
     public class LevelWaveCondition : MonoBehaviour, ILevelCondition
     {
         private bool isCompleted;
+        public bool IsCompleted { get { return isCompleted; } }
 
         void Start()
         {
@@ -16,7 +15,6 @@ namespace TowerDefense
                 isCompleted = true; 
             };
         }
-        public bool IsCompleted {  get { return isCompleted; } }
     }
 }
 
