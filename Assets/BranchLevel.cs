@@ -25,6 +25,7 @@ namespace TowerDefense
             else
             {
                 pointText.transform.parent.gameObject.SetActive(false);
+                GetComponent<MapLevel>().Initialise();
             }
         }
     }
