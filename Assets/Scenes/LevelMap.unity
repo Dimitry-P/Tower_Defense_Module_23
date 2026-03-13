@@ -409,15 +409,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 1
-  completionData:
-  - episode: {fileID: 11400000, guid: 182f692d3d9bd184e99a195a5d825b78, type: 2}
-    score: 0
-  - episode: {fileID: 11400000, guid: 75e1a69e6071547479ba0ed7cb90c088, type: 2}
-    score: 0
-  - episode: {fileID: 11400000, guid: ad30127a8730456498ae6a58eba8bd2d, type: 2}
-    score: 0
-  - episode: {fileID: 11400000, guid: f729baabd1571044cab2fc9a5447cd93, type: 2}
-    score: 0
+  allEpisodes:
+  - {fileID: 11400000, guid: 182f692d3d9bd184e99a195a5d825b78, type: 2}
+  - {fileID: 11400000, guid: 75e1a69e6071547479ba0ed7cb90c088, type: 2}
+  - {fileID: 11400000, guid: ad30127a8730456498ae6a58eba8bd2d, type: 2}
+  - {fileID: 11400000, guid: f729baabd1571044cab2fc9a5447cd93, type: 2}
+  data:
+    episodes:
+    - episode: {fileID: 11400000, guid: 182f692d3d9bd184e99a195a5d825b78, type: 2}
+      score: 0
+    - episode: {fileID: 11400000, guid: 75e1a69e6071547479ba0ed7cb90c088, type: 2}
+      score: 0
+    - episode: {fileID: 11400000, guid: ad30127a8730456498ae6a58eba8bd2d, type: 2}
+      score: 0
+    - episode: {fileID: 11400000, guid: f729baabd1571044cab2fc9a5447cd93, type: 2}
+      score: 0
+    unlockedLevels: 0
 --- !u!114 &1238805289 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 810141307943579064, guid: 80c0312859eed4547b1889531e76ac0b, type: 3}
@@ -574,7 +581,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  completionData: []
+  allEpisodes: []
+  data:
+    episodes: []
+    unlockedLevels: 0
 --- !u!114 &1792416320
 MonoBehaviour:
   m_ObjectHideFlags: 0

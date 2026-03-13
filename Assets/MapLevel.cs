@@ -29,7 +29,7 @@ namespace TowerDefense
         {
             var score = MapCompletion.Instance.GetEpisodeScore(m_episode);
             resultPanel.gameObject.SetActive(score > 0);
-            for (int i = 0; i < score; i++)
+            for (int i = 0; i < score && i < resultImages.Length; i++)
             {
                 resultImages[i].color = Color.white;
             }

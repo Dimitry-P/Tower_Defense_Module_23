@@ -11,13 +11,26 @@ namespace TowerDefense
     public class MapCompletion : MonoSingleton<MapCompletion>
     {
         public const string filename = "completion.dat";
+        [SerializeField] private Episode[] allEpisodes;  // Сюда в инспекторе перетащить все Episode
 
         [Serializable]
-        private class EpisodeScore
+        public class EpisodeScore
         {
             public Episode episode;
             public int score;
         }
+
+        [SerializeField] private CompletionData data;
+        public CompletionData Data => data;
+
+        [Serializable]
+        public class CompletionData
+        {
+            public EpisodeScore[] episodes;
+            public int unlockedLevels = 0;
+        }
+
+        public int UnlockedLevels => data.unlockedLevels;
 
         public static void SaveEpisodeResult(int levelScore)
         {
@@ -33,39 +46,74 @@ namespace TowerDefense
 
         private void SaveResult(Episode currentEpisode, int levelScore)
         {
-            foreach (var item in completionData)
+            foreach (var item in data.episodes)
             {
                 if (item.episode == currentEpisode)
                 {
                     if (levelScore > item.score)
                     {
                         item.score = levelScore;
-                        Saver<EpisodeScore[]>.Save(filename, completionData);
+                        data.unlockedLevels++;
+                        Saver<CompletionData>.Save(filename, data);
                     } 
                 }
             }
         }
 
-        [SerializeField] private EpisodeScore[] completionData;
+        
         private int totalScore;
         public int TotalScore { get { return totalScore; } }
+
+
+        //private new void Awake()
+        //{
+        //    base.Awake();
+        //    Saver<CompletionData>.TryLoad(filename, ref data);  //Обращаемся к какому-то классу и дёргаем на нём 
+        //    //статичную функцию TryLoad, которая должна из конкретного файла с конкретным именем загрузить данные completionData
+        //    //при этом мы completionData передаём как ref для того чтобы в случае если нам удаётся успешно загрузить, у нас эта
+        //    //completionData загрузилась. А если не удаётся, то осталась бы такой, какой она была изначально.
+        //    foreach (var episodeScore in data.episodes)
+        //    {
+        //        totalScore += episodeScore.score;
+        //    }
+        //}
 
         private new void Awake()
         {
             base.Awake();
-            Saver<EpisodeScore[]>.TryLoad(filename, ref completionData);  //Обращаемся к какому-то классу и дёргаем на нём 
-            //статичную функцию TryLoad, которая должна из конкретного файла с конкретным именем загрузить данные completionData
-            //при этом мы completionData передаём как ref для того чтобы в случае если нам удаётся успешно загрузить, у нас эта
-            //completionData загрузилась. А если не удаётся, то осталась бы такой, какой она была изначально.
-            foreach (var episodeScore in completionData)
+
+            Saver<CompletionData>.TryLoad(filename, ref data);
+
+            if (data == null)
+            {
+                data = new CompletionData();
+
+                data.episodes = new EpisodeScore[allEpisodes.Length];
+                for (int i = 0; i < allEpisodes.Length; i++)
+                {
+                    data.episodes[i] = new EpisodeScore
+                    {
+                        episode = allEpisodes[i],
+                        score = 0
+                    };
+                }
+            }
+
+            foreach (var episodeScore in data.episodes)
             {
                 totalScore += episodeScore.score;
             }
         }
 
+        //public void UnlockNextLevel()
+        //{
+        //    unlockedLevels++;
+        //    Saver<MapCompletion>.Save(filename, this);
+        //}
+
         public int GetEpisodeScore(Episode m_episode)
         {
-            foreach (var data in completionData)
+            foreach (var data in data.episodes)
             {
                 if(data.episode == m_episode)
                 {

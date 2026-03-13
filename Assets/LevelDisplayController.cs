@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using SpaceShooter;
 
 namespace TowerDefense
 {
@@ -6,18 +7,19 @@ namespace TowerDefense
     {
         [SerializeField] private MapLevel[] levels;
         [SerializeField] private BranchLevel[] branchLevels;
+       
         void Start()
         {
             var drawLevel = 0;
             var score = 1;
-            while(score != 0 && drawLevel < levels.Length )
+            while(score != 0 && drawLevel < levels.Length)
             {
                 levels[drawLevel].Initialise();
                
-                drawLevel++;
+                drawLevel++; 
             }
 
-            for (int i = drawLevel; i < levels.Length; i++)
+            for (int i = MapCompletion.Instance.UnlockedLevels + 1; i < levels.Length; i++)
             {
                 levels[i].gameObject.SetActive(false);
             }
