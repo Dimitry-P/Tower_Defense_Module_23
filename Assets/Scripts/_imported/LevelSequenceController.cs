@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
+using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SpaceShooter
 {
@@ -39,6 +41,29 @@ namespace SpaceShooter
             }
         }
 
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name == MainMenuSceneNickname)
+            {
+                var map = FindObjectOfType<TowerDefense.LevelDisplayController>();
+
+                if (map != null)
+                {
+                    map.RefreshLevels();
+                }
+            }
+        }
+
         public void StartEpisode(Episode e)
         {
             CurrentEpisode = e;
@@ -67,11 +92,27 @@ namespace SpaceShooter
         /// Завершаем уровень. В зависимости от результата будет показано окошко результатов.
         /// </summary>
         /// <param name="success">успешность или поражение</param>
+
+
         public void FinishCurrentLevel(bool success)
         {
-            // после организации переходов
+           
+            print(SceneManager.GetActiveScene().name);
+            if (LevelResultController.Instance == null)
+            {
+                print("LevelResultController not found in scene");
+                return;
+            }
+
             LevelResultController.Instance.Show(success);
         }
+        //public void FinishCurrentLevel(bool success)
+        //{
+        //    // после организации переходов
+        //    LevelResultController.Instance.Show(success);
+        //}
+
+
 
         /// <summary>
         /// Запускаем следующий уровень или выходим в главное меню если больше уровней нету.

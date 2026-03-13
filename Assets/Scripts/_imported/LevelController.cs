@@ -65,8 +65,6 @@ namespace SpaceShooter
 
                 CheckLevelConditions();
             }
-
-
         }
 
         #endregion
@@ -79,24 +77,19 @@ namespace SpaceShooter
             if (m_Conditions == null || m_Conditions.Length == 0)
                 return;
 
-            int numCompleted = 0;
-
-            foreach(var v in m_Conditions)
+            foreach (var v in m_Conditions)
             {
-                if (v.IsCompleted)
-                {
-                    numCompleted++;
-                    m_EventLevelCompleted?.Invoke();
-                }
+                if (!v.IsCompleted)
+                    return;
             }
 
-            if(numCompleted == m_Conditions.Length)
-            {
-                m_IsLevelCompleted = true;
+            m_IsLevelCompleted = true;
+            LevelResultController.Instance.gameObject.SetActive(true);
+            LevelSequenceController.Instance?.FinishCurrentLevel(true);
 
-                // Notify level sequence Unit3 code
-                LevelSequenceController.Instance?.FinishCurrentLevel(true);
-            }
+            m_EventLevelCompleted?.Invoke();
+
+           
         }
     }
 }

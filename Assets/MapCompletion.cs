@@ -55,6 +55,12 @@ namespace TowerDefense
                         item.score = levelScore;
                         data.unlockedLevels++;
                         Saver<CompletionData>.Save(filename, data);
+
+                        //// Немедленно обновляем branchLevels на сцене:
+                        //foreach (var branch in branchLevels)
+                        //{
+                        //    branch.TryActivate();
+                        //}
                     } 
                 }
             }
