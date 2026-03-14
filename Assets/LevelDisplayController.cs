@@ -7,7 +7,7 @@ namespace TowerDefense
     {
         [SerializeField] private MapLevel[] levels;
         [SerializeField] private BranchLevel[] branchLevels;
-
+        public BranchLevel[] BranchLevels => branchLevels;
 
         void Start()
         {

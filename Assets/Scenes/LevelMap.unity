@@ -540,7 +540,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1792416318}
-  - component: {fileID: 1792416319}
   - component: {fileID: 1792416320}
   m_Layer: 0
   m_Name: Levels
@@ -568,23 +567,6 @@ Transform:
   - {fileID: 2111701227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1792416319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792416317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd20694a2dbe4fe498b08a83f9a4f524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_DoNotDestroyOnLoad: 0
-  allEpisodes: []
-  data:
-    episodes: []
-    unlockedLevels: 0
 --- !u!114 &1792416320
 MonoBehaviour:
   m_ObjectHideFlags: 0

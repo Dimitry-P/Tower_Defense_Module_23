@@ -1,7 +1,8 @@
-﻿using System.Diagnostics;
-using System;
-using UnityEngine.SceneManagement;
+﻿using System;
+using System.Diagnostics;
+using TowerDefense;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SpaceShooter
@@ -39,6 +40,9 @@ namespace SpaceShooter
                 CurrentEpisode = m_TestEpisode;
                 CurrentLevel = 0;
             }
+            levDisCont = transform.parent
+               .Find("Levels")
+               .GetComponent<LevelDisplayController>();
         }
 
         private void OnEnable()
@@ -96,7 +100,6 @@ namespace SpaceShooter
 
         public void FinishCurrentLevel(bool success)
         {
-           
             print(SceneManager.GetActiveScene().name);
             if (LevelResultController.Instance == null)
             {
@@ -112,7 +115,7 @@ namespace SpaceShooter
         //    LevelResultController.Instance.Show(success);
         //}
 
-
+        private LevelDisplayController levDisCont;
 
         /// <summary>
         /// Запускаем следующий уровень или выходим в главное меню если больше уровней нету.
@@ -125,6 +128,11 @@ namespace SpaceShooter
             if (CurrentEpisode.Levels.Length <= CurrentLevel)
             {
                 SceneManager.LoadScene(MainMenuSceneNickname);
+                //// Немедленно обновляем branchLevels на сцене:
+                foreach (var branch in levDisCont.BranchLevels)
+                {
+                    branch.TryActivate();
+                }
             }
             else
             {

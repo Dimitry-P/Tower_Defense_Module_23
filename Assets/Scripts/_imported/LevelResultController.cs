@@ -22,7 +22,6 @@ namespace SpaceShooter
         [SerializeField] private Text m_TotalScore;
         [SerializeField] private Text m_TotalKills;
 
-       
 
         /// <summary>
         /// Показываем окошко результатов. Выставляем нужные кнопочки в зависимости от успеха.
@@ -61,6 +60,12 @@ namespace SpaceShooter
             TotalStats = new Stats();
         }
 
+        //public void OnPlayNext()
+        //{
+        //    LevelSequenceController.Instance.AdvancedLevel();
+        //    unlockAtOnce = FindObjectOfType<LevelDisplayController>();
+        //    unlockAtOnce.RefreshLevels();
+        //}
         public void OnPlayNext()
         {
             LevelSequenceController.Instance.AdvancedLevel();

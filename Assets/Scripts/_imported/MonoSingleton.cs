@@ -29,7 +29,7 @@ namespace SpaceShooter
             if (Instance != null)
             {
                 Debug.LogWarning("MonoSingleton: object of type already exists, instance will be destroyed=" + typeof(T).Name);
-                Destroy(this);
+                Destroy(gameObject);
                 return;
             }
 
