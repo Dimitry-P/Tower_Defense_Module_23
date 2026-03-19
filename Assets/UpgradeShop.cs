@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using SpaceShooter;
 
 namespace TowerDefense
 {
@@ -13,12 +14,33 @@ namespace TowerDefense
 
         private void Start()
         {
-            money = MapCompletion.Instance.TotalScore;
-            moneyText.text = money.ToString();
-            foreach(var slot in sales)
+            UpdateMoney();
+            foreach (var slot in sales)
             {
                 slot.Initialize();
+                var button = slot.transform.Find("Button");
+
+                if (button == null)
+                {
+                    Debug.LogError($"Button not found in {slot.name}");
+                    continue;
+                }
+
+                var btnComponent = button.GetComponent<Button>();
+
+                if (btnComponent == null)
+                {
+                    Debug.LogError($"No Button component on {button.name}");
+                    continue;
+                }
+                slot.transform.Find("Button").GetComponent<Button>().onClick.AddListener(UpdateMoney);
             }
+        }
+        public void UpdateMoney()
+        {
+            print("update");
+            money = MapCompletion.Instance.TotalScore;
+            moneyText.text = money.ToString();
         }
     }
 }

@@ -15,9 +15,9 @@ namespace TowerDefense
         {
             ugradeIcon.sprite = asset.sprite;
             var savedLevel = Upgrades.GetUpgradeLevel(asset);
-            level.text = $"Lvl: {savedLevel + 1}";
             if (savedLevel >= asset.costByLevel.Length)
             {
+                level.text += "(Max)";
                 buyButton.interactable = false;
                 buyButton.transform.Find("Image").gameObject.SetActive(false);
                 buyButton.transform.Find("Text").gameObject.SetActive(false);
@@ -25,6 +25,7 @@ namespace TowerDefense
             }
             else
             {
+                level.text = $"Lvl: {savedLevel + 1}";
                 cost.text = asset.costByLevel[savedLevel].ToString();
             }
         }
