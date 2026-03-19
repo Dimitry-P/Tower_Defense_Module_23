@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using SpaceShooter;
+using System;
 
 namespace TowerDefense
 {
@@ -8,7 +9,8 @@ namespace TowerDefense
     {
         [SerializeField] private UpgradeAsset asset;
         [SerializeField] private Image ugradeIcon;
-        [SerializeField] private Text level, cost;
+        private int costNumber = 0;
+        [SerializeField] private Text level, costText;
         [SerializeField] private Button buyButton;
 
         public void Initialize()
@@ -21,12 +23,13 @@ namespace TowerDefense
                 buyButton.interactable = false;
                 buyButton.transform.Find("Image").gameObject.SetActive(false);
                 buyButton.transform.Find("Text").gameObject.SetActive(false);
-                cost.text = "X";
+                costText.text = "X";
             }
             else
             {
                 level.text = $"Lvl: {savedLevel + 1}";
-                cost.text = asset.costByLevel[savedLevel].ToString();
+                costNumber = asset.costByLevel[savedLevel];
+                costText.text = costNumber.ToString();
             }
         }
 
@@ -39,6 +42,11 @@ namespace TowerDefense
             //}
             Upgrades.BuyUpgrade(asset);
             Initialize();
+        }
+
+        internal void CheckCost(int money)
+        {
+            buyButton.interactable = money >= costNumber;
         }
     }
 }

@@ -38,9 +38,13 @@ namespace TowerDefense
         }
         public void UpdateMoney()
         {
-            print("update");
             money = MapCompletion.Instance.TotalScore;
+            money -= Upgrades.GetTotalCost();
             moneyText.text = money.ToString();
+            foreach (var slot in sales)
+            {
+                slot.CheckCost(money);
+            }
         }
     }
 }
