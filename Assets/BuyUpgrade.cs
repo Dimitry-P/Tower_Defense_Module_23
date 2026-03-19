@@ -31,6 +31,11 @@ namespace TowerDefense
 
         public void Buy()
         {
+            //var savedLevel = Upgrades.GetUpgradeLevel(asset);
+            //if (asset.costByLevel[savedLevel] < MapCompletion.Instance.TotalScore) 
+            //{
+            //    return;
+            //}
             Upgrades.BuyUpgrade(asset);
             Initialize();
         }
