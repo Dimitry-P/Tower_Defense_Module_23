@@ -40,9 +40,9 @@ namespace SpaceShooter
                 CurrentEpisode = m_TestEpisode;
                 CurrentLevel = 0;
             }
-            levDisCont = transform.parent
-               .Find("Levels")
-               .GetComponent<LevelDisplayController>();
+            //levDisCont = transform.parent
+            //   .Find("Levels")
+            //   .GetComponent<LevelDisplayController>();
         }
 
         private void OnEnable()
@@ -129,10 +129,10 @@ namespace SpaceShooter
             {
                 SceneManager.LoadScene(MainMenuSceneNickname);
                 //// Немедленно обновляем branchLevels на сцене:
-                foreach (var branch in levDisCont.BranchLevels)
-                {
-                    branch.TryActivate();
-                }
+                //foreach (var branch in levDisCont.BranchLevels)
+                //{
+                //    branch.TryActivate();
+                //}
             }
             else
             {

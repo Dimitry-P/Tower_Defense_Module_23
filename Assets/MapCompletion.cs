@@ -52,6 +52,7 @@ namespace TowerDefense
                 {
                     if (levelScore > item.score)
                     {
+                        totalScore += levelScore - item.score;
                         item.score = levelScore;
                         data.unlockedLevels++;
                         Saver<CompletionData>.Save(filename, data);
