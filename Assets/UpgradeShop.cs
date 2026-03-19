@@ -14,7 +14,6 @@ namespace TowerDefense
 
         private void Start()
         {
-            UpdateMoney();
             foreach (var slot in sales)
             {
                 slot.Initialize();
@@ -35,6 +34,7 @@ namespace TowerDefense
                 }
                 slot.transform.Find("Button").GetComponent<Button>().onClick.AddListener(UpdateMoney);
             }
+            UpdateMoney();
         }
         public void UpdateMoney()
         {

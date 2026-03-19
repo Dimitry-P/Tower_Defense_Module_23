@@ -74,18 +74,26 @@ namespace TowerDefense
         //    tower.Radius = towerAsset.radius;
         //    EVariousMech towerEnum = towerAsset.type;
         //    var towerScript = tower.GetComponent<Tower>();
-            
+
         //    if (towerScript != null)
         //    {
         //        towerScript.InitTurretSpecificSettings(towerEnum, tower.Radius);
         //    }
-                
+
         //    foreach (var turret in tower.GetComponentsInChildren<Turret>())
         //    {
         //        turret.AssignLoadout2(towerAsset);
         //    }
         //    Destroy(buildSite.gameObject);
         //}
+
+        [SerializeField] private UpgradeAsset healthUpgrade;
+        private void Awake()
+        {
+            base.Awake();
+            var level = Upgrades.GetUpgradeLevel(healthUpgrade);
+            TakeDamage(-level * 5);
+        }
     }
 }
 

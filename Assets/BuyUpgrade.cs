@@ -17,13 +17,15 @@ namespace TowerDefense
         {
             ugradeIcon.sprite = asset.sprite;
             var savedLevel = Upgrades.GetUpgradeLevel(asset);
+
             if (savedLevel >= asset.costByLevel.Length)
             {
-                level.text += "(Max)";
+                level.text = $"Lvl: {savedLevel} (Max)";
                 buyButton.interactable = false;
                 buyButton.transform.Find("Image").gameObject.SetActive(false);
                 buyButton.transform.Find("Text").gameObject.SetActive(false);
                 costText.text = "X";
+                costNumber = int.MaxValue;
             }
             else
             {
