@@ -299,54 +299,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Radius: 0.3
---- !u!1 &223677705
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 223677707}
-  - component: {fileID: 223677706}
-  m_Layer: 0
-  m_Name: SingleLevelTestObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &223677706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223677705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a590be46b71944448aec201fedb6aa7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_DoNotDestroyOnLoad: 0
-  save:
-  - asset: {fileID: 11400000, guid: 1ac86bea5f2ab134f83e1430f5b0910d, type: 2}
-    level: 0
---- !u!4 &223677707
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223677705}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 822.8614, y: 353.77243, z: 4.0236406}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237091211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1280,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}
   m_gold: 1000
   healthUpgrade: {fileID: 11400000, guid: 1ac86bea5f2ab134f83e1430f5b0910d, type: 2}
+  Radius_Upgrade: {fileID: 11400000, guid: 036f0c524b040db45a7d8ac0e32ea57f, type: 2}
 --- !u!114 &649427585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,4 +4035,3 @@ SceneRoots:
   - {fileID: 394599048}
   - {fileID: 417279015}
   - {fileID: 1212164987}
-  - {fileID: 223677707}

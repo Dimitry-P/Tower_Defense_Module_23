@@ -19,8 +19,25 @@ namespace TowerDefense
         private new void Awake()
         {
             base.Awake();
-            Saver<UpgradeSave[]>.TryLoad(filename, ref save);
+
+            UpgradeSave[] loaded = null;
+            Saver<UpgradeSave[]>.TryLoad(filename, ref loaded);
+
+            if (loaded != null && loaded.Length == save.Length)
+            {
+                for (int i = 0; i < save.Length; i++)
+                {
+                    save[i].level = loaded[i].level;
+                }
+            }
         }
+
+
+        //private new void Awake()
+        //{
+        //    base.Awake();
+        //    Saver<UpgradeSave[]>.TryLoad(filename, ref save);
+        //}
 
         public static void BuyUpgrade(UpgradeAsset asset)
         {

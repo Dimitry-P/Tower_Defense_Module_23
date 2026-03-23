@@ -7,9 +7,8 @@ namespace TowerDefense
 {
     public class UpgradeShop : MonoBehaviour
     {
-
         [SerializeField] private int money;
-        [SerializeField] private Text moneyText;
+        [SerializeField] private Text[] moneyText;
         [SerializeField] private BuyUpgrade[] sales;
 
         private void Start()
@@ -40,7 +39,10 @@ namespace TowerDefense
         {
             money = MapCompletion.Instance.TotalScore;
             money -= Upgrades.GetTotalCost();
-            moneyText.text = money.ToString();
+            foreach (var text in moneyText)
+            {
+                text.text = money.ToString();
+            }
             foreach (var slot in sales)
             {
                 slot.CheckCost(money);
