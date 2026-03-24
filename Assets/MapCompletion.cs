@@ -28,15 +28,16 @@ namespace TowerDefense
         {
             public EpisodeScore[] episodes;
             public int unlockedLevels = 0;
+            public int numLivesTotal = 10;
         }
 
         public int UnlockedLevels => data.unlockedLevels;
 
-        public static void SaveEpisodeResult(int levelScore)
+        public static void SaveEpisodeResult(int levelScore, int numLives)
         {
             if (Instance)
             {
-                Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore);
+                Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore, numLives);
             }
             else
             {
@@ -44,7 +45,7 @@ namespace TowerDefense
             }
         }
 
-        private void SaveResult(Episode currentEpisode, int levelScore)
+        private void SaveResult(Episode currentEpisode, int levelScore, int numLives)
         {
             foreach (var item in data.episodes)
             {
@@ -55,6 +56,8 @@ namespace TowerDefense
                         totalScore += levelScore - item.score;
                         item.score = levelScore;
                         data.unlockedLevels++;
+                        Debug.Log("Saving lives = " + numLives);
+                        data.numLivesTotal = numLives;
                         Saver<CompletionData>.Save(filename, data);
                     } 
                 }
@@ -100,11 +103,15 @@ namespace TowerDefense
                 }
             }
 
+            // ВАЖНО: всегда загружаем жизни из сохранения
+            Player.Instance.NumLives = data.numLivesTotal;
+
             foreach (var episodeScore in data.episodes)
             {
                 totalScore += episodeScore.score;
             }
         }
+
 
         //public void UnlockNextLevel()
         //{

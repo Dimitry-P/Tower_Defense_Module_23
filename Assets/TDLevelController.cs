@@ -28,18 +28,17 @@ namespace TowerDefense
                 }
                 print(levelScore);
                 totalCount = TDPlayer.Instance.m_gold;
-                MapCompletion.SaveEpisodeResult(levelScore);
+                MapCompletion.SaveEpisodeResult(levelScore, Player.Instance.NumLives);
             });
 
-            void LifeScoreChange(int _)
-            {
-                levelScore -= 1;
-                TDPlayer.OnLifeUpdate -= LifeScoreChange;
-            }
-            TDPlayer.OnLifeUpdate += LifeScoreChange;
-          
-
+            //void LifeScoreChange(int _)
+            //{
+            //    levelScore -= 1;
+            //    TDPlayer.OnLifeUpdate -= LifeScoreChange;
+            //}
+            //TDPlayer.OnLifeUpdate += LifeScoreChange;
         }
+
         private void StopLevelActivity()
         {
             foreach(var enemy in FindObjectsOfType<Enemy>())

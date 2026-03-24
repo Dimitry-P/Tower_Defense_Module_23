@@ -87,14 +87,14 @@ namespace TowerDefense
         //    Destroy(buildSite.gameObject);
         //}
 
-        [SerializeField] private UpgradeAsset healthUpgrade;
+        //[SerializeField] private UpgradeAsset healthUpgrade;
        
-        private void Awake()
-        {
-            base.Awake();
-            var level = Upgrades.GetUpgradeLevel(healthUpgrade);
-            TakeDamage(-level * 5);
-        }
+        //private void Awake()
+        //{
+        //    base.Awake();
+        //    var level = Upgrades.GetUpgradeLevel(healthUpgrade);
+        //    TakeDamage(-level * 5);
+        //}
     }
 }
 

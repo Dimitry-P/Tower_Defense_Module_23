@@ -992,8 +992,12 @@ MonoBehaviour:
   save:
   - asset: {fileID: 11400000, guid: 1ac86bea5f2ab134f83e1430f5b0910d, type: 2}
     level: 0
-  - asset: {fileID: 11400000, guid: 177cbe374c7410743b360033b5e27010, type: 2}
+    upgradeSO: {fileID: 11400000, guid: 0a5c374e4c3361c4bad497ce266e9b66, type: 2}
+    name: 
+  - asset: {fileID: 11400000, guid: 036f0c524b040db45a7d8ac0e32ea57f, type: 2}
     level: 0
+    upgradeSO: {fileID: 11400000, guid: f38961f3f11c3344a98ca416ade272a1, type: 2}
+    name: 
 --- !u!1001 &1036499041
 PrefabInstance:
   m_ObjectHideFlags: 0

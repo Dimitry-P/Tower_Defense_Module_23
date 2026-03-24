@@ -8,10 +8,9 @@ namespace TowerDefense
 {
     public class Tower : MonoBehaviour
     {
-        [SerializeField] private float m_Radius = 5f;
+        [SerializeField] private float m_Radius;
         private Turret[] turrets;
         private Destructible target = null;
-       
 
         private void Start()
         {
@@ -86,10 +85,9 @@ namespace TowerDefense
             }
             Debug.Log(m_Radius+"ЁЖ");
         }
-        private void OnDrawGizmosSelected()
+        void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
-
             Gizmos.DrawWireSphere(transform.position, m_Radius);
         }
     }

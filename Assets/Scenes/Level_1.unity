@@ -1279,8 +1279,6 @@ MonoBehaviour:
   victoryPanel: {fileID: 0}
   towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}
   m_gold: 1000
-  healthUpgrade: {fileID: 11400000, guid: 1ac86bea5f2ab134f83e1430f5b0910d, type: 2}
-  Radius_Upgrade: {fileID: 11400000, guid: 036f0c524b040db45a7d8ac0e32ea57f, type: 2}
 --- !u!114 &649427585
 MonoBehaviour:
   m_ObjectHideFlags: 0

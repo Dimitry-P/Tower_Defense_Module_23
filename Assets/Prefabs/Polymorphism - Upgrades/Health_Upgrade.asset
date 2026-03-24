@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d9aae41ed5db9444b9b2ca63b733bb9, type: 3}
-  m_Name: RadiusLevel5
+  m_Script: {fileID: 11500000, guid: 63fed0dd98651804890e15ca56aa15ab, type: 3}
+  m_Name: Health_Upgrade
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  costByLevel: 03000000
+  multipliersByLevel:
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9

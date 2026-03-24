@@ -13,8 +13,12 @@ namespace SpaceShooter
     /// </summary>
     public class Player : MonoSingleton<Player>
     {
-        [SerializeField] private int m_NumLives;
-        public int NumLives {  get { return m_NumLives; }}
+        private static int m_NumLives = 10;
+        public int NumLives 
+        {  
+            get { return m_NumLives; }
+            set { m_NumLives = value; }
+        }
         public event Action OnPlayerDead;
 
         [SerializeField] private SpaceShip m_Ship;
@@ -49,7 +53,7 @@ namespace SpaceShooter
         private void OnShipDeath()
         {
             m_NumLives--;
-
+            Debug.Log("ЁЖЫ1" + m_NumLives);
             if (m_NumLives > 0)
                 Respawn();
             else
@@ -89,7 +93,7 @@ namespace SpaceShooter
         protected void TakeDamage(int m_damage)
         {
             m_NumLives -= m_damage;
-
+            Debug.Log("ЁЖЫ2" + m_NumLives);
             if (m_NumLives <= 0)
             {
                 m_NumLives = 0;

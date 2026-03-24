@@ -130,7 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Mode: 0
   m_TurretProperties: {fileID: 0}
-  tow: {fileID: 0}
 --- !u!1 &4808089356810644540
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,13 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032b5d117f917694d892358315fc223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  allTargets: []
-  turrets: []
-  timer: 0
-  _variousMech: {fileID: 0}
-  projectile: {fileID: 0}
-  thisTowerHitEnemy: {fileID: 0}
+  m_Radius: 2
 --- !u!50 &7227898263401265305
 Rigidbody2D:
   serializedVersion: 4
@@ -228,19 +221,14 @@ MonoBehaviour:
   m_Nickname: 
   m_Indestructible: 0
   m_HitPoints: 0
-  lastDamageSource: {fileID: 0}
-  PoisonSource: {fileID: 0}
-  isDead: 0
-  damagePopupPrefab: {fileID: 0}
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
   m_ExplosionPrefab: {fileID: 0}
   m_TeamId: 0
+  m_ScoreValue: 0
   m_Mass: 0
   m_Thrust: 1
   m_Mobility: 0
   m_MaxLinearVelocity: 2
   m_MaxAngularVelocity: 2
-  targetPoint: {fileID: 0}
-  baseSpeedMultiplier: 1
