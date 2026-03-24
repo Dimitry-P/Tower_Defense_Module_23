@@ -992,7 +992,7 @@ MonoBehaviour:
   save:
   - asset: {fileID: 11400000, guid: 1ac86bea5f2ab134f83e1430f5b0910d, type: 2}
     level: 0
-  - asset: {fileID: 11400000, guid: 036f0c524b040db45a7d8ac0e32ea57f, type: 2}
+  - asset: {fileID: 11400000, guid: 177cbe374c7410743b360033b5e27010, type: 2}
     level: 0
 --- !u!1001 &1036499041
 PrefabInstance:

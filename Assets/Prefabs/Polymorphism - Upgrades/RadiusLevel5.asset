@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d9aae41ed5db9444b9b2ca63b733bb9, type: 3}
-  m_Name: Radius_Upgrade
+  m_Name: RadiusLevel5
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: c15581730f887cc44be840858ffd1985, type: 3}
-  costByLevel: 010000000200000003000000040000000500000006000000
+  sprite: {fileID: 0}
+  costByLevel: 03000000

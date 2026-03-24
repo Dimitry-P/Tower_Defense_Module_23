@@ -9,12 +9,15 @@ namespace TowerDefense
     {
         public const string filename = "upgrades.dat"; 
         [Serializable]
-        private class UpgradeSave
+        public class UpgradeSave
         {
             public UpgradeAsset asset;
             public int level = 0;
+            public TowerUpgrade upgradeSO;   // ссылка на RadiusUpgrade, DamageUpgrade и т.д.
+            public string name; // если нужно для UI, можно оставить
         }
-        [SerializeField] private UpgradeSave[] save;
+
+        [SerializeField] public UpgradeSave[] save;
 
         private new void Awake()
         {

@@ -17,7 +17,7 @@ namespace TowerDefense
         {
             ugradeIcon.sprite = asset.sprite;
             var savedLevel = Upgrades.GetUpgradeLevel(asset);
-
+           
             if (savedLevel >= asset.costByLevel.Length)
             {
                 level.text = $"Lvl: {savedLevel} (Max)";
