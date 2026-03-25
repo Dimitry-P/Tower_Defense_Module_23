@@ -20,7 +20,7 @@ namespace SpaceShooter
         /// <summary>
         /// Singleton instance. May be null if DoNotDestroyOnLoad flag was not set.
         /// </summary>
-        public static T Instance { get; private set; }
+        public static T Instance { get; protected set; }
 
         #region Unity events
 

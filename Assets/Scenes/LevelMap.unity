@@ -976,6 +976,7 @@ MonoBehaviour:
     - episode: {fileID: 11400000, guid: f729baabd1571044cab2fc9a5447cd93, type: 2}
       score: 0
     unlockedLevels: 0
+    numLivesTotal: 10
 --- !u!114 &793497653
 MonoBehaviour:
   m_ObjectHideFlags: 0

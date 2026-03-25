@@ -55,7 +55,7 @@ namespace SpaceShooter
 
         protected virtual void OnDestroy()
         {
-            m_AllDestructibles.Remove(this);
+            if (m_AllDestructibles != null)m_AllDestructibles.Remove(this);
         }
 
         #endregion 

@@ -28,7 +28,7 @@ namespace TowerDefense
         {
             public EpisodeScore[] episodes;
             public int unlockedLevels = 0;
-            public int numLivesTotal = 10;
+            public int numLivesTotal;
         }
 
         public int UnlockedLevels => data.unlockedLevels;
@@ -103,15 +103,18 @@ namespace TowerDefense
                 }
             }
 
-            // ВАЖНО: всегда загружаем жизни из сохранения
-            Player.Instance.NumLives = data.numLivesTotal;
-
             foreach (var episodeScore in data.episodes)
             {
                 totalScore += episodeScore.score;
             }
         }
 
+        private void Start()
+        {
+            // А вот сюда переносим всё, что зависит от Player
+            if (Player.Instance != null)
+                Player.Instance.NumLives = data.numLivesTotal;
+        }
 
         //public void UnlockNextLevel()
         //{

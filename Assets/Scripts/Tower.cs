@@ -52,7 +52,6 @@ namespace TowerDefense
                     //нас перекидывает в этот же метод но override (переопределённый), в конкретный дочерний метод Apply.
                     //12. И таким образом получается, что, к примеру, мой SO типа RadiusUpgrade и перекидывает меня в
                     //метод Apply, который тоже находится в классе(скрипте) RadiusUpgrade.
-                    
                 }
             }
         }
@@ -83,7 +82,7 @@ namespace TowerDefense
                     target = enter.transform.root.GetComponent<Destructible>();
                 }
             }
-            Debug.Log(m_Radius+"ЁЖ");
+            Debug.Log(m_Radius+"РАДИУС");
         }
         void OnDrawGizmos()
         {

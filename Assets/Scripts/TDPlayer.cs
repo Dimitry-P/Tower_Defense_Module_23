@@ -18,10 +18,33 @@ namespace TowerDefense
             }
         }
 
-        //private void Awake()
-        //{
-        //    m_gold = totalGold;
-        //}
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
+        private void Start()
+        {
+            ApplyPlayerUpgrades();
+        }
+
+        private void ApplyPlayerUpgrades()
+        {
+            if (Upgrades.Instance == null || Upgrades.Instance.save == null) return;
+
+            foreach (var savedUpgrade in Upgrades.Instance.save)
+            {
+                if (savedUpgrade.upgradeSO != null)
+                {
+                    savedUpgrade.upgradeSO.ApplyPlayer(this, savedUpgrade.level);
+                }
+            }
+        }
+
+        public void ModifyNumLives(int levelNumber)
+        {
+            NumLives += levelNumber;
+        }
 
         public int m_gold;
 

@@ -13,6 +13,11 @@ namespace SpaceShooter
     /// </summary>
     public class Player : MonoSingleton<Player>
     {
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private static int m_NumLives = 10;
         public int NumLives 
         {  
@@ -53,7 +58,7 @@ namespace SpaceShooter
         private void OnShipDeath()
         {
             m_NumLives--;
-            Debug.Log("ЁЖЫ1" + m_NumLives);
+            Debug.Log(m_NumLives);
             if (m_NumLives > 0)
                 Respawn();
             else
@@ -93,7 +98,7 @@ namespace SpaceShooter
         protected void TakeDamage(int m_damage)
         {
             m_NumLives -= m_damage;
-            Debug.Log("ЁЖЫ2" + m_NumLives);
+            Debug.Log(m_NumLives);
             if (m_NumLives <= 0)
             {
                 m_NumLives = 0;

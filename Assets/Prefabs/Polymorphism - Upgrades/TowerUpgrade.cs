@@ -8,7 +8,8 @@ namespace TowerDefense
 {
     public abstract class TowerUpgrade : ScriptableObject
     {
-        public abstract void Apply(Tower tower, int level);
+        public virtual void Apply(Tower tower, int level) { }
+        public virtual void ApplyPlayer(TDPlayer player, int level) { }
     }
 }
 
