@@ -44,7 +44,7 @@ namespace TowerDefense
         }
 
 
-        private void UpdateText(int money)
+        public void UpdateText(int money)
         {
             m_text.text = money.ToString();
         }

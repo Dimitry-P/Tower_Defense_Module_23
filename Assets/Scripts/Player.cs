@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using TowerDefense;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static TowerDefense.TextUpdate;
+using static Unity.VisualScripting.Member;
 
 namespace SpaceShooter
 {
@@ -13,17 +15,36 @@ namespace SpaceShooter
     /// </summary>
     public class Player : MonoSingleton<Player>
     {
-        private void Awake()
+        protected virtual void Awake()
         {
             Instance = this;
+            // Сначала устанавливаем базовое значение
+
+            Debug.Log("Awake base lives = " + baseNumLives);
+
+            if(m_NumLives <= 0)NumLives = baseNumLives;
+
+            // Затем сразу загружаем из сохранения, если MapCompletion уже готов
+            if (MapCompletion.Instance != null && MapCompletion.Instance.Data != null)
+            {
+                Debug.Log("Load from save = " + MapCompletion.Instance.Data.numLivesTotal);
+                NumLives = MapCompletion.Instance.Data.numLivesTotal;
+            }
         }
 
-        private static int m_NumLives = 10;
+        private int baseNumLives = 10;
+      
+        private static int m_NumLives;
         public int NumLives 
         {  
             get { return m_NumLives; }
-            set { m_NumLives = value; }
+            set
+            {
+                m_NumLives = Mathf.Max(0, value);
+                TDPlayer.RaiseLifeUpdate(m_NumLives); // просто вызываем событие
+            }
         }
+
         public event Action OnPlayerDead;
 
         [SerializeField] private SpaceShip m_Ship;
@@ -41,6 +62,24 @@ namespace SpaceShooter
         {
             if (m_Ship)
                 SubscribeToShip(m_Ship);
+            ApplyPlayerUpgrades();
+        }
+
+        public void ApplyPlayerUpgrades()
+        {
+            if (Upgrades.Instance == null || Upgrades.Instance.save == null) return;
+
+            // Сброс к базовому значению (важно!)
+            //NumLives = baseNumLives;   // должно быть какое-то базовое значение
+
+            foreach (var savedUpgrade in Upgrades.Instance.save)
+            {
+                if (savedUpgrade.upgradeSO != null)
+                {
+                    savedUpgrade.upgradeSO.ApplyPlayer(this, savedUpgrade.level);
+                }
+            }
+            Debug.Log("ApplyPlayerUpgrades called");
         }
 
         private void SubscribeToShip(SpaceShip ship)
@@ -57,7 +96,7 @@ namespace SpaceShooter
 
         private void OnShipDeath()
         {
-            m_NumLives--;
+            NumLives--;
             Debug.Log(m_NumLives);
             if (m_NumLives > 0)
                 Respawn();
@@ -97,7 +136,7 @@ namespace SpaceShooter
         int bossEnemyCounter = 0;
         protected void TakeDamage(int m_damage)
         {
-            m_NumLives -= m_damage;
+            NumLives -= m_damage;
             Debug.Log(m_NumLives);
             if (m_NumLives <= 0)
             {

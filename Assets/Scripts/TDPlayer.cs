@@ -23,29 +23,6 @@ namespace TowerDefense
             base.Awake();
         }
 
-        private void Start()
-        {
-            ApplyPlayerUpgrades();
-        }
-
-        private void ApplyPlayerUpgrades()
-        {
-            if (Upgrades.Instance == null || Upgrades.Instance.save == null) return;
-
-            foreach (var savedUpgrade in Upgrades.Instance.save)
-            {
-                if (savedUpgrade.upgradeSO != null)
-                {
-                    savedUpgrade.upgradeSO.ApplyPlayer(this, savedUpgrade.level);
-                }
-            }
-        }
-
-        public void ModifyNumLives(int levelNumber)
-        {
-            NumLives += levelNumber;
-        }
-
         public int m_gold;
 
         //public static int totalGold = 0;
@@ -62,9 +39,11 @@ namespace TowerDefense
             OnGoldUpdate -= act;
         }
 
-
-
         public static event Action<int> OnLifeUpdate;
+        public static void RaiseLifeUpdate(int lives) //метод-обёртка внутри TDPlayer, который будет вызывать событие.
+        {
+            OnLifeUpdate?.Invoke(lives);
+        }
         public static void LifeUpdateSubscribe(Action<int> act)
         {
             OnLifeUpdate += act;
@@ -74,7 +53,6 @@ namespace TowerDefense
         {
             OnLifeUpdate -= act;
         }
-
 
         public void ChangeGold(int change)
         {
@@ -87,7 +65,6 @@ namespace TowerDefense
             TakeDamage(change);
             OnLifeUpdate?.Invoke(Player.Instance.NumLives);
         }
-
 
         //public void TryBuild(TowerAsset towerAsset, Transform buildSite)
         //{

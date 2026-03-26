@@ -109,18 +109,26 @@ namespace TowerDefense
             }
         }
 
-        private void Start()
+        private void Start()   // именно Start, а не Awake!
         {
-            // А вот сюда переносим всё, что зависит от Player
+            Saver<CompletionData>.TryLoad(filename, ref data);
+
+            if (data == null)
+            {
+                data = new CompletionData();
+                // ... инициализация эпизодов ...
+                Player.Instance.NumLives = data.numLivesTotal;   // важно задать начальное
+            }
+
+            // Теперь безопасно применяем к Player
             if (Player.Instance != null)
-                Player.Instance.NumLives = data.numLivesTotal;
+            {
+                Player.Instance.ApplyPlayerUpgrades();
+            }
+
+            // пересчёт totalScore и т.д.
         }
 
-        //public void UnlockNextLevel()
-        //{
-        //    unlockedLevels++;
-        //    Saver<MapCompletion>.Save(filename, this);
-        //}
 
         public int GetEpisodeScore(Episode m_episode)
         {

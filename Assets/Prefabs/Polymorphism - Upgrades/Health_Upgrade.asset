@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fed0dd98651804890e15ca56aa15ab, type: 3}
   m_Name: Health_Upgrade
   m_EditorClassIdentifier: 
-  multipliersByLevel: 090000000700000006000000070000000800000009000000
+  multipliersByLevel: 010000000200000004000000080000001000000020000000
