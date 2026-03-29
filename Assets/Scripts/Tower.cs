@@ -1,4 +1,5 @@
 ﻿using SpaceShooter;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.VersionControl;
@@ -51,7 +52,9 @@ namespace TowerDefense
                     //11.Apply - это метод абстрактного(родительского) класса и поэтому
                     //нас перекидывает в этот же метод но override (переопределённый), в конкретный дочерний метод Apply.
                     //12. И таким образом получается, что, к примеру, мой SO типа RadiusUpgrade и перекидывает меня в
-                    //метод Apply, который тоже находится в классе(скрипте) RadiusUpgrade.
+                    //метод Apply, который тоже находится в классе(скрипте) RadiusUpgrade
+
+                    savedUpgrade.upgradeSO.Egypt_Tower_Apply(this, savedUpgrade.level);
                 }
             }
         }

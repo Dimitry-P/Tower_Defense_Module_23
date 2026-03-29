@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032b5d117f917694d892358315fc223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Radius: 4
+  m_Radius: 2
 --- !u!1 &284123887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,7 +1388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  m_NumLives: 0
   m_Ship: {fileID: 0}
   m_PlayerShipPrefab: {fileID: 0}
   loosePanel: {fileID: 0}
@@ -1645,7 +1644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032b5d117f917694d892358315fc223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Radius: 4
+  m_Radius: 2
 --- !u!1 &844455371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,7 +1899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032b5d117f917694d892358315fc223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Radius: 4
+  m_Radius: 2
 --- !u!1 &944995058
 GameObject:
   m_ObjectHideFlags: 0

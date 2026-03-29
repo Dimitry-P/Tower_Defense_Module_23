@@ -999,6 +999,10 @@ MonoBehaviour:
     level: 0
     upgradeSO: {fileID: 11400000, guid: f38961f3f11c3344a98ca416ade272a1, type: 2}
     name: 
+  - asset: {fileID: 11400000, guid: b86a3ea4c301db047aef08993a9bcd95, type: 2}
+    level: 0
+    upgradeSO: {fileID: 11400000, guid: 4c829f17800e8fb4499a4ec1319e8b0c, type: 2}
+    name: 
 --- !u!1001 &1036499041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1011,6 +1015,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8fa5dede70445024bbd4272b8a47e16f, type: 3}
+    - target: {fileID: 3491775910717196780, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1036499043}
+    - target: {fileID: 3491775910717196780, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
     - target: {fileID: 4565392091321756785, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1101,12 +1113,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5691536700006938912, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6774557159511007845, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 18.3
       objectReference: {fileID: 0}
+    - target: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: asset
+      value: 
+      objectReference: {fileID: 11400000, guid: b86a3ea4c301db047aef08993a9bcd95, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1117,6 +1133,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4565392091321756785, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
   m_PrefabInstance: {fileID: 1036499041}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1036499043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+  m_PrefabInstance: {fileID: 1036499041}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915eb8a420891934baf0ea3362508572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1044432472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1247,7 @@ MonoBehaviour:
   sales:
   - {fileID: 716919641}
   - {fileID: 1262917509}
+  - {fileID: 1036499043}
 --- !u!1 &1155690360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1517,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390489054}
   m_CullTransparentMesh: 1
+--- !u!1 &1490985682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1490985684}
+  - component: {fileID: 1490985683}
+  m_Layer: 0
+  m_Name: EgyptTower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1490985683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490985682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ce73a9693e8614fb62ddf9467f7018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  egyptianTowerPrefab: {fileID: 4561913327535095917, guid: ffda2079bbce2f042b9ffe00070ea92c, type: 3}
+--- !u!4 &1490985684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490985682}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.2837284, y: 0.16221723, z: -0.06739152}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1551755401 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5117638842635596501, guid: 134b2f3a2aa8745419cb1f46bf59b4b8, type: 3}
@@ -2102,3 +2175,4 @@ SceneRoots:
   - {fileID: 793497651}
   - {fileID: 1792416318}
   - {fileID: 645942351}
+  - {fileID: 1490985684}

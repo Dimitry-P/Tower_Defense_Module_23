@@ -42,6 +42,11 @@ namespace TowerDefense
             //{
             //    return;
             //}
+            if (asset.isEgyptTowerUpgrade)
+            {
+                Egypt_Tower_Upgrade.UpgradeActivated = true;// игрок активировал апгрейд
+            }
+           
             Upgrades.BuyUpgrade(asset);
             Initialize();
         }
