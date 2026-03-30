@@ -1,59 +1,58 @@
-﻿using SpaceShooter;
-using System.Collections;
-using System.Collections.Generic;
+﻿using TowerDefense;
 using UnityEngine;
 
-namespace TowerDefense
+public class EgyptTower : Tower
 {
-    public class EgyptTower : Tower
+    [SerializeField] private float triggerRadius = 5f;
+
+    private int charges;
+    private int maxCharges;
+    private bool triggered;
+
+    public void SetUpgradeLevel(int level)
     {
-        [SerializeField] private float triggerRadius = 5f;
+        if (level <= 0) return;
 
-        private int charges; // количество выстрелов
+        maxCharges = level;
+        charges = maxCharges;
+        enabled = charges > 0;
+    }
 
-        // Устанавливаем количество выстрелов по уровню апгрейда
-        private int maxCharges;
+    private void Update()
+    {
+        if (charges <= 0 || triggered) return;
 
-        public void SetUpgradeLevel(int level)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, triggerRadius);
+
+        foreach (var hit in hits)
         {
-            maxCharges = level;
-            charges = maxCharges;
-            enabled = charges > 0;
-        }
-
-        private void Update()
-        {
-            if (charges <= 0) return;
-
-            // Проверяем, есть ли враги на сцене
-            Enemy[] allEnemies = FindObjectsOfType<Enemy>();
-            if (allEnemies.Length == 0) return;
-
-            // Проверяем, есть ли враг в радиусе
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, triggerRadius);
-            foreach (var hit in hits)
+            Enemy enemy = hit.GetComponentInParent<Enemy>();
+            if (enemy != null)
             {
-                Enemy enemy = hit.transform.root.GetComponent<Enemy>(); // на случай, если коллайдер в дочернем объекте
-                if (enemy != null)
-                {
-                    DestroyAllEnemies(allEnemies);
-                    break;
-                }
+                triggered = true;
+                DestroyAllEnemies();
+                break;
             }
         }
+    }
 
-        private void DestroyAllEnemies(Enemy[] allEnemies)
+    private void DestroyAllEnemies()
+    {
+        Enemy[] allEnemies = FindObjectsOfType<Enemy>();
+
+        Debug.Log("Destroying enemies count: " + allEnemies.Length);
+
+        foreach (var enemy in allEnemies)
         {
-            foreach (var enemy in allEnemies)
-            {
-                if (enemy != null)
-                    Destroy(enemy.gameObject);
-            }
-
-            charges--;
-
-            if (charges < 0)
-                enabled = false;
+            Destroy(enemy.gameObject);
+            Debug.Log("Destroyed");
         }
+        Debug.Log("Before " + charges);
+        charges--;
+        Debug.Log("After " + charges);
+        triggered = false;
+
+        if (charges <= 0)
+            enabled = false;
     }
 }

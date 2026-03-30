@@ -16,10 +16,10 @@ namespace TowerDefense
         // Вызываем из SO при покупке апгрейда
         public void SpawnOrUpgrade(int level)
         {
-            currentUpgradeLevel = level;
-            Debug.Log("SpawnOrUpgrade called");
+            if (level <= 0) return; // игнорируем чужие апгрейды
 
-            // Если башня уже создана, просто апгрейд и восстановление зарядов
+            currentUpgradeLevel = level;
+
             if (currentTower != null)
             {
                 currentTower.SetUpgradeLevel(currentUpgradeLevel);

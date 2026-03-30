@@ -37,18 +37,29 @@ namespace TowerDefense
 
         public void Buy()
         {
-            //var savedLevel = Upgrades.GetUpgradeLevel(asset);
-            //if (asset.costByLevel[savedLevel] < MapCompletion.Instance.TotalScore) 
-            //{
-            //    return;
-            //}
+            if (asset == null)
+            {
+                Debug.LogError("Buy() called, but asset is null!");
+                return;
+            }
+
+            Debug.Log($"Buy() called for asset: {asset.name}, isEgyptTowerUpgrade: {asset.isEgyptTowerUpgrade}");
+
             if (asset.isEgyptTowerUpgrade)
             {
                 Egypt_Tower_Upgrade.UpgradeActivated = true;// игрок активировал апгрейд
+                Debug.Log("Egypt_Tower_Upgrade.UpgradeActivated set to TRUE");
             }
-           
+
+            // Проверим, дойдёт ли вызов до BuyUpgrade
+            Debug.Log("Calling Upgrades.BuyUpgrade...");
             Upgrades.BuyUpgrade(asset);
+            Debug.Log("Upgrades.BuyUpgrade finished");
+
+            // Проверим, дойдёт ли вызов до Initialize
+            Debug.Log("Calling Initialize...");
             Initialize();
+            Debug.Log("Initialize finished");
         }
 
         internal void CheckCost(int money)

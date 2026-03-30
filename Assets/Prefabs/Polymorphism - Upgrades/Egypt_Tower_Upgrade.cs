@@ -13,12 +13,7 @@ namespace TowerDefense
         public override void Egypt_Tower_Apply(Tower tower, int level)
         {
             if (!UpgradeActivated) return;
-            EgyptTower egypt = FindObjectOfType<EgyptTower>();
-
-            if (egypt != null)
-            {
-                egypt.SetUpgradeLevel(level);
-            }
+           
             Debug.Log("Egypt upgrade applied");
             // Передаём команду фабрике на сцене
             EgyptTowerSpawner.Instance.SpawnOrUpgrade(level);
