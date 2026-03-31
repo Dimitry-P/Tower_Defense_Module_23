@@ -7,11 +7,19 @@ using System;
 
 namespace TowerDefense
 {
+    [RequireComponent(typeof(Destructible))]
     [RequireComponent(typeof(TDController))]
     public class Enemy : MonoBehaviour
     {
         private int m_damage;
         private string m_name;
+        [SerializeField] private int m_armor = 1;
+
+        private Destructible m_destructible;
+        private void Awake()
+        {
+            m_destructible = GetComponent<Destructible>();
+        }
 
         public event Action OnEnd;
         private void OnDestroy() { print(name);  OnEnd?.Invoke(); }
@@ -26,6 +34,7 @@ namespace TowerDefense
 
             m_name = asset.enemyName;
             m_damage = asset.damage;
+            m_armor = asset.armor;
 
             //Для того, чтобы можно было переключать ассеты в инспекторе префаба, нужно
             //закомментить передачу анимации:
@@ -51,7 +60,10 @@ namespace TowerDefense
             //но мы ему напоминаем, что он - TDPlayer вот этой строкой: Player.Instance as TDPlayer.
             //после чего мы меняем на нём золото.
         }
-
+        public void TakeDamage(int damage)
+        {
+            m_destructible.ApplyDamage(Mathf.Max(1, damage - m_armor));
+        }
     }
     [CustomEditor(typeof(Enemy))]
     public class EnemyInspector : Editor
