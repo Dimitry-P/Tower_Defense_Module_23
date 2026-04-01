@@ -197,7 +197,6 @@ namespace SpaceShooter
                         m_MovePosition = m_PatrolPoint.transform.position;
                     }
                 }
-
             }
         }
 

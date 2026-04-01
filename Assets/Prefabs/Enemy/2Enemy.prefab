@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Nickname: 
   m_Indestructible: 0
   m_HitPoints: 2
+  m_CurrentHitPoints: 0
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -335,3 +336,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a91eb9e6332f0f428392c0bfee3c571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_armor: 1
+  m_ArmorType: 0

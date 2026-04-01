@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8270236655102825370}
   - component: {fileID: 1961682374450546926}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AT0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3562732940259882522}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b340aecbd21f4ae4db76bff535042202, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d1dc428e29b59d4da665429794be749, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8212569506400275677}
   - component: {fileID: 9077687900273202887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Mode: 0
-  m_TurretProperties: {fileID: 0}
+  m_TurretProperties: {fileID: 11400000, guid: 141fffebb424aed43acc7929e3678dc1, type: 2}
 --- !u!1 &4808089356810644540
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,10 +142,8 @@ GameObject:
   - component: {fileID: 2985568735566343919}
   - component: {fileID: 7227898263401265305}
   - component: {fileID: 3116210611621499858}
-  - component: {fileID: 4561913327535095917}
-  - component: {fileID: 5271334120219241516}
-  m_Layer: 0
-  m_Name: Egypt_Tower
+  m_Layer: 6
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,6 +221,7 @@ MonoBehaviour:
   m_Nickname: 
   m_Indestructible: 0
   m_HitPoints: 0
+  m_CurrentHitPoints: 0
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -234,52 +233,3 @@ MonoBehaviour:
   m_Mobility: 0
   m_MaxLinearVelocity: 2
   m_MaxAngularVelocity: 2
---- !u!114 &4561913327535095917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4808089356810644540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45a3b7fe610ab54c806f03a4a3e79ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Radius: 5
-  triggerRadius: 5
---- !u!58 &5271334120219241516
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4808089356810644540}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5

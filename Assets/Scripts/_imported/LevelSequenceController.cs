@@ -59,7 +59,7 @@ namespace SpaceShooter
         {
             if (scene.name == MainMenuSceneNickname)
             {
-                var map = FindObjectOfType<TowerDefense.LevelDisplayController>();
+                var map = FindObjectOfType<LevelDisplayController>();
 
                 if (map != null)
                 {

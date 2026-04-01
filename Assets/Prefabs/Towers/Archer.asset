@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cecce1ba669c8b40af673f44fe830db, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
-  gold: 0
-  sprite: {fileID: 21300000, guid: e1646f9678b98df4ca19582c97fecfce, type: 3}
+  gold: 15
+  sprite: {fileID: 21300000, guid: 0d1dc428e29b59d4da665429794be749, type: 3}
   GUISprite: {fileID: 0}
   turretProperties: {fileID: 11400000, guid: 141fffebb424aed43acc7929e3678dc1, type: 2}
-  radius: 0
+  radius: 3

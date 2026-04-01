@@ -29,10 +29,10 @@ namespace TowerDefense
             {
                 gameObject.SetActive(false);
             }
-            //foreach (var tbc in GetComponentsInChildren<TowerBuyControl>())
-            //{
-            //    tbc.SetBuildSite(buildSite);
-            //}
+            foreach (var tbc in GetComponentsInChildren<TowerBuyControl>())
+            {
+                tbc.SetBuildSite(buildSite);
+            }
         }
         private void OnDestroy()
         {
