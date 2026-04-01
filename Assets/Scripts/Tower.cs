@@ -13,9 +13,19 @@ namespace TowerDefense
         private Turret[] turrets;
         private Destructible target = null;
 
+        public void Use(TowerAsset asset)
+        {
+            //Через эту функцию Делаю Применение НАСТРОЕК БАШНИ целиком
+            GetComponentInChildren<SpriteRenderer>().sprite = asset.sprite;
+            turrets = GetComponentsInChildren<Turret>();
+            foreach(var turret in turrets)
+            {
+                turret.AssignLoadout(asset.turretProperties);
+            }
+        }
+
         private void Start()
         {
-            turrets = GetComponentsInChildren<Turret>();
             // Сразу прмиенить апргрейды
             ApplyAllUpgrades();
         }

@@ -18,9 +18,13 @@ namespace TowerDefense
             }
         }
 
+        [SerializeField] private UpgradeAsset healthUpgrade;
+       
         protected override void Awake()
         {
             base.Awake();
+            var level = Upgrades.GetUpgradeLevel(healthUpgrade);
+            TakeDamage(-level * 5);
         }
 
         public int m_gold;
@@ -66,35 +70,13 @@ namespace TowerDefense
             OnLifeUpdate?.Invoke(Player.Instance.NumLives);
         }
 
-        //public void TryBuild(TowerAsset towerAsset, Transform buildSite)
-        //{
-        //    ChangeGold(-towerAsset.goldCost);
-        //    var tower = Instantiate(m_towerPrefab, buildSite.position, Quaternion.identity);
-        //    tower.GetComponentInChildren<SpriteRenderer>().sprite = towerAsset.sprite;
-        //    tower.Radius = towerAsset.radius;
-        //    EVariousMech towerEnum = towerAsset.type;
-        //    var towerScript = tower.GetComponent<Tower>();
-
-        //    if (towerScript != null)
-        //    {
-        //        towerScript.InitTurretSpecificSettings(towerEnum, tower.Radius);
-        //    }
-
-        //    foreach (var turret in tower.GetComponentsInChildren<Turret>())
-        //    {
-        //        turret.AssignLoadout2(towerAsset);
-        //    }
-        //    Destroy(buildSite.gameObject);
-        //}
-
-        //[SerializeField] private UpgradeAsset healthUpgrade;
-       
-        //private void Awake()
-        //{
-        //    base.Awake();
-        //    var level = Upgrades.GetUpgradeLevel(healthUpgrade);
-        //    TakeDamage(-level * 5);
-        //}
+        public void TryBuild(TowerAsset towerAsset, Transform buildSite)
+        {
+            ChangeGold(-towerAsset.gold);
+            var tower = Instantiate(towerPrefab, buildSite.position, Quaternion.identity);
+            tower.Use(towerAsset);
+            Destroy(buildSite.gameObject);
+        } 
     }
 }
 
