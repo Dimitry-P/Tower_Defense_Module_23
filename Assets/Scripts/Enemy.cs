@@ -11,9 +11,31 @@ namespace TowerDefense
     [RequireComponent(typeof(TDController))]
     public class Enemy : MonoBehaviour
     {
+        public enum ArmorType { Base=0, Mage=1} // Здесь важно явно прописать, что у конкретных видов брони есть номера: 0 и 1
+        private static Func<int, TDProjectile.DamageType, int, int>[] ArmorDamageFunctions =
+        { //Func - это очень похоже на Action, только последним параметром у него является 
+            //возвращаемый тип значения.
+            // Смысл в том, что мы для каждого индекса, который соответствует каждому типу брони,
+            // пропишем его собственную функцию.
+            (int power, TDProjectile.DamageType type, int armor) =>
+            { // ArmorType.Base
+                switch (type)
+                {
+                    case TDProjectile.DamageType.Magic: return power;
+                    default: return Mathf.Max(power - armor, 1);
+                }
+            },
+            (int power, TDProjectile.DamageType type, int armor) =>
+            { // ArmorType.Magic
+                if(TDProjectile.DamageType.Base == type)armor = armor / 2;
+                return Mathf.Max(power - armor, 1);
+            },
+        };
+
         private int m_damage;
         private string m_name;
         [SerializeField] private int m_armor = 1;
+        [SerializeField] private ArmorType m_ArmorType;
 
         private Destructible m_destructible;
         private void Awake()
@@ -35,6 +57,7 @@ namespace TowerDefense
             m_name = asset.enemyName;
             m_damage = asset.damage;
             m_armor = asset.armor;
+            m_ArmorType = asset.armorType;
 
             //Для того, чтобы можно было переключать ассеты в инспекторе префаба, нужно
             //закомментить передачу анимации:
@@ -60,9 +83,14 @@ namespace TowerDefense
             //но мы ему напоминаем, что он - TDPlayer вот этой строкой: Player.Instance as TDPlayer.
             //после чего мы меняем на нём золото.
         }
-        public void TakeDamage(int damage)
+        public void TakeDamage(int damage, TDProjectile.DamageType damageType)
         {
-            m_destructible.ApplyDamage(Mathf.Max(1, damage - m_armor));
+            m_destructible.ApplyDamage(ArmorDamageFunctions[(int)m_ArmorType](damage, damageType, m_armor));
+            //В этой строчке: мы будем получать повреждения ApplyDamage. Но повреждение будет рассчитываться по 
+            //функциям брони. А функции будут храниться в некотором массиве [m_ArmorType], к кторому мы будем
+            //иметь доступ по m_ArmorType. А ArmorType под капотом у нас целые числа (то есть enum).
+            //СМЫСЛ В ТОМ, что мы сейчас делаем массив функций, которые будут возвращать кол-во полученных нами повреждений,
+            //в зависимости от damage, damageType и m_armor.
         }
     }
     [CustomEditor(typeof(Enemy))]

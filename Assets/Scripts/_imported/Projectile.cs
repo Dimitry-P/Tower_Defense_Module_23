@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using UnityEngine;
 using TowerDefense;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine;
 
 namespace SpaceShooter
 {
@@ -12,6 +14,18 @@ namespace SpaceShooter
     /// </summary>
     public class Projectile : Entity
     {
+        public void SetFromOtherProjectile(Projectile other)
+        {
+            other.GetData(out m_Velocity, out m_Lifetime, out m_Damage, out m_ImpactEffectPrefab);
+        }
+        private void GetData(out float m_Velocity, out float m_Lifetime, out int m_Damage, out ImpactEffect m_ImpactEffectPrefab)
+        {
+            m_Velocity = this.m_Velocity; 
+            m_Lifetime = this.m_Lifetime;
+            m_Damage = this.m_Damage;
+            m_ImpactEffectPrefab = this.m_ImpactEffectPrefab;
+        }
+
         /// <summary>
         /// Линейная скорость полета снаряда.
         /// </summary>
@@ -25,7 +39,7 @@ namespace SpaceShooter
         /// <summary>
         /// Повреждения наносимые снарядом.
         /// </summary>
-        [SerializeField] private int m_Damage;
+        [SerializeField] protected int m_Damage;
 
         /// <summary>
         /// Эффект попадания от что то твердое. 
@@ -59,38 +73,29 @@ namespace SpaceShooter
             transform.position += new Vector3(step.x, step.y, 0);
         }
 
-        private void OnHit(RaycastHit2D hit)
+        protected virtual void OnHit(RaycastHit2D hit)
         {
-            var enemy = hit.collider.transform.root.GetComponent<Enemy>();
+            var destructible = hit.collider.transform.root.GetComponent<Destructible>();
 
-            if (enemy != null)
+            if (destructible != null && destructible != m_Parent)
             {
-                enemy.TakeDamage(m_Damage);
+                destructible.ApplyDamage(m_Damage);
+
+                // #Score
+                // добавляем очки за уничтожение
+                if (Player.Instance != null && destructible.HitPoints < 0)
+                {
+                    // проверяем что прожектайл принадлежит кораблю игрока. 
+                    // здесь есть нюанс - если мы выстрелим прожектайл и после умрем
+                    // то новый корабль игрока будет другим, в случае если прожектайл запущенный из предыдущего шипа
+                    // добьет то очков не дадут. Можно отправить пофиксить на ДЗ. (например тупо воткнув флаг что прожектайл игрока)
+                    if (m_Parent == Player.Instance.ActiveShip)
+                    {
+                        Player.Instance.AddScore(destructible.ScoreValue);
+                    }
+                }
             }
         }
-        //private void OnHit(RaycastHit2D hit)
-        //{
-        //    var destructible = hit.collider.transform.root.GetComponent<Destructible>();
-
-        //    if (destructible != null && destructible != m_Parent)
-        //    {
-        //        destructible.ApplyDamage(m_Damage);
-
-        //        // #Score
-        //        // добавляем очки за уничтожение
-        //        if (Player.Instance != null && destructible.HitPoints < 0)
-        //        {
-        //            // проверяем что прожектайл принадлежит кораблю игрока. 
-        //            // здесь есть нюанс - если мы выстрелим прожектайл и после умрем
-        //            // то новый корабль игрока будет другим, в случае если прожектайл запущенный из предыдущего шипа
-        //            // добьет то очков не дадут. Можно отправить пофиксить на ДЗ. (например тупо воткнув флаг что прожектайл игрока)
-        //            if (m_Parent == Player.Instance.ActiveShip)
-        //            {
-        //                Player.Instance.AddScore(destructible.ScoreValue);
-        //            }
-        //        }
-        //    }
-        //}
 
         private void OnProjectileLifeEnd(Collider2D collider, Vector2 pos)
         {
@@ -114,6 +119,24 @@ namespace SpaceShooter
         public void SetTarget(Destructible target)
         {
 
+        }
+    }
+   namespace TowerDefense
+    {
+        [CustomEditor(typeof(SpaceShooter.Projectile))] // Все проджектайлы получат этот кастомный инспектор
+        public class ProjectileInspector : Editor
+        {
+            public override void OnInspectorGUI()
+            {
+                base.OnInspectorGUI();
+                if (GUILayout.Button("Create TD Projectile")) //Если нажимается эта кнопка, то ...
+                {
+                    var target = this.target as SpaceShooter.Projectile;
+                    var tdProj = target.gameObject.AddComponent<TDProjectile>();
+                    tdProj.SetFromOtherProjectile(target);// теперь на каждом проджектайле возникнет кнопка, которая
+                    //будет создавать на нём новый TDProjectile и перекидывать в нём все данные.
+                }
+            }
         }
     }
 }
