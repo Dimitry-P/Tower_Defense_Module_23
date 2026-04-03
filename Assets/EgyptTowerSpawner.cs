@@ -29,27 +29,33 @@ namespace TowerDefense
             // **Если башня ещё не создана, создаём её только после апгрейда**
             if (egyptianTowerPrefab == null) return;
 
-            Tower[] allTowers = FindObjectsOfType<Tower>();
-            if (allTowers.Length == 0) return;
+            BuildSite[] allBuildSites = FindObjectsOfType<BuildSite>();
+            if (allBuildSites.Length == 0) return;
 
-            int ranNum = Random.Range(0, allTowers.Length);
-            Tower oldTower = allTowers[ranNum];
+            int ranNum = Random.Range(0, allBuildSites.Length);
+            BuildSite exactBuildSite = allBuildSites[ranNum];
 
             // Создать египетскую башню на месте старой
             currentTower = Instantiate(
                 egyptianTowerPrefab,
-                oldTower.transform.position,
-                oldTower.transform.rotation
+                exactBuildSite.transform.position,
+                exactBuildSite.transform.rotation
             );
 
             // Вставить в иерархию старой башни
-            currentTower.transform.parent = oldTower.transform.parent;
+            //currentTower.transform.parent = exactBuildSite.transform.parent;
 
             // Установить уровень апгрейда (заряды)
             currentTower.SetUpgradeLevel(currentUpgradeLevel);
 
-            // Удалить старую башню
-            Destroy(oldTower.gameObject);
+            //exactBuildSite.gameObject.SetActive(false);
+            //exactBuildSite.gameObject.transform.localScale = Vector3.zero;
+
+            //var sr = exactBuildSite.GetComponentInChildren<SpriteRenderer>();
+            //if (sr != null)Destroy(sr.gameObject);
+           
+            Destroy(exactBuildSite.transform.root.gameObject);
+            Destroy(exactBuildSite.transform.parent.gameObject);
         }
 
         // Этот метод нужно вызывать в начале каждого уровня
