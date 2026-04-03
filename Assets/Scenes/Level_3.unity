@@ -296,7 +296,7 @@ MonoBehaviour:
       count: 1
     - asset: {fileID: 11400000, guid: ed3b56a26de293d4ba17f8d2c3cf1c54, type: 2}
       count: 1
-  prepareTime: 20
+  prepareTime: 2
   next: {fileID: 0}
 --- !u!1 &133933870
 GameObject:
@@ -705,7 +705,7 @@ MonoBehaviour:
   - {fileID: 237091213}
   - {fileID: 1640126010}
   - {fileID: 1999461835}
-  currentWave: {fileID: 614240287}
+  currentWave: {fileID: 93911061}
   m_EnemyPrefab: {fileID: 7496885557593082054, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
 --- !u!1 &405756843
 GameObject:
@@ -875,6 +875,10 @@ PrefabInstance:
     - target: {fileID: 4534007163366116183, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837760207304801829, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1311,6 +1315,7 @@ MonoBehaviour:
   loosePanel: {fileID: 0}
   victoryPanel: {fileID: 0}
   towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}
+  healthUpgrade: {fileID: 0}
   m_gold: 1000
 --- !u!114 &649427585
 MonoBehaviour:

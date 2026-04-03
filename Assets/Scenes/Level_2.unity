@@ -234,7 +234,7 @@ MonoBehaviour:
       count: 2
     - asset: {fileID: 11400000, guid: 5234d8b0cd852b64e80290219b9c17b6, type: 2}
       count: 1
-  prepareTime: 20
+  prepareTime: 2
   next: {fileID: 0}
 --- !u!1 &57767492
 GameObject:
@@ -854,7 +854,7 @@ MonoBehaviour:
   - {fileID: 237091213}
   - {fileID: 520934930}
   - {fileID: 1491491821}
-  currentWave: {fileID: 1169093518}
+  currentWave: {fileID: 32282633}
   m_EnemyPrefab: {fileID: 7496885557593082054, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
 --- !u!1 &405756843
 GameObject:

@@ -31,14 +31,14 @@ namespace TowerDefense
 
         //public static int totalGold = 0;
 
-        private static event Action<int> OnGoldUpdate;
-        public static void GoldUpdateSubscribe(Action<int> act)
+        private event Action<int> OnGoldUpdate;
+        public void GoldUpdateSubscribe(Action<int> act)
         {
             OnGoldUpdate += act;
             act(Instance.m_gold);
             Debug.Log(Instance.m_gold);
         }
-        public static void GoldUpdateUnsubscribe(Action<int> act)
+        public void GoldUpdateUnsubscribe(Action<int> act)
         {
             OnGoldUpdate -= act;
         }

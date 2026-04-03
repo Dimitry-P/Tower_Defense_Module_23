@@ -55,6 +55,22 @@ namespace SpaceShooter
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
+        //Что происходит:
+        //Когда объект включается, он подписывается на событие загрузки сцены
+        //Это значит: каждый раз, когда загружается сцена -- вызывается OnSceneLoaded
+        //Проще:
+        // "Когда сцена загрузилась — позови меня"
+        //А нажатие мышкой на BuildSite вызывает метод:
+        // MapLevel.LoadLevel()
+
+        //то есть при вызове этого метода мне не надо передавать аргументы:
+        //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)   !!!
+        //Ты не вызываешь OnSceneLoaded вручную, поэтому не нужно передавать аргументы.
+        //Unity сама вызывает этот метод при загрузке сцены, потому что ты подписался на событие:
+        //SceneManager.sceneLoaded += OnSceneLoaded;
+        //Unity автоматически подставляет два параметра:
+        //scene -- сцена, которая только что загрузилась
+        //mode -- режим загрузки(Single или Additive)
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (scene.name == MainMenuSceneNickname)
