@@ -11,7 +11,6 @@ namespace TowerDefense
     public class MapCompletion : MonoSingleton<MapCompletion>
     {
         public const string filename = "completion.dat";
-        [SerializeField] private Episode[] allEpisodes;  // Сюда в инспекторе перетащить все Episode
 
         [Serializable]
         public class EpisodeScore
@@ -19,10 +18,6 @@ namespace TowerDefense
             public Episode episode;
             public int score;
         }
-
-        [SerializeField] private CompletionData data;
-        public CompletionData Data => data;
-
         [Serializable]
         public class CompletionData
         {
@@ -31,43 +26,38 @@ namespace TowerDefense
             public int numLivesTotal;
         }
 
+        [SerializeField] private Episode[] allEpisodes;  // Сюда в инспекторе перетащить все Episode
+        private int totalScore;
+        public int TotalScore { get { return totalScore; } }
+        [SerializeField] private CompletionData data;
+        public CompletionData Data => data;
         public int UnlockedLevels => data.unlockedLevels;
 
         public static void SaveEpisodeResult(int levelScore, int numLives)
         {
             if (Instance)
             {
-                Instance.SaveResult(LevelSequenceController.Instance.CurrentEpisode, levelScore, numLives);
+                foreach (var item in Instance.data.episodes)
+                { //Сохранение новых очков прохождения и жизней
+                    if (item.episode == LevelSequenceController.Instance.CurrentEpisode)
+                    {
+                        if (levelScore > item.score)
+                        {
+                            Instance.totalScore += levelScore - item.score;
+                            item.score = levelScore;
+                            Instance.data.unlockedLevels++;
+                            Debug.Log("Saving lives = " + numLives);
+                            Instance.data.numLivesTotal = numLives;
+                            Saver<CompletionData>.Save(filename, Instance.data);
+                        }
+                    }
+                }
             }
             else
             {
                 Debug.Log($"Episode complete with score {levelScore}");
             }
         }
-
-        private void SaveResult(Episode currentEpisode, int levelScore, int numLives)
-        {
-            foreach (var item in data.episodes)
-            {
-                if (item.episode == currentEpisode)
-                {
-                    if (levelScore > item.score)
-                    {
-                        totalScore += levelScore - item.score;
-                        item.score = levelScore;
-                        data.unlockedLevels++;
-                        Debug.Log("Saving lives = " + numLives);
-                        data.numLivesTotal = numLives;
-                        Saver<CompletionData>.Save(filename, data);
-                    } 
-                }
-            }
-        }
-
-        
-        private int totalScore;
-        public int TotalScore { get { return totalScore; } }
-
 
         //private new void Awake()
         //{
@@ -128,7 +118,6 @@ namespace TowerDefense
 
             // пересчёт totalScore и т.д.
         }
-
 
         public int GetEpisodeScore(Episode m_episode)
         {

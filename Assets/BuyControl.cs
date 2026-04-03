@@ -8,21 +8,29 @@ namespace TowerDefense
 {
     public class BuyControl : MonoBehaviour
     {
-        private RectTransform t;
+        private RectTransform m_RectTransform;
         private Camera cam;
+
+        #region События Unity
         private void Awake()
         {
             cam = Camera.main;
-            t = GetComponent<RectTransform>();
+            m_RectTransform = GetComponent<RectTransform>();
             BuildSite.OnClickEvent += MoveToBuildSite;
             gameObject.SetActive(false);
         }
+        private void OnDestroy()
+        {
+            BuildSite.OnClickEvent -= MoveToBuildSite;
+        }
+        #endregion
+
         private void MoveToBuildSite(Transform buildSite)
         {
             if (buildSite)
             {
                 var position = cam.WorldToScreenPoint(buildSite.position);
-                t.position = position;
+                m_RectTransform.position = position;
                 gameObject.SetActive(true);
             }
             else
@@ -33,10 +41,6 @@ namespace TowerDefense
             {
                 tbc.SetBuildSite(buildSite);
             }
-        }
-        private void OnDestroy()
-        {
-            BuildSite.OnClickEvent -= MoveToBuildSite;
         }
     }
 }

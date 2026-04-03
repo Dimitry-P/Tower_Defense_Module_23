@@ -75,7 +75,7 @@ namespace SpaceShooter
 
             m_CurrentHitPoints -= damage;
 
-            if (m_CurrentHitPoints < 0)
+            if (m_CurrentHitPoints <= 0)
             {
                 OnDeath();
             }
