@@ -73,6 +73,7 @@ namespace SpaceShooter
         //mode -- режим загрузки(Single или Additive)
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            if(Player.Instance)Player.Instance.UpdateNumLivesInBranchLevels();
             if (scene.name == MainMenuSceneNickname)
             {
                 var map = FindObjectOfType<LevelDisplayController>();

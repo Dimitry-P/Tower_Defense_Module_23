@@ -24,6 +24,11 @@ namespace SpaceShooter
 
             if(m_NumLives <= 0)NumLives = baseNumLives;
 
+           
+        }
+
+        public void UpdateNumLivesInBranchLevels()
+        {
             // Затем сразу загружаем из сохранения, если MapCompletion уже готов
             if (MapCompletion.Instance != null && MapCompletion.Instance.Data != null)
             {
