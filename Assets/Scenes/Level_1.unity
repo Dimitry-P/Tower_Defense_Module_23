@@ -745,7 +745,7 @@ MonoBehaviour:
   paths:
   - {fileID: 1999461835}
   - {fileID: 57767494}
-  currentWave: {fileID: 1541547533}
+  currentWave: {fileID: 1605813444}
   m_EnemyPrefab: {fileID: 7496885557593082054, guid: cc579ab4c8c43e9449db597fbce5f6dc, type: 3}
 --- !u!1 &405756843
 GameObject:
@@ -805,21 +805,45 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 323067867907230359, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f7bd98ad9bbb749448e57f1435c3c110, type: 3}
+    - target: {fileID: 323067867907230359, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 323067867907230359, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_Color.b
-      value: 0.9304913
+      value: 0.885502
       objectReference: {fileID: 0}
     - target: {fileID: 323067867907230359, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_Color.g
-      value: 0.9304913
+      value: 0.885502
       objectReference: {fileID: 0}
     - target: {fileID: 323067867907230359, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_Color.r
-      value: 0.9622642
+      value: 0.9339623
       objectReference: {fileID: 0}
+    - target: {fileID: 1460973939426151702, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_TowerBuyPrefab
+      value: 
+      objectReference: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+    - target: {fileID: 1460973939426151702, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_MageTowerUpgrade
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c73255da9690f04299417f67604ba97, type: 2}
+    - target: {fileID: 1460973939426151702, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_TowerAssets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460973939426151702, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_TowerAssets.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 969db4374bd2d52409e692ab11ea21c8, type: 2}
+    - target: {fileID: 1460973939426151702, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_TowerAssets.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f3c6c3c5f156be48b533107a7e5c5a4, type: 2}
     - target: {fileID: 2306217130819905434, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -960,6 +984,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4534007163366116183, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5168114305957000382, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -971,11 +999,15 @@ PrefabInstance:
     - target: {fileID: 5653499450728477708, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_text
       value: 
-      objectReference: {fileID: 1802514219}
+      objectReference: {fileID: 0}
     - target: {fileID: 5653499450728477708, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: buildSite
       value: 
       objectReference: {fileID: 929080143}
+    - target: {fileID: 5672809721795336246, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7803578999588956737, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_Name
       value: ArcherTower
@@ -1564,9 +1596,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 649427580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 148abd3ebaaa6774e8cff906670e2429, type: 3}
+  m_Script: {fileID: 11500000, guid: ed3d50985ede3c54a91f89039b356f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLimit: 20
 --- !u!1 &694817600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,7 +3135,7 @@ MonoBehaviour:
   - squads:
     - asset: {fileID: 11400000, guid: 72cf142ae2b40ea49a5eaed25bc8966f, type: 2}
       count: 1
-  prepareTime: 2
+  prepareTime: 20
   next: {fileID: 0}
 --- !u!1 &1549901565
 GameObject:
@@ -3701,17 +3734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Radius: 0.3
---- !u!114 &1802514219 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3227697365045746639, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
-  m_PrefabInstance: {fileID: 417279015}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1818851443
 GameObject:
   m_ObjectHideFlags: 0
@@ -4416,6 +4438,18 @@ PrefabInstance:
     - target: {fileID: 595435473991859828, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
       propertyPath: m_Name
       value: SingleLevelTestObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 2886681543191602238, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
+      propertyPath: save.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2886681543191602238, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
+      propertyPath: save.Array.data[1].asset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c73255da9690f04299417f67604ba97, type: 2}
+    - target: {fileID: 2886681543191602238, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
+      propertyPath: save.Array.data[1].level
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4946834200780393057, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
       propertyPath: m_LocalPosition.x

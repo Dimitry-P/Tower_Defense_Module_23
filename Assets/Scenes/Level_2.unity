@@ -234,7 +234,7 @@ MonoBehaviour:
       count: 2
     - asset: {fileID: 11400000, guid: 5234d8b0cd852b64e80290219b9c17b6, type: 2}
       count: 1
-  prepareTime: 2
+  prepareTime: 5
   next: {fileID: 0}
 --- !u!1 &57767492
 GameObject:
@@ -845,7 +845,7 @@ PrefabInstance:
     - target: {fileID: 82694975207083907, guid: c19379a45f16e9b4db87d7a1b61a9e90, type: 3}
       propertyPath: currentWave
       value: 
-      objectReference: {fileID: 1391577224}
+      objectReference: {fileID: 1169093518}
     - target: {fileID: 82694975207083907, guid: c19379a45f16e9b4db87d7a1b61a9e90, type: 3}
       propertyPath: paths.Array.size
       value: 3
@@ -2820,7 +2820,7 @@ MonoBehaviour:
       count: 1
     - asset: {fileID: 11400000, guid: 5234d8b0cd852b64e80290219b9c17b6, type: 2}
       count: 1
-  prepareTime: 20
+  prepareTime: 5
   next: {fileID: 2049963957}
 --- !u!1 &1487082225
 GameObject:
@@ -4200,7 +4200,7 @@ MonoBehaviour:
     - asset: {fileID: 11400000, guid: ed3b56a26de293d4ba17f8d2c3cf1c54, type: 2}
       count: 2
   - squads: []
-  prepareTime: 20
+  prepareTime: 5
   next: {fileID: 32282633}
 --- !u!1 &2126800174
 GameObject:

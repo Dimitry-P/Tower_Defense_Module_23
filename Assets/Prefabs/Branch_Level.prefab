@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3956903638500790806}
   - component: {fileID: 7650753068967161923}
-  - component: {fileID: 568007366842179512}
+  - component: {fileID: 1014337374322385402}
   m_Layer: 0
   m_Name: Branch_Level
   m_TagString: Untagged
@@ -201,12 +201,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9e4cbef94adeb40a6c5828fc57280b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_episode: {fileID: 0}
   resultPanel: {fileID: 4296667084114152177}
   resultImages:
   - {fileID: 3903024884634006570}
   - {fileID: 8903068597064548108}
   - {fileID: 7796658840483211577}
---- !u!114 &568007366842179512
+--- !u!114 &1014337374322385402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,11 +216,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2179309735526589531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec2c7a49d67726439219bcb41d9314d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b83e614eb727134fbf31d5f0645deb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootLevel: {fileID: 0}
-  pointText: {fileID: 6646146408154167262}
+  m_PointText: {fileID: 6646146408154167262}
+  m_RootLevel: {fileID: 0}
+  m_NeedPoints: 3
 --- !u!1 &2769178118400050915
 GameObject:
   m_ObjectHideFlags: 0

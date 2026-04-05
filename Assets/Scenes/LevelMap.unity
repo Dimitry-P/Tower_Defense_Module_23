@@ -623,6 +623,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &493952571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3086415775322482098, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+  m_PrefabInstance: {fileID: 1036499041}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &548152275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1014,10 @@ MonoBehaviour:
     level: 0
     upgradeSO: {fileID: 11400000, guid: 4c829f17800e8fb4499a4ec1319e8b0c, type: 2}
     name: 
+  - asset: {fileID: 11400000, guid: 3c73255da9690f04299417f67604ba97, type: 2}
+    level: 0
+    upgradeSO: {fileID: 0}
+    name: 
 --- !u!1001 &1036499041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1157,7 +1172,7 @@ GameObject:
   - component: {fileID: 1044432474}
   - component: {fileID: 1044432476}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: UpgradeShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1246,6 +1261,7 @@ MonoBehaviour:
   - {fileID: 273080379}
   sales:
   - {fileID: 716919641}
+  - {fileID: 1603499987}
   - {fileID: 1262917509}
   - {fileID: 1036499043}
 --- !u!1 &1155690360
@@ -1581,6 +1597,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1044432473}
     m_Modifications:
+    - target: {fileID: 1258455423769169102, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ff55c4a74fcf9b429b49b787ead3395, type: 3}
+    - target: {fileID: 3336244442224782312, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4565392091321756785, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1663,12 +1687,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5691536700006938912, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: m_Name
-      value: Upgrade (1)
+      value: UpgradeMageTower
       objectReference: {fileID: 0}
     - target: {fileID: 5691536700006938912, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: ugradeIcon
+      value: 
+      objectReference: {fileID: 493952571}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1679,6 +1707,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4565392091321756785, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
   m_PrefabInstance: {fileID: 1603499985}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1603499987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+  m_PrefabInstance: {fileID: 1603499985}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915eb8a420891934baf0ea3362508572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1792416317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,6 +1867,10 @@ PrefabInstance:
       propertyPath: needPoints
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 810141307943579064, guid: 80c0312859eed4547b1889531e76ac0b, type: 3}
+      propertyPath: m_RootLevel
+      value: 
+      objectReference: {fileID: 1551755401}
     - target: {fileID: 4329926516793942076, guid: 80c0312859eed4547b1889531e76ac0b, type: 3}
       propertyPath: m_Name
       value: Level_2_2
@@ -1910,7 +1953,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 548152277}
     - target: {fileID: 810141307943579064, guid: 80c0312859eed4547b1889531e76ac0b, type: 3}
-      propertyPath: rootLevel
+      propertyPath: m_RootLevel
       value: 
       objectReference: {fileID: 8407008484236337629}
     - target: {fileID: 4329926516793942076, guid: 80c0312859eed4547b1889531e76ac0b, type: 3}
@@ -1957,14 +2000,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6001924881523329396, guid: 80c0312859eed4547b1889531e76ac0b, type: 3}
-      propertyPath: m_episode
-      value: 
-      objectReference: {fileID: 11400000, guid: ad30127a8730456498ae6a58eba8bd2d, type: 2}
-    - target: {fileID: 8081053305512736785, guid: 80c0312859eed4547b1889531e76ac0b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1983,6 +2018,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1044432473}
     m_Modifications:
+    - target: {fileID: 3336244442224782312, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4565392091321756785, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2065,7 +2104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5691536700006938912, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: m_Name
-      value: Upgrade
+      value: UpgradeHealth
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

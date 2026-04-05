@@ -17,7 +17,21 @@ namespace TowerDefense
 {
     public class TowerBuyControl : MonoBehaviour
     {
-        [SerializeField] private TowerAsset m_ta;
+        [SerializeField] private TowerAsset m_TowerAsset;
+
+        public void SetTowerAsset(TowerAsset asset)
+        {
+            m_TowerAsset = asset;
+            var button = GetComponentInChildren<Button>();
+            var image = button.GetComponentInChildren<Image>();
+            image.sprite = asset.GUISprite;
+            Debug.Log(asset.GUISprite+"$$$$$$$$");
+        }
+
+        //m_TowerAsset = asset;
+        //var image = m_button.GetComponentInChildren<Image>();
+        //image.sprite = m_TowerAsset.GUISprite;
+
         [SerializeField] private Text m_text;
         [SerializeField] private Button m_button;
         [SerializeField] private Transform buildSite;
@@ -30,12 +44,12 @@ namespace TowerDefense
         private void Start()
         {
             TDPlayer.Instance.GoldUpdateSubscribe(GoldStatusCheck);
-            m_text.text = m_ta.gold.ToString();
-            m_button.GetComponent<Image>().sprite = m_ta.GUISprite;
+            m_text.text = m_TowerAsset.gold.ToString();
+            m_button.transform.GetChild(1).GetComponent<Image>().sprite = m_TowerAsset.GUISprite;
         }
         private void GoldStatusCheck(int gold)
         {
-            if (gold >= m_ta.gold != m_button.interactable)
+            if (gold >= m_TowerAsset.gold != m_button.interactable)
             {
                 m_button.interactable = !m_button.interactable;
                 m_text.color = m_button.interactable ? Color.white : Color.red;
@@ -44,7 +58,7 @@ namespace TowerDefense
 
         public void Buy()
         {
-            TDPlayer.Instance.TryBuild(m_ta, buildSite);
+            TDPlayer.Instance.TryBuild(m_TowerAsset, buildSite);
             BuildSite.HideControls();
         }
     }

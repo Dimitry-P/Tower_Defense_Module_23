@@ -600,6 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9e4cbef94adeb40a6c5828fc57280b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_episode: {fileID: 11400000, guid: ad30127a8730456498ae6a58eba8bd2d, type: 2}
   resultPanel: {fileID: 7558079308989227933}
   resultImages:
   - {fileID: 86909979492791749}
@@ -617,8 +618,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b83e614eb727134fbf31d5f0645deb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointText: {fileID: 743939003149481189}
-  rootLevel: {fileID: 0}
+  m_PointText: {fileID: 743939003149481189}
+  m_RootLevel: {fileID: 0}
+  m_NeedPoints: 3
 --- !u!1 &5984226978278820096
 GameObject:
   m_ObjectHideFlags: 0
