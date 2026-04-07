@@ -18,6 +18,7 @@ public class BuildSite : MonoBehaviour, IPointerDownHandler
     {
         print($"нажато {transform.root.name}");
         OnClickEvent(transform.root);
+            Debug.Log("************" + transform.root);
     }
 }
 }

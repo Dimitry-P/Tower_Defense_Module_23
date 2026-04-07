@@ -33,6 +33,12 @@ namespace TowerDefense
                     save[i].level = loaded[i].level;
                 }
             }
+
+            Debug.Log("Runtime save length = ***********" + save.Length);
+            for (int i = 0; i < save.Length; i++)
+            {
+                Debug.Log($"****************i={i}, asset={(save[i].asset != null ? save[i].asset.name : "NULL")}, level={save[i].level}");
+            }
         }
 
 
@@ -69,11 +75,29 @@ namespace TowerDefense
 
         public static int GetUpgradeLevel(UpgradeAsset asset)
         {
-            foreach (var upgrade in Instance.save)
+            //Что здесь реально происходит?
+            //сравнивается d wbrkt массив save с пришедшим в аргументе UpgradeAsset asset
+            //В реальности же значения массива save сейчас выглядят так:
+                    //save[0]->asset = HealthUpgrade
+                    //save[1]->asset = null
+                    //save[2]->asset = null
+                    //save[3]->asset = null
+            //Первый элемент НЕ равен null, потому что программа его берёт из инспектора у компонента Upgrades.
+            //// Null-элементы пропускаются, так что сравнение происходит только с реально назначенными апгрейдами
+            Debug.Log("Save.Length = " + Instance.save.Length);
+            for (int i = 0; i < Instance.save.Length; i++)
             {
-                if (upgrade.asset == asset)
+                if (Instance.save[i].asset == null)
+                    continue;
+                if (Instance.save[i].asset == asset) //ЗДЕСЬ СРАВНИВАЮТСЯ ССЫЛКИ!!!
                 {
-                   return upgrade.level;
+                    Debug.Log(";;;;;;;;;;;;;;;;;" + Instance.save[i].asset.name);
+                    Debug.Log("*;;;;;;;;;;;;;;;;*MATCH FOUND: level=" + Instance.save[i].level);
+                    Debug.Log("PARAM TYPE = ;;;;;;;;" + asset.GetType().Name);
+                    Debug.Log("PARAM NAME = ;;;;;;;;;;;;;;;" + asset.name);
+                    //UpgradeAsset-Ы ДАННОГО МАССИВА ЭТОТ МЕТОД БЕРЁТ ИЗ ИНСПЕКТОРА,
+                    //НЕСМОТРЯ НА ТО ЧТО ФАЙЛ upgrade.dat ЕЩЁ НЕ СОЗДАН.
+                    return Instance.save[i].level;
                 }
             }
             return 0;

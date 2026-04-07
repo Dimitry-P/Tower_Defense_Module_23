@@ -20,7 +20,7 @@ namespace TowerDefense
            
             if (savedLevel >= asset.costByLevel.Length)
             {
-                level.text = $"Lvl: {savedLevel} (Max)";
+                level.text = $"а: {savedLevel} (Max)";
                 buyButton.interactable = false;
                 buyButton.transform.Find("Image").gameObject.SetActive(false);
                 buyButton.transform.Find("Text").gameObject.SetActive(false);

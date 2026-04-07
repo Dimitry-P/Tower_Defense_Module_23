@@ -1014,9 +1014,9 @@ MonoBehaviour:
     level: 0
     upgradeSO: {fileID: 11400000, guid: 4c829f17800e8fb4499a4ec1319e8b0c, type: 2}
     name: 
-  - asset: {fileID: 11400000, guid: 3c73255da9690f04299417f67604ba97, type: 2}
+  - asset: {fileID: 11400000, guid: 0f23a1f08dfd7b14f919496f73445ad6, type: 2}
     level: 0
-    upgradeSO: {fileID: 0}
+    upgradeSO: {fileID: 11400000, guid: 20c8defb62d92f340835659ce408c6a4, type: 2}
     name: 
 --- !u!1001 &1036499041
 PrefabInstance:
@@ -1693,6 +1693,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: asset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c73255da9690f04299417f67604ba97, type: 2}
     - target: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: ugradeIcon
       value: 

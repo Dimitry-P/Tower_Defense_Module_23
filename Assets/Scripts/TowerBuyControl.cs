@@ -18,23 +18,25 @@ namespace TowerDefense
     public class TowerBuyControl : MonoBehaviour
     {
         [SerializeField] private TowerAsset m_TowerAsset;
+        [SerializeField] private Sprite m_DefaultSprite;
+
+        [SerializeField] private Button m_Button;
+        [SerializeField] private Text m_text;
+        [SerializeField] private Transform buildSite;
+        private Image m_Image;
+
+        private void Awake()
+        {
+            m_Button = GetComponentInChildren<Button>();
+            m_Image = m_Button.GetComponentInChildren<Image>();
+        }
 
         public void SetTowerAsset(TowerAsset asset)
         {
             m_TowerAsset = asset;
-            var button = GetComponentInChildren<Button>();
-            var image = button.GetComponentInChildren<Image>();
-            image.sprite = asset.GUISprite;
-            Debug.Log(asset.GUISprite+"$$$$$$$$");
+            m_Button.interactable = true; // можно нажимать
+            m_Image.sprite = asset.GUISprite;
         }
-
-        //m_TowerAsset = asset;
-        //var image = m_button.GetComponentInChildren<Image>();
-        //image.sprite = m_TowerAsset.GUISprite;
-
-        [SerializeField] private Text m_text;
-        [SerializeField] private Button m_button;
-        [SerializeField] private Transform buildSite;
 
         public void SetBuildSite(Transform value)
         {
@@ -45,14 +47,14 @@ namespace TowerDefense
         {
             TDPlayer.Instance.GoldUpdateSubscribe(GoldStatusCheck);
             m_text.text = m_TowerAsset.gold.ToString();
-            m_button.transform.GetChild(1).GetComponent<Image>().sprite = m_TowerAsset.GUISprite;
+            m_Button.interactable = false;
         }
         private void GoldStatusCheck(int gold)
         {
-            if (gold >= m_TowerAsset.gold != m_button.interactable)
+            if (gold >= m_TowerAsset.gold != m_Button.interactable)
             {
-                m_button.interactable = !m_button.interactable;
-                m_text.color = m_button.interactable ? Color.white : Color.red;
+                m_Button.interactable = !m_Button.interactable;
+                m_text.color = m_Button.interactable ? Color.white : Color.red;
             }
         }
 
