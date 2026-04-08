@@ -8,20 +8,33 @@ using SpaceShooter;
 
 namespace TowerDefense
 {
-public class BuildSite : MonoBehaviour, IPointerDownHandler
-{
-    public static event Action<Transform> OnClickEvent;
-    public static void HideControls()
+    public class BuildSite : MonoBehaviour, IPointerDownHandler
     {
-        OnClickEvent(null);
+        public TowerAsset[] buildableTowers;
+        public void SetBuildableTowers(TowerAsset[] towers) 
+        { 
+            if(towers == null || towers.Length == 0)
+            {
+                Destroy(transform.parent.gameObject);
+                //gameObject.SetActive(false);
+            }
+            else
+            {
+                buildableTowers = towers;
+            }
+        }
+        public static event Action<BuildSite> OnClickEvent;
+        public static void HideControls()
+        {
+            OnClickEvent(null);
+        }
+        public virtual void OnPointerDown(PointerEventData eventData)
+        {
+            print($"нажато {transform.root.name}");
+                OnClickEvent(this);
+                Debug.Log(transform.root);
+        }
     }
-    public virtual void OnPointerDown(PointerEventData eventData)
-    {
-        print($"нажато {transform.root.name}");
-            OnClickEvent(transform.root);
-            Debug.Log("************" + transform.root);
-    }
-}
 }
 
 

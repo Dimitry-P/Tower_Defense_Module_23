@@ -318,10 +318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TowerBuyPrefab: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
-  m_TowerAssets:
-  - {fileID: 11400000, guid: 969db4374bd2d52409e692ab11ea21c8, type: 2}
-  - {fileID: 11400000, guid: 9f3c6c3c5f156be48b533107a7e5c5a4, type: 2}
-  m_MageTowerUpgrade: {fileID: 11400000, guid: 0f23a1f08dfd7b14f919496f73445ad6, type: 2}
 --- !u!1001 &222083248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1021,6 +1017,18 @@ PrefabInstance:
     - target: {fileID: 5235749831687126980, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457670846397285870, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457670846397285870, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457670846397285870, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5653499450728477708, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
       propertyPath: m_text
@@ -4476,9 +4484,17 @@ PrefabInstance:
     - target: {fileID: 2886681543191602238, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
       propertyPath: save.Array.data[1].asset
       value: 
-      objectReference: {fileID: 11400000, guid: 3c73255da9690f04299417f67604ba97, type: 2}
+      objectReference: {fileID: 11400000, guid: 0f23a1f08dfd7b14f919496f73445ad6, type: 2}
     - target: {fileID: 2886681543191602238, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
       propertyPath: save.Array.data[1].level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2886681543191602238, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
+      propertyPath: save.Array.data[2].asset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0f23a1f08dfd7b14f919496f73445ad6, type: 2}
+    - target: {fileID: 2886681543191602238, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
+      propertyPath: save.Array.data[2].level
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4946834200780393057, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}

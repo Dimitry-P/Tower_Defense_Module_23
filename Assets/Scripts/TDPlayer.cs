@@ -20,9 +20,8 @@ namespace TowerDefense
 
         [SerializeField] private UpgradeAsset healthUpgrade;
        
-        protected override void Awake()
+        private void Start()
         {
-            base.Awake();
             var level = Upgrades.GetUpgradeLevel(healthUpgrade);
             TakeDamage(-level * 5);
         }

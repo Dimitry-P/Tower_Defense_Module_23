@@ -23,12 +23,12 @@ namespace TowerDefense
         [SerializeField] private Button m_Button;
         [SerializeField] private Text m_text;
         [SerializeField] private Transform buildSite;
-        private Image m_Image;
+        [SerializeField] private Image m_Image;
 
         private void Awake()
         {
-            m_Button = GetComponentInChildren<Button>();
-            m_Image = m_Button.GetComponentInChildren<Image>();
+            if (m_Button == null)m_Button = GetComponentInChildren<Button>();
+            if (m_Image == null)m_Image = m_Button.GetComponentInChildren<Image>();
             m_text = GetComponentInChildren<Text>();
             m_Button.interactable = false;
         }

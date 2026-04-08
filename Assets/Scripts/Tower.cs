@@ -22,6 +22,7 @@ namespace TowerDefense
             {
                 turret.AssignLoadout(asset.turretProperties);
             }
+            GetComponentInChildren<BuildSite>().SetBuildableTowers(asset.m_UpgradesTo);
         }
 
         private void Start()
