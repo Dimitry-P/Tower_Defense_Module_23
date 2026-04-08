@@ -29,6 +29,18 @@ namespace TowerDefense
         {
             m_Button = GetComponentInChildren<Button>();
             m_Image = m_Button.GetComponentInChildren<Image>();
+            m_text = GetComponentInChildren<Text>();
+            m_Button.interactable = false;
+        }
+
+        private void OnEnable()
+        {
+            TDPlayer.Instance.GoldUpdateSubscribe(GoldStatusCheck);
+        }
+
+        private void OnDisable()
+        {
+            TDPlayer.Instance.GoldUpdateUnsubscribe(GoldStatusCheck);
         }
 
         public void SetTowerAsset(TowerAsset asset)
@@ -45,17 +57,21 @@ namespace TowerDefense
 
         private void Start()
         {
-            TDPlayer.Instance.GoldUpdateSubscribe(GoldStatusCheck);
+            if (m_TowerAsset == null || m_Button == null || m_text == null) return;
             m_text.text = m_TowerAsset.gold.ToString();
-            m_Button.interactable = false;
         }
         private void GoldStatusCheck(int gold)
         {
-            if (gold >= m_TowerAsset.gold != m_Button.interactable)
+            if (m_TowerAsset == null || m_Button == null || m_text == null)return;
+            Debug.Log(gold + "$$$$$");
+            bool enoughGold = gold >= m_TowerAsset.gold;
+            bool buttonState = m_Button.interactable;
+            
+            if (enoughGold != buttonState)
             {
                 m_Button.interactable = !m_Button.interactable;
                 m_text.color = m_Button.interactable ? Color.white : Color.red;
-            }
+            } 
         }
 
         public void Buy()

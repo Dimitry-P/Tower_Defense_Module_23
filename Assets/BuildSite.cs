@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using SpaceShooter;
 
 namespace TowerDefense
 {
@@ -17,7 +18,7 @@ public class BuildSite : MonoBehaviour, IPointerDownHandler
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         print($"нажато {transform.root.name}");
-        OnClickEvent(transform.root);
+            OnClickEvent(transform.root);
             Debug.Log("************" + transform.root);
     }
 }

@@ -34,19 +34,12 @@ namespace TowerDefense
                 }
             }
 
-            Debug.Log("Runtime save length = ***********" + save.Length);
+            Debug.Log("Runtime save length = " + save.Length);
             for (int i = 0; i < save.Length; i++)
             {
-                Debug.Log($"****************i={i}, asset={(save[i].asset != null ? save[i].asset.name : "NULL")}, level={save[i].level}");
+                Debug.Log($"i={i}, asset={(save[i].asset != null ? save[i].asset.name : "NULL")}, level={save[i].level}");
             }
         }
-
-
-        //private new void Awake()
-        //{
-        //    base.Awake();
-        //    Saver<UpgradeSave[]>.TryLoad(filename, ref save);
-        //}
 
         public static void BuyUpgrade(UpgradeAsset asset)
         {
@@ -84,17 +77,17 @@ namespace TowerDefense
                     //save[3]->asset = null
             //Первый элемент НЕ равен null, потому что программа его берёт из инспектора у компонента Upgrades.
             //// Null-элементы пропускаются, так что сравнение происходит только с реально назначенными апгрейдами
-            Debug.Log("Save.Length = " + Instance.save.Length);
+           
             for (int i = 0; i < Instance.save.Length; i++)
             {
                 if (Instance.save[i].asset == null)
                     continue;
                 if (Instance.save[i].asset == asset) //ЗДЕСЬ СРАВНИВАЮТСЯ ССЫЛКИ!!!
                 {
-                    Debug.Log(";;;;;;;;;;;;;;;;;" + Instance.save[i].asset.name);
-                    Debug.Log("*;;;;;;;;;;;;;;;;*MATCH FOUND: level=" + Instance.save[i].level);
-                    Debug.Log("PARAM TYPE = ;;;;;;;;" + asset.GetType().Name);
-                    Debug.Log("PARAM NAME = ;;;;;;;;;;;;;;;" + asset.name);
+                    Debug.Log(Instance.save[i].asset.name);
+                    Debug.Log("MATCH FOUND: level=" + Instance.save[i].level);
+                    Debug.Log("PARAM TYPE = " + asset.GetType().Name);
+                    Debug.Log("PARAM NAME = " + asset.name);
                     //UpgradeAsset-Ы ДАННОГО МАССИВА ЭТОТ МЕТОД БЕРЁТ ИЗ ИНСПЕКТОРА,
                     //НЕСМОТРЯ НА ТО ЧТО ФАЙЛ upgrade.dat ЕЩЁ НЕ СОЗДАН.
                     return Instance.save[i].level;

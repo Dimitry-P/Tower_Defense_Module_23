@@ -300,6 +300,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Radius: 0.3
+--- !u!1 &102844475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5168114305957000382, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+  m_PrefabInstance: {fileID: 417279015}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &102844480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102844475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bc9c629c97ca7478e090c3332be912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TowerBuyPrefab: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
+  m_TowerAssets:
+  - {fileID: 11400000, guid: 969db4374bd2d52409e692ab11ea21c8, type: 2}
+  - {fileID: 11400000, guid: 9f3c6c3c5f156be48b533107a7e5c5a4, type: 2}
+  m_MageTowerUpgrade: {fileID: 11400000, guid: 0f23a1f08dfd7b14f919496f73445ad6, type: 2}
 --- !u!1001 &222083248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1060,10 +1082,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1460973939426151702, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5168114305957000382, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 102844480}
   m_SourcePrefab: {fileID: 100100000, guid: 765bf152c03dea04a94e4930ad4693d7, type: 3}
 --- !u!1 &459324181
 GameObject:
@@ -1603,7 +1629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3d50985ede3c54a91f89039b356f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 20
+  timeLimit: 30
 --- !u!1 &694817600
 GameObject:
   m_ObjectHideFlags: 0

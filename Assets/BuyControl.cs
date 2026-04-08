@@ -47,19 +47,20 @@ namespace TowerDefense
                     newControl.transform.position += Vector3.left * 160 * i;
 
                     bool isMageTower = (i == 1);
-                    Debug.Log("PARAM TYPE = ;;;;;;;;" + m_MageTowerUpgrade.GetType().Name);
-                    Debug.Log("PARAM NAME = ;;;;;;;;;;;;;;;" + m_MageTowerUpgrade.name);
+                    Debug.Log("PARAM TYPE" + m_MageTowerUpgrade.GetType().Name);
+                    Debug.Log("PARAM NAME" + m_MageTowerUpgrade.name);
 
                     int mageUnlocked = Upgrades.GetUpgradeLevel(m_MageTowerUpgrade);
                     //Данный метод одновременно вызывается в Awake из скрипта TDPlayer
                     //с передачей в аргументе UpgradeAsset healthUpgrade!!!!!!!!!!!!!!!!
-                    Debug.Log(mageUnlocked+"ЬЬЬЬЬЬЬЬЬЬЬЬЬ");
+                    
                     //При нажатии мышкой на BuildSite, Значение mageUnlocked вернётся сюда равным 0.
-                    if (isMageTower && mageUnlocked == 0) 
+                    if (isMageTower && mageUnlocked == 0) continue;
+                    else
                     {
                         newControl.SetTowerAsset(m_TowerAssets[i]);
+                    }
                 }
-            }
             }
             else
             {

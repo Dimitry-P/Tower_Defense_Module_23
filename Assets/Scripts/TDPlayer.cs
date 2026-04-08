@@ -34,6 +34,7 @@ namespace TowerDefense
         private event Action<int> OnGoldUpdate;
         public void GoldUpdateSubscribe(Action<int> act)
         {
+            Debug.Log("GoldChanged INVOKE from: " + Environment.StackTrace);
             OnGoldUpdate += act;
             act(Instance.m_gold);
             Debug.Log(Instance.m_gold);
