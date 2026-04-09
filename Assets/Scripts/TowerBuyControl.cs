@@ -18,7 +18,6 @@ namespace TowerDefense
     public class TowerBuyControl : MonoBehaviour
     {
         [SerializeField] private TowerAsset m_TowerAsset;
-        [SerializeField] private Sprite m_DefaultSprite;
 
         [SerializeField] private Button m_Button;
         [SerializeField] private Text m_text;
@@ -27,8 +26,8 @@ namespace TowerDefense
 
         private void Awake()
         {
-            if (m_Button == null)m_Button = GetComponentInChildren<Button>();
-            if (m_Image == null)m_Image = m_Button.GetComponentInChildren<Image>();
+            m_Button = GetComponentInChildren<Button>();
+
             m_text = GetComponentInChildren<Text>();
             m_Button.interactable = false;
         }
@@ -45,6 +44,7 @@ namespace TowerDefense
 
         public void SetTowerAsset(TowerAsset asset)
         {
+            m_Image = m_Button.GetComponent<Image>();
             m_TowerAsset = asset;
             m_Button.interactable = true; // можно нажимать
             m_Image.sprite = asset.GUISprite;

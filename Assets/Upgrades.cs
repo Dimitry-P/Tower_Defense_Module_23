@@ -71,10 +71,10 @@ namespace TowerDefense
             //Что здесь реально происходит?
             //сравнивается d wbrkt массив save с пришедшим в аргументе UpgradeAsset asset
             //В реальности же значения массива save сейчас выглядят так:
-                    //save[0]->asset = HealthUpgrade
-                    //save[1]->asset = null
-                    //save[2]->asset = null
-                    //save[3]->asset = null
+            //save[0]->asset = HealthUpgrade
+            //save[1]->asset = null
+            //save[2]->asset = null
+            //save[3]->asset = null
             //Первый элемент НЕ равен null, потому что программа его берёт из инспектора у компонента Upgrades.
             //// Null-элементы пропускаются, так что сравнение происходит только с реально назначенными апгрейдами
            

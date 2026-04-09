@@ -60,7 +60,7 @@ namespace TowerDefense
                     var angle = 360 / m_ActiveControl.Count;
                     for (int i = 0; i < m_ActiveControl.Count; i++)
                     {
-                        var offset = Quaternion.AngleAxis(angle * i, Vector3.forward) * (Vector3.left * 160);
+                        var offset = Quaternion.AngleAxis(angle * i, Vector3.forward) * (Vector3.left * 80);
                         m_ActiveControl[i].transform.position += offset;
                     }
                     if (buildSite != null)
