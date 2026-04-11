@@ -1100,8 +1100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TowerBuyPrefab: {fileID: 0}
-  m_TowerAssets: []
-  m_MageTowerUpgrade: {fileID: 0}
 --- !u!1 &5666066280678555969
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,24 @@ namespace TowerDefense
         {
             [SerializeField] private int m_Cost = 5;
             [SerializeField] private int m_Damage = 2;
-            public void Use() { }
+            [SerializeField] private Color m_TargetingColor;
+            public void Use() 
+            {
+                //Vector2 - это координаты мышки
+                ClickProtection.Instance.Activate((Vector2 v) =>
+                {
+                    Vector3 position = v;
+                    position.z = -Camera.main.transform.position.z;
+                    position = Camera.main.ScreenToWorldPoint(position);
+                    foreach(var collider in Physics2D.OverlapCircleAll(position, 5))
+                    {
+                        if (collider.transform.parent.TryGetComponent<Enemy>(out var enemy))
+                        {
+                            enemy.TakeDamage(m_Damage, TDProjectile.DamageType.Magic);
+                        }
+                    }
+                });
+            }
         }
 
         [Serializable]
@@ -43,15 +60,16 @@ namespace TowerDefense
 
                 IEnumerator TimeAbilityButton()
                 {
-                    Instance.TimeButton.interactable = false;
+                    Instance.m_TimeButton.interactable = false;
                     yield return new WaitForSeconds(m_Cooldown);
-                    Instance.TimeButton.interactable = true;
+                    Instance.m_TimeButton.interactable = true;
                 }
                 Instance.StartCoroutine(TimeAbilityButton());
             }
         }
 
-        [SerializeField] private Button TimeButton;
+        [SerializeField] private Image m_TargetingCircle;
+        [SerializeField] private Button m_TimeButton;
         [SerializeField] private FireAbility m_FireAbility;
         public void UseFireAbility() => m_FireAbility.Use();
         [SerializeField] private TimeAbility m_TimeAbility;
