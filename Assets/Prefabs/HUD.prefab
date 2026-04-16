@@ -1022,7 +1022,7 @@ GameObject:
   - component: {fileID: 5457670846397285870}
   - component: {fileID: 367445372726178311}
   - component: {fileID: 323067867907230359}
-  - component: {fileID: 1460973939426151702}
+  - component: {fileID: 8818959616851649011}
   m_Layer: 5
   m_Name: BuyControl
   m_TagString: Untagged
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9622642, g: 0.9304913, b: 0.9304913, a: 0}
+  m_Color: {r: 0.9339623, g: 0.885502, b: 0.885502, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1460973939426151702
+--- !u!114 &8818959616851649011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bc9c629c97ca7478e090c3332be912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TowerBuyPrefab: {fileID: 0}
+  m_TowerBuyPrefab: {fileID: 662414666618573652, guid: 300882ae63c9c984e9b468870aeebe1a, type: 3}
 --- !u!1 &5666066280678555969
 GameObject:
   m_ObjectHideFlags: 0

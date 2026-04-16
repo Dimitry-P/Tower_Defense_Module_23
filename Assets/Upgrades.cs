@@ -49,9 +49,12 @@ namespace TowerDefense
                 {
                     upgrade.level += 1;
                     Saver<UpgradeSave[]>.Save(filename, Instance.save);
+                   
                 }
             }
         }
+
+       
 
         public static int GetTotalCost()
         {
@@ -66,10 +69,12 @@ namespace TowerDefense
             return result;
         }
 
+
+
         public static int GetUpgradeLevel(UpgradeAsset asset)
         {
             //Что здесь реально происходит?
-            //сравнивается d wbrkt массив save с пришедшим в аргументе UpgradeAsset asset
+            //сравнивается в цикле массив save с пришедшим в аргументе UpgradeAsset asset
             //В реальности же значения массива save сейчас выглядят так:
             //save[0]->asset = HealthUpgrade
             //save[1]->asset = null

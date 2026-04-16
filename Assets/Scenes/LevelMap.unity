@@ -472,6 +472,10 @@ PrefabInstance:
       propertyPath: asset
       value: 
       objectReference: {fileID: 11400000, guid: 036f0c524b040db45a7d8ac0e32ea57f, type: 2}
+    - target: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: radiusUpgrade
+      value: 
+      objectReference: {fileID: 11400000, guid: 036f0c524b040db45a7d8ac0e32ea57f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1454,6 +1458,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1348968342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1348968344}
+  - component: {fileID: 1348968343}
+  m_Layer: 0
+  m_Name: Abilities
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1348968343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348968342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632e6b12bc6a21943a2cb3127a097a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DoNotDestroyOnLoad: 1
+  abilityAsset: {fileID: 11400000, guid: 036f0c524b040db45a7d8ac0e32ea57f, type: 2}
+  unlocked: 0
+  m_TargetingCircle: {fileID: 0}
+  m_TimeButton: {fileID: 0}
+  m_FireAbility:
+    m_Cost: 5
+    m_Damage: 2
+    m_TargetingColor: {r: 0, g: 0, b: 0, a: 0}
+  m_TimeAbility:
+    m_Cost: 10
+    m_Duration: 5
+    m_Cooldown: 15
+--- !u!4 &1348968344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348968342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 912.6642, y: 537.91736, z: -3.7329445}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1390489054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,7 +1757,7 @@ PrefabInstance:
     - target: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: asset
       value: 
-      objectReference: {fileID: 11400000, guid: 3c73255da9690f04299417f67604ba97, type: 2}
+      objectReference: {fileID: 11400000, guid: 0f23a1f08dfd7b14f919496f73445ad6, type: 2}
     - target: {fileID: 8097845292912112911, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
       propertyPath: ugradeIcon
       value: 
@@ -2216,6 +2277,7 @@ SceneRoots:
   - {fileID: 548152278}
   - {fileID: 457073492}
   - {fileID: 793497651}
+  - {fileID: 1348968344}
   - {fileID: 1792416318}
   - {fileID: 645942351}
   - {fileID: 1490985684}

@@ -24,8 +24,14 @@ namespace SpaceShooter
 
         #region Unity events
 
+        protected virtual void OnDestroy()
+        {
+            Debug.Log("DESTROY " + gameObject.name);
+        }
+
         protected virtual void Awake()
         {
+            Debug.Log("AWAKE " + gameObject.name);
             if (Instance != null)
             {
                 Debug.LogWarning("MonoSingleton: object of type already exists, instance will be destroyed=" + typeof(T).Name);
