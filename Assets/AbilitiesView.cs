@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TowerDefense;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using static TowerDefense.Abilities;
 
 namespace TowerDefense
 {
@@ -13,6 +14,12 @@ namespace TowerDefense
         [SerializeField] private UnityEngine.UI.Image m_TargetingCircle;
         [SerializeField] private UnityEngine.UI.Button m_TimeButton;
 
+        [SerializeField] private int m_Cost = 10;
+        [SerializeField] private int m_Duration = 5;
+        [SerializeField] private float m_Cooldown = 15f;
+
+
+
         private void Start()
         {
             bool unlocked = Abilities.Instance.IsUnlocked(abilityAsset);
@@ -20,9 +27,6 @@ namespace TowerDefense
             Debug.Log(m_View + " john");
             Debug.Log(unlocked + " john");
 
-
-
-        
 
             if (m_View != null)
             {
@@ -36,8 +40,21 @@ namespace TowerDefense
             }
         }
 
+        public void OnTimeClicked()
+        {
+            Debug.Log("Abilities: " + Abilities.Instance);
+            Debug.Log("Button: " + m_TimeButton);
+            Debug.Log("abilityManager = " + Abilities.Instance.name);
+            Abilities.Instance.UseTimeAbility(this, m_TimeButton, 5f, 15f);
+        }
 
-      
+        [SerializeField] private FireAbility m_FireAbility;
+        public void OnFireButtonClick()
+        {
+            Debug.Log("Abilities.Instance = " + Abilities.Instance);
+            Abilities.Instance.UseFireAbility();
+        }
+
     }
 }
 

@@ -9,7 +9,7 @@ public class ClickProtection : MonoSingleton<ClickProtection>, IPointerClickHand
     private Image m_Blocker;
     private void Start()
     {
-        m_Blocker = GetComponent<Image>();
+        m_Blocker = transform.GetComponent<Image>();
     }
     private Action<Vector2> m_OnClickAction;
     public void Activate(Action<Vector2> mouseAction)
@@ -20,8 +20,12 @@ public class ClickProtection : MonoSingleton<ClickProtection>, IPointerClickHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        m_OnClickAction?.Invoke(eventData.position);
+        Deactivate();
+    }
+    private void Deactivate()
+    {
         m_Blocker.enabled = false;
-        m_OnClickAction(eventData.pressPosition);
-        m_OnClickAction = null; 
+        m_OnClickAction = null;
     }
 }

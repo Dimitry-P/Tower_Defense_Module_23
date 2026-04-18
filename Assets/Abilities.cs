@@ -16,71 +16,214 @@ namespace TowerDefense
            return Upgrades.GetUpgradeLevel(abilityAsset) > 0;
         }
 
+        //Это точка входа — сюда приходит UI (когда ты нажал кнопку)
+        //обычный публичный метод, его вызывает AbilitiesView
+        //MonoBehaviour runner
+            //объект, который умеет запускать корутины
+            //обычно это AbilitiesView(UI)
+        //Button button -- кнопка, которую надо заблокировать
+        //float duration -- сколько длится эффект(замедление)
+        //float cooldown, сколько длится перезарядка
+        public void UseTimeAbility(MonoBehaviour runner, UnityEngine.UI.Button button, float duration, float cooldown)
+        {
+            Debug.Log("UseTimeAbility CALLED runner");
+            Debug.Log("runner = " + runner);
+            Debug.Log("button runner = " + button);
+            runner.StartCoroutine(TimeRoutine(button, duration, cooldown)); //"запусти корутину TimeRoutine"
+            //корутина запускается НЕ в Singleton, а в runner(UI объекте)
+            //ВАЖНЫЕ МОМЕНТЫ:
+            //1. Почему нужен runner? Coroutine можно запускать только из MonoBehaviour
+            //2. Почему передаём кнопку?  Singleton НЕ должен знать про UI
+            //3. Почему нужна отписка? - Иначе все будущие враги будут ВСЕГДА замедлены
+        }
+
+
+        //это корутина — метод, который выполняется во времени
+        private IEnumerator TimeRoutine(UnityEngine.UI.Button button, float duration, float cooldown)
+        {
+            Debug.Log("TIME ROUTINE STARTEDOOOKKK");
+
+            button.interactable = false;
+
+            Debug.Log("BUTTON DISABLED OOOKKK");
+
+            button.interactable = false; //кнопка становится неактивной, игрок не может нажать повторно
+
+            void Slow(Enemy ship)  //локальная функция: "если появится враг, то замедли его"
+            {
+                var spaceShip = ship.GetComponent<SpaceShip>();
+
+                if (spaceShip != null)
+                {
+                    spaceShip.HalfMaxLinearVelocity();
+                }
+                else
+                {
+                    
+                }
+                //ship.GetComponent<SpaceShip>().HalfMaxLinearVelocity();
+            }
+
+            foreach (var ship in FindObjectsOfType<SpaceShip>()) //Unity находит всех врагов на сцене и каждому уменьшает скорость
+                ship.HalfMaxLinearVelocity();
+
+            EnemyWaveManager.OnEnemySpawn += Slow;  //подписка на новых врагов //каждый новый враг - автоматически замедляется
+            Debug.Log("SUBSCRIBED TO SPAWN OOOKKK");
+            yield return new WaitForSeconds(duration);  //ждём длительность эффекта //игра продолжает идти но этот метод "засыпает" на duration секунд
+            Debug.Log("DURATION FINISHED OOOKKK");
+            foreach (var ship in FindObjectsOfType<SpaceShip>()) //возвращаем скорость //всем врагам возвращаем нормальную скорость
+                ship.RestoreMaxLinearVelocity();
+
+            EnemyWaveManager.OnEnemySpawn -= Slow; //отписка. больше НЕ замедляем новых врагов, если забыть это — будет баг!!!
+
+            yield return new WaitForSeconds(cooldown); //ждём кулдаун. ещё пауза — уже для кнопки
+
+            button.interactable = true; //включаем кнопку обратно. теперь игрок снова может нажать способность
+        }
+
+        //ПОЛНАЯ ЦЕПОЧКА
+        //1. Игрок нажал кнопку
+        //2. Кнопка выключилась
+        //3. Все враги замедлились
+        //4. Новые враги тоже замедляются
+        //5. Ждём duration
+        //6. Скорость возвращается
+        //7. Новые враги больше НЕ замедляются
+        //8. Ждём cooldown
+        //9. Кнопка снова активна
+
+
+        [SerializeField] private FireAbility m_FireAbility; //они теперь хранят данные из инспектора
+        [SerializeField] private TimeAbility m_TimeAbility; //они теперь хранят данные из инспектора
+        //КЛЮЧЕВОЕ ОСОЗНАНИЕ
+        //"класс хранит данные → система выполняет действие"
+      
+       
+
         [Serializable]
         public class FireAbility
         {
             [SerializeField] private int m_Cost = 5;
             [SerializeField] private int m_Damage = 2;
             [SerializeField] private Color m_TargetingColor;
-            public void Use()
-            {
-                //Vector2 - это координаты мышки
-                ClickProtection.Instance.Activate((Vector2 v) =>
-                {
-                    Vector3 position = v;
-                    position.z = -Camera.main.transform.position.z;
-                    position = Camera.main.ScreenToWorldPoint(position);
-                    foreach (var collider in Physics2D.OverlapCircleAll(position, 5))
-                    {
-                        if (collider.transform.parent.TryGetComponent<Enemy>(out var enemy))
-                        {
-                            enemy.TakeDamage(m_Damage, TDProjectile.DamageType.Magic);
-                        }
-                    }
-                });
-            }
+
+            public int Damage => m_Damage;
+            public Color TargetingColor => m_TargetingColor;
         }
 
         [Serializable]
         public class TimeAbility
         {
-          
-            public void Use()
-            {
-                void Slow(Enemy ship)
-                {
-                    ship.GetComponent<SpaceShip>().HalfMaxLinearVelocity();
-                }
+            [SerializeField] private int m_Cost = 10;
+            [SerializeField] private int m_Duration = 5;
+            [SerializeField] private float m_Cooldown = 15f;
 
-                foreach (var ship in FindObjectsOfType<SpaceShip>())
-                    ship.HalfMaxLinearVelocity();
-                EnemyWaveManager.OnEnemySpawn += Slow;
-                //IEnumerator Restore()
-                //{
-                //    yield return new WaitForSeconds(m_Duration);
-                //    foreach (var ship in FindObjectsOfType<SpaceShip>())
-                //        ship.RestoreMaxLinearVelocity();
-                //    EnemyWaveManager.OnEnemySpawn -= Slow;
-                //}
-                //Instance.StartCoroutine(Restore());
-
-                //IEnumerator TimeAbilityButton()
-                //{
-                //    Instance.m_TimeButton.interactable = false;
-                //    yield return new WaitForSeconds(m_Cooldown);
-                //    Instance.m_TimeButton.interactable = true;
-                //}
-                //Instance.StartCoroutine(TimeAbilityButton());
-            }
+            public int Duration => m_Duration;
+            public float Cooldown => m_Cooldown;
         }
 
-    
-        [SerializeField] private FireAbility m_FireAbility;
-        public void UseFireAbility() => m_FireAbility.Use();
-        [SerializeField] private TimeAbility m_TimeAbility;
-        public void UseTimeAbility() => m_TimeAbility.Use();
+
+        public void UseFireAbility()
+        {
+            int damage = m_FireAbility.Damage;
+            ClickProtection.Instance.Activate((Vector2 v) =>
+            {
+                Vector3 worldPos = Camera.main.ScreenToWorldPoint(v);
+                worldPos.z = 0;
+                Debug.Log("SCREEN: " + v);
+                Debug.Log("WORLD: " + worldPos);
+
+                foreach (var collider in Physics2D.OverlapCircleAll(worldPos, 5))
+                {
+                    Debug.Log("HIT OBJECT: " + collider.name);
+
+                    var enemy = collider.GetComponent<Enemy>();
+
+                    if (enemy == null)
+                        enemy = collider.GetComponentInParent<Enemy>();
+
+                    if (enemy != null)
+                    {
+                        Debug.Log("DAMAGE TO: " + enemy.name);
+                        enemy.TakeDamage(damage, TDProjectile.DamageType.Magic);
+                    }
+                }
+            });
+            Debug.Log("ClickProtection = " + ClickProtection.Instance);
+        }
     }
 }
+
+
+
+
+
+
+
+        //-------СТАРЫЙ ВАРИАНТ. ВАРИАНТ МЕНТОРА--------
+
+        //[Serializable]
+        //public class FireAbility
+        //{
+        //    [SerializeField] private int m_Cost = 5;
+        //    [SerializeField] private int m_Damage = 2;
+        //    [SerializeField] private Color m_TargetingColor;
+        //    public void Use()
+        //    {
+        //        //Vector2 - это координаты мышки
+        //        ClickProtection.Instance.Activate((Vector2 v) =>
+        //        {
+        //            Vector3 position = v;
+        //            position.z = -Camera.main.transform.position.z;
+        //            position = Camera.main.ScreenToWorldPoint(position);
+        //            foreach (var collider in Physics2D.OverlapCircleAll(position, 5))
+        //            {
+        //                if (collider.transform.parent.TryGetComponent<Enemy>(out var enemy))
+        //                {
+        //                    enemy.TakeDamage(m_Damage, TDProjectile.DamageType.Magic);
+        //                }
+        //            }
+        //        });
+        //    }
+        //}
+
+        //[Serializable]
+        //public class TimeAbility
+        //{
+        //    public void Use()
+        //    {
+        //        void Slow(Enemy ship)
+        //        {
+        //            ship.GetComponent<SpaceShip>().HalfMaxLinearVelocity();
+        //        }
+
+        //        foreach (var ship in FindObjectsOfType<SpaceShip>())
+        //            ship.HalfMaxLinearVelocity();
+        //        EnemyWaveManager.OnEnemySpawn += Slow;
+        //        IEnumerator Restore()
+        //        {
+        //            yield return new WaitForSeconds(m_Duration);
+        //            foreach (var ship in FindObjectsOfType<SpaceShip>())
+        //                ship.RestoreMaxLinearVelocity();
+        //            EnemyWaveManager.OnEnemySpawn -= Slow;
+        //        }
+        //        Instance.StartCoroutine(Restore());
+
+        //        IEnumerator TimeAbilityButton()
+        //        {
+        //            Instance.m_TimeButton.interactable = false;
+        //            yield return new WaitForSeconds(m_Cooldown);
+        //            Instance.m_TimeButton.interactable = true;
+        //        }
+        //        Instance.StartCoroutine(TimeAbilityButton());
+        //    }
+        //}
+
+
+       
+        //public void UseFireAbility() => m_FireAbility.Use();
+        //public void UseTimeAbility() => m_TimeAbility.Use();
+
 
 
 
