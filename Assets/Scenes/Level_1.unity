@@ -1408,7 +1408,7 @@ MonoBehaviour:
   victoryPanel: {fileID: 0}
   towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}
   healthUpgrade: {fileID: 11400000, guid: 1ac86bea5f2ab134f83e1430f5b0910d, type: 2}
-  m_gold: 1000
+  m_gold: 10
 --- !u!114 &649427585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1784,6 +1784,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 890332987}
     - target: {fileID: 3328670179301031027, guid: 7d91e3d0a4fbab5458c5079c86ee786d, type: 3}
+      propertyPath: m_FireButton
+      value: 
+      objectReference: {fileID: 890332990}
+    - target: {fileID: 3328670179301031027, guid: 7d91e3d0a4fbab5458c5079c86ee786d, type: 3}
       propertyPath: m_TimeButton
       value: 
       objectReference: {fileID: 890332988}
@@ -2054,6 +2058,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &890332990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1812364544896322028, guid: 1c9dbe205c984da4d9e5438458a5287c, type: 3}
+  m_PrefabInstance: {fileID: 890332985}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &928271631

@@ -27,7 +27,7 @@ namespace TowerDefense
                     levelScore -= 1;
                 }
                 print(levelScore);
-                totalCount = TDPlayer.Instance.m_gold;
+                totalCount = TDPlayer.Instance.Gold;
                 MapCompletion.SaveEpisodeResult(levelScore, Player.Instance.NumLives);
             });
 

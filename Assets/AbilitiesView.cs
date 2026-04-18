@@ -13,10 +13,12 @@ namespace TowerDefense
         [SerializeField] private UpgradeAsset abilityAsset;
         [SerializeField] private UnityEngine.UI.Image m_TargetingCircle;
         [SerializeField] private UnityEngine.UI.Button m_TimeButton;
+        [SerializeField] private UnityEngine.UI.Button m_FireButton;
 
         [SerializeField] private int m_Cost = 10;
         [SerializeField] private int m_Duration = 5;
         [SerializeField] private float m_Cooldown = 15f;
+        [SerializeField] private int m_GoldForAbility = 20;
 
 
 
@@ -40,12 +42,33 @@ namespace TowerDefense
             }
         }
 
+      
+
+        private void Update()
+        {
+            if (TDPlayer.Instance.Gold < m_GoldForAbility)
+            {
+
+                m_TimeButton.interactable = false;
+                m_FireButton.interactable = false;
+            }
+            else
+            {
+                m_TimeButton.interactable = true;
+                m_FireButton.interactable = true;
+            }
+         
+        }
+
+      
+
         public void OnTimeClicked()
         {
             Debug.Log("Abilities: " + Abilities.Instance);
             Debug.Log("Button: " + m_TimeButton);
             Debug.Log("abilityManager = " + Abilities.Instance.name);
             Abilities.Instance.UseTimeAbility(this, m_TimeButton, 5f, 15f);
+            TDPlayer.Instance.ChangeGold(-Abilities.Instance.TimeAbilityGold);
         }
 
         [SerializeField] private FireAbility m_FireAbility;
@@ -53,8 +76,8 @@ namespace TowerDefense
         {
             Debug.Log("Abilities.Instance = " + Abilities.Instance);
             Abilities.Instance.UseFireAbility();
+            TDPlayer.Instance.ChangeGold(-Abilities.Instance.FireAbilityGold);
         }
-
     }
 }
 

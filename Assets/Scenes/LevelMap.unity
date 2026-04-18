@@ -926,6 +926,7 @@ GameObject:
   - component: {fileID: 793497650}
   - component: {fileID: 793497652}
   - component: {fileID: 793497653}
+  - component: {fileID: 793497654}
   m_Layer: 0
   m_Name: MapLevelController
   m_TagString: Untagged
@@ -1022,6 +1023,19 @@ MonoBehaviour:
     level: 0
     upgradeSO: {fileID: 11400000, guid: 20c8defb62d92f340835659ce408c6a4, type: 2}
     name: 
+--- !u!114 &793497654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793497649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f4f54b41bdce44fadf4e467f988806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DoNotDestroyOnLoad: 1
 --- !u!1001 &1036499041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1488,10 +1502,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 1
-  abilityAsset: {fileID: 11400000, guid: 036f0c524b040db45a7d8ac0e32ea57f, type: 2}
-  unlocked: 0
-  m_TargetingCircle: {fileID: 0}
-  m_TimeButton: {fileID: 0}
   m_FireAbility:
     m_Cost: 5
     m_Damage: 2

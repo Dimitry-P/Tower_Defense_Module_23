@@ -95,15 +95,16 @@ namespace TowerDefense
 
         [SerializeField] private FireAbility m_FireAbility; //они теперь хранят данные из инспектора
         [SerializeField] private TimeAbility m_TimeAbility; //они теперь хранят данные из инспектора
-        //КЛЮЧЕВОЕ ОСОЗНАНИЕ
-        //"класс хранит данные → система выполняет действие"
-      
-       
+                                                            //КЛЮЧЕВОЕ ОСОЗНАНИЕ
+                                                            //"класс хранит данные → система выполняет действие"
+
+        public int FireAbilityGold => m_FireAbility.FireAbilityGold;
 
         [Serializable]
         public class FireAbility
         {
             [SerializeField] private int m_Cost = 5;
+            public int FireAbilityGold => m_Cost;
             [SerializeField] private int m_Damage = 2;
             [SerializeField] private Color m_TargetingColor;
 
@@ -111,10 +112,13 @@ namespace TowerDefense
             public Color TargetingColor => m_TargetingColor;
         }
 
+        public int TimeAbilityGold => m_TimeAbility.TimeAbilityGold;
+
         [Serializable]
         public class TimeAbility
         {
             [SerializeField] private int m_Cost = 10;
+            public int TimeAbilityGold => m_Cost;
             [SerializeField] private int m_Duration = 5;
             [SerializeField] private float m_Cooldown = 15f;
 

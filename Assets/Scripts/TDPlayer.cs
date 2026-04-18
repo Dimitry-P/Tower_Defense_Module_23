@@ -19,16 +19,17 @@ namespace TowerDefense
         }
 
         [SerializeField] private UpgradeAsset healthUpgrade;
-       
+
+      
+
         private void Start()
         {
             var level = Upgrades.GetUpgradeLevel(healthUpgrade);
             TakeDamage(-level * 5);
         }
 
-        public int m_gold;
-
-        //public static int totalGold = 0;
+        private int m_gold = 17;
+        public int Gold { get { return m_gold; } set { m_gold = value; } }
 
         private event Action<int> OnGoldUpdate;
         public void GoldUpdateSubscribe(Action<int> act)
