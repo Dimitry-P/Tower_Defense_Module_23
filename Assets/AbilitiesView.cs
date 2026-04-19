@@ -18,7 +18,6 @@ namespace TowerDefense
         [SerializeField] private int m_Cost = 10;
         [SerializeField] private int m_Duration = 5;
         [SerializeField] private float m_Cooldown = 5f;
-        [SerializeField] private int m_GoldForAbility = 20;
 
 
 
@@ -46,12 +45,10 @@ namespace TowerDefense
 
         private void Update()
         {
-            m_TimeButton.interactable =
-     !Abilities.Instance.IsTimeAbilityOnCooldown &&
-     TDPlayer.Instance.Gold >= Abilities.Instance.TimeAbilityGold;
+            m_TimeButton.interactable = !Abilities.Instance.IsTimeAbilityOnCooldown &&
+     TDPlayer.Instance.Gold >= Abilities.Instance.wwwTimeAbilityGold;
 
-            Debug.Log("Cooldown: " + Abilities.Instance.IsTimeAbilityOnCooldown +
-          " | Gold: " + TDPlayer.Instance.Gold);
+            m_FireButton.interactable = TDPlayer.Instance.Gold >= Abilities.Instance.wwwTimeAbilityGold;
         }
 
       

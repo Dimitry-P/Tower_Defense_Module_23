@@ -30,10 +30,10 @@ namespace TowerDefense
                 return;
             m_IsTimeAbilityOnCooldown = true;
 
-            if (TDPlayer.Instance.Gold < m_TimeAbility.TimeAbilityGold)
+            if (TDPlayer.Instance.Gold < m_TimeAbility.Cost)
                 return;
 
-            TDPlayer.Instance.ChangeGold(-m_TimeAbility.TimeAbilityGold);
+            TDPlayer.Instance.ChangeGold(-m_TimeAbility.Cost);
 
             runner.StartCoroutine(TimeRoutine(button, duration, cooldown));
             //"запусти корутину TimeRoutine"
@@ -42,6 +42,8 @@ namespace TowerDefense
             //1. Почему нужен runner? Coroutine можно запускать только из MonoBehaviour
             //2. Почему передаём кнопку?  Singleton НЕ должен знать про UI
             //3. Почему нужна отписка? - Иначе все будущие враги будут ВСЕГДА замедлены
+            Debug.Log("INSTANCE 777= " + m_TimeAbility);
+            Debug.Log("COST 777= " + m_TimeAbility.Cost);
         }
 
 
@@ -120,13 +122,15 @@ namespace TowerDefense
             public Color TargetingColor => m_TargetingColor;
         }
 
-        public int TimeAbilityGold => m_TimeAbility.TimeAbilityGold;
+        public int wwwTimeAbilityGold => m_TimeAbility.TimeAbilityGold;
 
         [Serializable]
         public class TimeAbility
         {
             [SerializeField] private int m_Cost = 10;
-            public int TimeAbilityGold => m_Cost;
+            public int Cost => m_Cost;
+            private int m_MinDemandedGold = 20;
+            public int TimeAbilityGold => m_MinDemandedGold;
             [SerializeField] private int m_Duration = 5;
             [SerializeField] private float m_Cooldown = 5f;
 
