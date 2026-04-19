@@ -28,7 +28,7 @@ namespace TowerDefense
             TakeDamage(-level * 5);
         }
 
-        private int m_gold = 17;
+        private int m_gold = 35;
         public int Gold { get { return m_gold; } set { m_gold = value; } }
 
         private event Action<int> OnGoldUpdate;

@@ -19,17 +19,24 @@ namespace TowerDefense
         //Это точка входа — сюда приходит UI (когда ты нажал кнопку)
         //обычный публичный метод, его вызывает AbilitiesView
         //MonoBehaviour runner
-            //объект, который умеет запускать корутины
-            //обычно это AbilitiesView(UI)
+        //объект, который умеет запускать корутины
+        //обычно это AbilitiesView(UI)
         //Button button -- кнопка, которую надо заблокировать
         //float duration -- сколько длится эффект(замедление)
         //float cooldown, сколько длится перезарядка
         public void UseTimeAbility(MonoBehaviour runner, UnityEngine.UI.Button button, float duration, float cooldown)
         {
-            Debug.Log("UseTimeAbility CALLED runner");
-            Debug.Log("runner = " + runner);
-            Debug.Log("button runner = " + button);
-            runner.StartCoroutine(TimeRoutine(button, duration, cooldown)); //"запусти корутину TimeRoutine"
+            if (m_IsTimeAbilityOnCooldown)
+                return;
+            m_IsTimeAbilityOnCooldown = true;
+
+            if (TDPlayer.Instance.Gold < m_TimeAbility.TimeAbilityGold)
+                return;
+
+            TDPlayer.Instance.ChangeGold(-m_TimeAbility.TimeAbilityGold);
+
+            runner.StartCoroutine(TimeRoutine(button, duration, cooldown));
+            //"запусти корутину TimeRoutine"
             //корутина запускается НЕ в Singleton, а в runner(UI объекте)
             //ВАЖНЫЕ МОМЕНТЫ:
             //1. Почему нужен runner? Coroutine можно запускать только из MonoBehaviour
@@ -41,14 +48,8 @@ namespace TowerDefense
         //это корутина — метод, который выполняется во времени
         private IEnumerator TimeRoutine(UnityEngine.UI.Button button, float duration, float cooldown)
         {
-            Debug.Log("TIME ROUTINE STARTEDOOOKKK");
-
-            button.interactable = false;
-
-            Debug.Log("BUTTON DISABLED OOOKKK");
-
-            button.interactable = false; //кнопка становится неактивной, игрок не может нажать повторно
-
+            //button.interactable = false; //кнопка становится неактивной, игрок не может нажать повторно
+           
             void Slow(Enemy ship)  //локальная функция: "если появится враг, то замедли его"
             {
                 var spaceShip = ship.GetComponent<SpaceShip>();
@@ -68,18 +69,25 @@ namespace TowerDefense
                 ship.HalfMaxLinearVelocity();
 
             EnemyWaveManager.OnEnemySpawn += Slow;  //подписка на новых врагов //каждый новый враг - автоматически замедляется
-            Debug.Log("SUBSCRIBED TO SPAWN OOOKKK");
+           
             yield return new WaitForSeconds(duration);  //ждём длительность эффекта //игра продолжает идти но этот метод "засыпает" на duration секунд
-            Debug.Log("DURATION FINISHED OOOKKK");
+          
             foreach (var ship in FindObjectsOfType<SpaceShip>()) //возвращаем скорость //всем врагам возвращаем нормальную скорость
                 ship.RestoreMaxLinearVelocity();
 
             EnemyWaveManager.OnEnemySpawn -= Slow; //отписка. больше НЕ замедляем новых врагов, если забыть это — будет баг!!!
 
-            yield return new WaitForSeconds(cooldown); //ждём кулдаун. ещё пауза — уже для кнопки
+            //yield return new WaitForSeconds(cooldown); //ждём кулдаун. ещё пауза — уже для кнопки
 
-            button.interactable = true; //включаем кнопку обратно. теперь игрок снова может нажать способность
+            //button.interactable = true; //включаем кнопку обратно. теперь игрок снова может нажать способность
+          
+            m_IsTimeAbilityOnCooldown = false;
         }
+
+        private bool m_IsTimeAbilityOnCooldown;
+        public bool IsTimeAbilityOnCooldown => m_IsTimeAbilityOnCooldown;
+
+
 
         //ПОЛНАЯ ЦЕПОЧКА
         //1. Игрок нажал кнопку
@@ -120,7 +128,7 @@ namespace TowerDefense
             [SerializeField] private int m_Cost = 10;
             public int TimeAbilityGold => m_Cost;
             [SerializeField] private int m_Duration = 5;
-            [SerializeField] private float m_Cooldown = 15f;
+            [SerializeField] private float m_Cooldown = 5f;
 
             public int Duration => m_Duration;
             public float Cooldown => m_Cooldown;

@@ -1408,7 +1408,6 @@ MonoBehaviour:
   victoryPanel: {fileID: 0}
   towerPrefab: {fileID: 2985568735566343919, guid: 5842b617235527b469abd486d0575766, type: 3}
   healthUpgrade: {fileID: 11400000, guid: 1ac86bea5f2ab134f83e1430f5b0910d, type: 2}
-  m_gold: 10
 --- !u!114 &649427585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,7 +1449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3d50985ede3c54a91f89039b356f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 20
+  timeLimit: 35
 --- !u!1 &694817600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,7 +1587,7 @@ MonoBehaviour:
   groups:
   - squads:
     - asset: {fileID: 11400000, guid: 72cf142ae2b40ea49a5eaed25bc8966f, type: 2}
-      count: 3
+      count: 1
   prepareTime: 1.5
   next: {fileID: 1006857779}
 --- !u!1 &796081990
@@ -1783,6 +1782,10 @@ PrefabInstance:
       propertyPath: m_View
       value: 
       objectReference: {fileID: 890332987}
+    - target: {fileID: 3328670179301031027, guid: 7d91e3d0a4fbab5458c5079c86ee786d, type: 3}
+      propertyPath: m_Cooldown
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3328670179301031027, guid: 7d91e3d0a4fbab5458c5079c86ee786d, type: 3}
       propertyPath: m_FireButton
       value: 
@@ -2260,7 +2263,7 @@ MonoBehaviour:
     - asset: {fileID: 11400000, guid: 72cf142ae2b40ea49a5eaed25bc8966f, type: 2}
       count: 0
     - asset: {fileID: 11400000, guid: ed3b56a26de293d4ba17f8d2c3cf1c54, type: 2}
-      count: 2
+      count: 1
   prepareTime: 20
   next: {fileID: 1541547533}
 --- !u!1 &1026400134
@@ -3510,7 +3513,7 @@ MonoBehaviour:
   groups:
   - squads:
     - asset: {fileID: 11400000, guid: 72cf142ae2b40ea49a5eaed25bc8966f, type: 2}
-      count: 3
+      count: 1
   prepareTime: 1.5
   next: {fileID: 759525130}
 --- !u!1 &1614517053
