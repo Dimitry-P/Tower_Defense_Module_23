@@ -12,6 +12,7 @@ namespace TowerDefense
     public class Abilities : MonoSingleton<Abilities>
     {
         private UpgradeAsset usingThisAbilityAssetNow;
+        private int divisor = 0;
         public bool IsUnlocked(UpgradeAsset abilityAsset)
         {
             usingThisAbilityAssetNow = abilityAsset;
@@ -32,12 +33,21 @@ namespace TowerDefense
                 return;
             m_IsTimeAbilityOnCooldown = true;
 
+            divisor = m_FireAbility.Damage;
+            if (Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow) > 1)
+            {
+                for (int i = 1; i < Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow); i++)
+                {
+                    divisor += 2;
+                }
+            }
+
             if (TDPlayer.Instance.Gold < m_TimeAbility.Cost)
                 return;
 
             TDPlayer.Instance.ChangeGold(-m_TimeAbility.Cost);
 
-            runner.StartCoroutine(TimeRoutine(button, duration, cooldown));
+            runner.StartCoroutine(TimeRoutine(button, duration, cooldown, divisor));
             //"запусти корутину TimeRoutine"
             //корутина запускается НЕ в Singleton, а в runner(UI объекте)
             //ВАЖНЫЕ МОМЕНТЫ:
@@ -50,7 +60,7 @@ namespace TowerDefense
 
 
         //это корутина — метод, который выполняется во времени
-        private IEnumerator TimeRoutine(UnityEngine.UI.Button button, float duration, float cooldown)
+        private IEnumerator TimeRoutine(UnityEngine.UI.Button button, float duration, float cooldown, int divisor)
         {
             //button.interactable = false; //кнопка становится неактивной, игрок не может нажать повторно
            
@@ -60,7 +70,7 @@ namespace TowerDefense
 
                 if (spaceShip != null)
                 {
-                    spaceShip.HalfMaxLinearVelocity();
+                    spaceShip.HalfMaxLinearVelocity(divisor);
                 }
                 else
                 {
@@ -70,21 +80,23 @@ namespace TowerDefense
             }
 
             foreach (var ship in FindObjectsOfType<SpaceShip>()) //Unity находит всех врагов на сцене и каждому уменьшает скорость
-                ship.HalfMaxLinearVelocity();
+                ship.HalfMaxLinearVelocity(divisor);
 
             EnemyWaveManager.OnEnemySpawn += Slow;  //подписка на новых врагов //каждый новый враг - автоматически замедляется
            
             yield return new WaitForSeconds(duration);  //ждём длительность эффекта //игра продолжает идти но этот метод "засыпает" на duration секунд
           
-            foreach (var ship in FindObjectsOfType<SpaceShip>()) //возвращаем скорость //всем врагам возвращаем нормальную скорость
+            foreach (var ship in FindObjectsOfType<SpaceShip>())  //возвращаем скорость //всем врагам возвращаем нормальную скорость
+            {
                 ship.RestoreMaxLinearVelocity();
+            } 
 
             EnemyWaveManager.OnEnemySpawn -= Slow; //отписка. больше НЕ замедляем новых врагов, если забыть это — будет баг!!!
 
             //yield return new WaitForSeconds(cooldown); //ждём кулдаун. ещё пауза — уже для кнопки
 
             //button.interactable = true; //включаем кнопку обратно. теперь игрок снова может нажать способность
-          
+            divisor = m_FireAbility.Damage;
             m_IsTimeAbilityOnCooldown = false;
         }
 

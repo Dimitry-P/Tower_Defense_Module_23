@@ -35,10 +35,10 @@ namespace SpaceShooter
         /// </summary>
         [SerializeField] private float m_MaxLinearVelocity;
         private float m_MaxVelocityBackup;
-        public void HalfMaxLinearVelocity() 
+        public void HalfMaxLinearVelocity(int divisor) 
         { 
             m_MaxVelocityBackup = m_MaxLinearVelocity; 
-            m_MaxLinearVelocity /= 2; 
+            m_MaxLinearVelocity /= divisor; 
         }
         public void RestoreMaxLinearVelocity() 
         { 
@@ -213,6 +213,11 @@ namespace SpaceShooter
         {
             m_MaxLinearVelocity = asset.moveSpeed;
             base.Use(asset);
+        }
+
+        internal void HalfMaxLinearVelocity(object divisor)
+        {
+            throw new NotImplementedException();
         }
 
         //#endregion
