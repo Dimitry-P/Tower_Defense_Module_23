@@ -48,6 +48,7 @@ namespace TowerDefense
                 if (upgrade.asset == asset)
                 {
                     upgrade.level += 1;
+                   
                     Saver<UpgradeSave[]>.Save(filename, Instance.save);
                    
                 }

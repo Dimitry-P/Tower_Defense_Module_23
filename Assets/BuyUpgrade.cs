@@ -12,7 +12,8 @@ namespace TowerDefense
         private int costNumber = 0;
         [SerializeField] private Text level, costText;
         [SerializeField] private Button buyButton;
-      
+
+
 
         public void Initialize()
         {

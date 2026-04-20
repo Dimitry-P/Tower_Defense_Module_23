@@ -24,6 +24,7 @@ namespace TowerDefense
             public EpisodeScore[] episodes;
             public int unlockedLevels = 0;
             public int numLivesTotal;
+            public int damageUpgrade;
         }
 
         [SerializeField] private Episode[] allEpisodes;  // Сюда в инспекторе перетащить все Episode
@@ -48,6 +49,7 @@ namespace TowerDefense
                             Instance.data.unlockedLevels++;
                             Debug.Log("Saving lives = " + numLives);
                             Instance.data.numLivesTotal = numLives;
+                            //Instance.data.damageUpgrade = Abilities.Instance.DamagePoints;
                             Saver<CompletionData>.Save(filename, Instance.data);
                         }
                     }
@@ -108,6 +110,8 @@ namespace TowerDefense
                 data = new CompletionData();
                 // ... инициализация эпизодов ...
                 Player.Instance.NumLives = data.numLivesTotal;   // важно задать начальное
+                //Abilities.Instance.alreadySavedDamage = data.damageUpgrade;   // сохранённое значение апгрейднутого умения
+               
             }
 
             // Теперь безопасно применяем к Player

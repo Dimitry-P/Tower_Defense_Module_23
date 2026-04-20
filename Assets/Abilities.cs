@@ -11,8 +11,10 @@ namespace TowerDefense
 {
     public class Abilities : MonoSingleton<Abilities>
     {
+        private UpgradeAsset usingThisAbilityAssetNow;
         public bool IsUnlocked(UpgradeAsset abilityAsset)
         {
+            usingThisAbilityAssetNow = abilityAsset;
            return Upgrades.GetUpgradeLevel(abilityAsset) > 0;
         }
 
@@ -139,6 +141,9 @@ namespace TowerDefense
         }
 
 
+        //private int m_DamagePoints = 0;
+        //public int DamagePoints { get { return m_DamagePoints; } set { m_DamagePoints = value; } }
+        //public int alreadySavedDamage = 0;
         public void UseFireAbility()
         {
             int damage = m_FireAbility.Damage;
@@ -161,7 +166,21 @@ namespace TowerDefense
                     if (enemy != null)
                     {
                         Debug.Log("DAMAGE TO: " + enemy.name);
+                        Debug.Log("666 GetupgradeLevel= " + Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow));
+                        if (Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow) > 1)
+                        {
+                            for(int i = 1; i < Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow); i++)
+                            {
+                                damage += 2;
+                                Debug.Log($"666789 {i} = " + damage);
+                            }
+                        }
                         enemy.TakeDamage(damage, TDProjectile.DamageType.Magic);
+                        //m_DamagePoints = damage;
+                        damage = m_FireAbility.Damage;
+                        //Debug.Log("666 1= " + m_DamagePoints);
+                        Debug.Log("666 2= " + damage);
+                       
                     }
                 }
             });
