@@ -18,7 +18,7 @@ namespace TowerDefense
         [SerializeField] private int m_Cost = 10;
         [SerializeField] private int m_Duration = 5;
         [SerializeField] private float m_Cooldown = 5f;
-
+        [SerializeField] private UnityEngine.UI.Slider m_EnergyBar;
 
 
         private void Start()
@@ -49,6 +49,8 @@ namespace TowerDefense
      TDPlayer.Instance.Gold >= Abilities.Instance.wwwTimeAbilityGold;
 
             m_FireButton.interactable = TDPlayer.Instance.Gold >= Abilities.Instance.wwwTimeAbilityGold;
+
+            m_EnergyBar.value = Abilities.Instance.Energy01;
         }
 
       

@@ -17,3 +17,6 @@ MonoBehaviour:
   GUISprite: {fileID: 21300000, guid: 3ff493f1ccb0a9b48a1a262f25a80a42, type: 3}
   turretProperties: {fileID: 11400000, guid: 141fffebb424aed43acc7929e3678dc1, type: 2}
   radius: 3
+  requiredUpgrade: {fileID: 0}
+  requiredUpgradeLevel: 0
+  m_UpgradesTo: []

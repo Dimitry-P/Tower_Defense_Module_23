@@ -139,9 +139,9 @@ namespace SpaceShooter
         int smallEnemyCounter = 0;
         int middleEnemyCounter = 0;
         int bossEnemyCounter = 0;
-        protected void TakeDamage(int m_damage)
+        protected void TakeDamage(int numLives_damage)
         {
-            NumLives -= m_damage;
+            NumLives -= numLives_damage;
             Debug.Log(m_NumLives);
             if (m_NumLives <= 0)
             {

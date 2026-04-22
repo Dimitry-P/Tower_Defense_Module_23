@@ -20,7 +20,7 @@ namespace TowerDefense
         public Enemy.ArmorType armorType;
         public int score = 1;
         public float radius = 0.19f;
-        public int damage;
+        public int numLives_Damage;
         public string enemyName;
     }
 }

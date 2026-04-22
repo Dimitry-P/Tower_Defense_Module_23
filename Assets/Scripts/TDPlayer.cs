@@ -65,9 +65,9 @@ namespace TowerDefense
             OnGoldUpdate?.Invoke(m_gold);
         }
 
-        public void ReduceLife(int change, string enemyName)
+        public void ReduceLife(int numLives_damage, string enemyName)
         {
-            TakeDamage(change);
+            TakeDamage(numLives_damage);
             OnLifeUpdate?.Invoke(Player.Instance.NumLives);
         }
 

@@ -18,7 +18,9 @@ MonoBehaviour:
   animations: {fileID: 9100000, guid: 53278fff6e9c6b34893aa1179af4ea91, type: 2}
   moveSpeed: 1
   hp: 10
+  armor: 0
+  armorType: 0
   score: 30
   radius: 0.2
-  damage: 1
+  numLives_Damage: 1
   enemyName: 

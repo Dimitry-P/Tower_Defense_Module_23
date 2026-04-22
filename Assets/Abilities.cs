@@ -13,6 +13,24 @@ namespace TowerDefense
     {
         private UpgradeAsset usingThisAbilityAssetNow;
         private int divisor = 0;
+
+        private void Start()
+        {
+            Enemy.OnEnemyKilled += OnEnemyKilledHandler;
+        }
+        private void OnEnemyKilledHandler(Enemy enemy)
+        {
+            AddEnergy(20f); 
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Abilities.Instance.AddEnergy(100);
+                Debug.Log("100%%");
+            }
+        }
         public bool IsUnlocked(UpgradeAsset abilityAsset)
         {
             usingThisAbilityAssetNow = abilityAsset;
@@ -159,6 +177,7 @@ namespace TowerDefense
         public void UseFireAbility()
         {
             int damage = m_FireAbility.Damage;
+
             ClickProtection.Instance.Activate((Vector2 v) =>
             {
                 Vector3 worldPos = Camera.main.ScreenToWorldPoint(v);
@@ -187,6 +206,16 @@ namespace TowerDefense
                                 Debug.Log($"666789 {i} = " + damage);
                             }
                         }
+                        Debug.Log("Damage without ENERGY ABILITY is: " + damage);
+                        // ENERGY БОНУС
+                        if (IsEnergyFull)
+                        {
+                            damage *= 2;
+                            Debug.Log("ENERGY BONUS ACTIVATED!");
+                            ResetEnergy();
+                            Debug.Log("BECAUSE OF ENERGY ABILITY DAMAGE*2 = " + damage);
+                        }
+
                         enemy.TakeDamage(damage, TDProjectile.DamageType.Magic);
                         //m_DamagePoints = damage;
                         damage = m_FireAbility.Damage;
@@ -198,6 +227,33 @@ namespace TowerDefense
             });
             Debug.Log("ClickProtection = " + ClickProtection.Instance);
         }
+
+
+
+        //новый вид ресурса, отображающийся в интерфейсе игры
+      
+        [SerializeField] private float m_MaxEnergy = 100f;
+        private float m_Energy;
+
+        public float Energy01 => m_Energy / m_MaxEnergy;
+
+        public bool IsEnergyFull => m_Energy >= m_MaxEnergy;
+
+        public void AddEnergy(float amount)
+        {
+            m_Energy += amount;
+
+            if (m_Energy > m_MaxEnergy)
+                m_Energy = m_MaxEnergy;
+
+            Debug.Log("Energy: " + m_Energy);
+        }
+
+        public void ResetEnergy()
+        {
+            m_Energy = 0f;
+        }
+
     }
 }
 

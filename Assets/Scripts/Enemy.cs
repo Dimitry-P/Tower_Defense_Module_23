@@ -11,6 +11,7 @@ namespace TowerDefense
     [RequireComponent(typeof(TDController))]
     public class Enemy : MonoBehaviour
     {
+        public static System.Action<Enemy> OnEnemyKilled;
         public enum ArmorType { Base=0, Mage=1} // Здесь важно явно прописать, что у конкретных видов брони есть номера: 0 и 1
         private static Func<int, TDProjectile.DamageType, int, int>[] ArmorDamageFunctions =
         { //Func - это очень похоже на Action, только последним параметром у него является 
@@ -32,7 +33,7 @@ namespace TowerDefense
             },
         };
 
-        private int m_damage;
+        private int m_NumLives_damage;
         private string m_name;
         [SerializeField] private int m_armor = 1;
         [SerializeField] private ArmorType m_ArmorType;
@@ -55,7 +56,7 @@ namespace TowerDefense
             sr.sprite = asset.sprite;
 
             m_name = asset.enemyName;
-            m_damage = asset.damage;
+            m_NumLives_damage = asset.numLives_Damage;
             m_armor = asset.armor;
             m_ArmorType = asset.armorType;
 
@@ -71,7 +72,7 @@ namespace TowerDefense
 
         public void DamagePlayer()
         {
-            TDPlayer.Instance.ReduceLife(m_damage, m_name);
+            TDPlayer.Instance.ReduceLife(m_NumLives_damage, m_name);
         }
 
         public void GivePlayerGold()
