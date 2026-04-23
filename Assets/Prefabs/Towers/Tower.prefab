@@ -190,9 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8721e3add20f52347a5188b5149ff904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BuildableTowers:
-  - {fileID: 11400000, guid: 969db4374bd2d52409e692ab11ea21c8, type: 2}
-  - {fileID: 11400000, guid: 9f3c6c3c5f156be48b533107a7e5c5a4, type: 2}
+  buildableTowers: []
 --- !u!1 &3600402450183578868
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Radius: 2
+  m_Lead: 0.3
 --- !u!50 &7227898263401265305
 Rigidbody2D:
   serializedVersion: 4
