@@ -1859,8 +1859,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1799641214}
   - component: {fileID: 1799641213}
+  - component: {fileID: 1799641215}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: MapTestObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1977,6 +1978,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1799641215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799641212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c44b4dbda7f66b4ba7bacf6b67a8192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DoNotDestroyOnLoad: 0
+  m_Sounds: []
+  m_BGM: {fileID: 8300000, guid: 7c0d0e0a936a34b409f2f7848c626ff0, type: 3}
 --- !u!1 &1929569519
 GameObject:
   m_ObjectHideFlags: 0
