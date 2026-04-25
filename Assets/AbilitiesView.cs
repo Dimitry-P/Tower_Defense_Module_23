@@ -15,9 +15,6 @@ namespace TowerDefense
         [SerializeField] private UnityEngine.UI.Button m_TimeButton;
         [SerializeField] private UnityEngine.UI.Button m_FireButton;
 
-        [SerializeField] private int m_Cost = 10;
-        [SerializeField] private int m_Duration = 5;
-        [SerializeField] private float m_Cooldown = 5f;
         [SerializeField] private UnityEngine.UI.Slider m_EnergyBar;
 
 

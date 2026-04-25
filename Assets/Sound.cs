@@ -3,9 +3,14 @@ namespace TowerDefense
 {
     public enum Sound    // enum и его методы (см. ниже)
     {
-        BGM,
-        Arrow,
-        Arrowhit,
+        Arrow = 0,
+        Arrow_2 = 1,
+        Arrowhit = 2,
+        EnemyDie = 3,
+        EnemyWin = 4,
+        PlaerWin = 5,
+        PlayerLoose = 6,
+        BGM = 7,
     }
     public static class SoundExtensions  //нужен статичный класс, внутри которого есть статичный метод
         //Это есть "Метод расширения".  Здесь мы имеем метод расширения для enum Sound.

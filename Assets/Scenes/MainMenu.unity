@@ -714,7 +714,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1278431612}
   - component: {fileID: 1278431611}
-  - component: {fileID: 1278431613}
   m_Layer: 0
   m_Name: SoundPlayer
   m_TagString: Untagged
@@ -833,21 +832,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1278431613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278431610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c44b4dbda7f66b4ba7bacf6b67a8192, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_DoNotDestroyOnLoad: 1
-  m_Sounds: {fileID: 11400000, guid: 79d4874b13d94264d8a21c904437085c, type: 2}
-  m_BGM: {fileID: 8300000, guid: c253d220647b38f4fa9211b92163ad10, type: 3}
 --- !u!1 &1403399354
 GameObject:
   m_ObjectHideFlags: 0

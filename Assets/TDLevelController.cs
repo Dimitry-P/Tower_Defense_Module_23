@@ -9,8 +9,6 @@ namespace TowerDefense
         private int levelScore = 3;
        
         private int totalCount = 0;
-
-        private int m_DamageUpgrade = 0;
        
         private new void Start()
         {

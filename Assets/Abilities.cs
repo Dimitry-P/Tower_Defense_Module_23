@@ -164,10 +164,8 @@ namespace TowerDefense
             private int m_MinDemandedGold = 20;
             public int TimeAbilityGold => m_MinDemandedGold;
             [SerializeField] private int m_Duration = 5;
-            [SerializeField] private float m_Cooldown = 5f;
 
             public int Duration => m_Duration;
-            public float Cooldown => m_Cooldown;
         }
 
 

@@ -15,16 +15,14 @@ namespace SpaceShooter
     /// </summary>
     public class Player : MonoSingleton<Player>
     {
-        protected virtual void Awake()
+        protected override void Awake()
         {
-            Instance = this;
-            // Сначала устанавливаем базовое значение
+            base.Awake();
 
             Debug.Log("Awake base lives = " + baseNumLives);
 
-            if(m_NumLives <= 0)NumLives = baseNumLives;
-
-           
+            if (m_NumLives <= 0)
+                m_NumLives = baseNumLives; // без события
         }
 
         public void UpdateNumLivesInBranchLevels()
@@ -93,8 +91,9 @@ namespace SpaceShooter
             ship.EventOnDeath.AddListener(OnShipDeath);
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             if (m_Ship != null)
                 m_Ship.EventOnDeath.RemoveListener(OnShipDeath);
         }
@@ -136,9 +135,6 @@ namespace SpaceShooter
             Score += num;
         }
 
-        int smallEnemyCounter = 0;
-        int middleEnemyCounter = 0;
-        int bossEnemyCounter = 0;
         protected void TakeDamage(int numLives_damage)
         {
             NumLives -= numLives_damage;

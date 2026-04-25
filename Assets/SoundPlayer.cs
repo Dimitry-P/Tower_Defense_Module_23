@@ -11,9 +11,10 @@ namespace TowerDefense
         [SerializeField] private Sounds m_Sounds;
         [SerializeField] private AudioClip m_BGM;
         private AudioSource m_AS;
-        private new void Awake()
+        protected override void Awake()
         {
             base.Awake(); // Вызвали базовый Awake - в этот момент разобрались со всеми синглтонами
+            if (Instance != this) return;
             m_AS = GetComponent<AudioSource>();
             Instance.m_AS.clip = m_BGM;
             Instance.m_AS.Play();

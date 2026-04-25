@@ -13,8 +13,7 @@ namespace TowerDefense
         [SerializeField] private Episode m_episode;
         [SerializeField] private RectTransform resultPanel;
         [SerializeField] private Image[] resultImages;
-        //[SerializeField] private Text text;
-        private int totalCount = 0;
+ 
 
         public bool IsComplete { get { return 
                     gameObject.activeSelf && 
