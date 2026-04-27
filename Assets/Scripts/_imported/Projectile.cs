@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using TowerDefense;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace SpaceShooter
@@ -121,6 +123,8 @@ namespace SpaceShooter
 
         }
     }
+
+    #if UNITY_EDITOR
    namespace TowerDefense
     {
         [CustomEditor(typeof(SpaceShooter.Projectile))] // Все проджектайлы получат этот кастомный инспектор
@@ -139,5 +143,6 @@ namespace SpaceShooter
             }
         }
     }
+    #endif
 }
 
