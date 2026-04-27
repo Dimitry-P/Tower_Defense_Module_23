@@ -1510,7 +1510,6 @@ MonoBehaviour:
   m_TimeAbility:
     m_Cost: 7
     m_Duration: 5
-    m_Cooldown: 15
   m_MaxEnergy: 100
 --- !u!4 &1348968344
 Transform:
@@ -1877,9 +1876,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c253d220647b38f4fa9211b92163ad10, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1991,7 +1990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyOnLoad: 0
-  m_Sounds: []
+  m_Sounds: {fileID: 11400000, guid: 79d4874b13d94264d8a21c904437085c, type: 2}
   m_BGM: {fileID: 8300000, guid: 7c0d0e0a936a34b409f2f7848c626ff0, type: 3}
 --- !u!1 &1929569519
 GameObject:

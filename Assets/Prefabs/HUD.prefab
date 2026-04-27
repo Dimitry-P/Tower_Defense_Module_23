@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 4217264400212191554}
   - component: {fileID: 7085222131622162340}
   - component: {fileID: 6433327737546502510}
+  - component: {fileID: 2208030740623622144}
   m_Layer: 5
   m_Name: Win
   m_TagString: Untagged
@@ -703,6 +704,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2208030740623622144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626054808841272343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247ee999ee991e64fa23d5ca9374eee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Sound: 5
 --- !u!1 &3847552545336864459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +1879,7 @@ GameObject:
   - component: {fileID: 5229190366525226194}
   - component: {fileID: 1985145629269500596}
   - component: {fileID: 6545849543647831838}
+  - component: {fileID: 5197132546791276230}
   m_Layer: 5
   m_Name: Loose
   m_TagString: Untagged
@@ -1930,6 +1945,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5197132546791276230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6539865391095448097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247ee999ee991e64fa23d5ca9374eee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Sound: 6
 --- !u!1 &6815088990239537182
 GameObject:
   m_ObjectHideFlags: 0
