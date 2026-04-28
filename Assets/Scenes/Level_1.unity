@@ -4251,6 +4251,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 435831868502519076, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
+      propertyPath: m_Volume
+      value: 0.503
+      objectReference: {fileID: 0}
+    - target: {fileID: 435831868502519076, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0.4138889
+      objectReference: {fileID: 0}
     - target: {fileID: 595435473991859828, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
       propertyPath: m_Name
       value: SingleLevelTestObject
