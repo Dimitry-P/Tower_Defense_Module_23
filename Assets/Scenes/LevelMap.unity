@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c44b4dbda7f66b4ba7bacf6b67a8192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DoNotDestroyOnLoad: 0
+  m_DoNotDestroyOnLoad: 1
   m_Sounds: {fileID: 11400000, guid: 79d4874b13d94264d8a21c904437085c, type: 2}
   m_BGM: {fileID: 8300000, guid: 7c0d0e0a936a34b409f2f7848c626ff0, type: 3}
 --- !u!1 &1929569519
