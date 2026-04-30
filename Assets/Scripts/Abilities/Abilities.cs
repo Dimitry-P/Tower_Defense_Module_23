@@ -153,7 +153,7 @@ namespace TowerDefense
             public Color TargetingColor => m_TargetingColor;
         }
 
-        public int wwwTimeAbilityGold => m_TimeAbility.TimeAbilityGold;
+        public int TimeAbilityGold => m_TimeAbility.TimeAbilityGold;
 
         [Serializable]
         public class TimeAbility
