@@ -1,0 +1,73 @@
+**Iteration Goal: Polish + UX Improvement**
+
+Focus on making the game clearer, more satisfying, and visually polished for the player.
+
+### UX Improvements
+
+* Clear and readable HUD
+* Easy-to-understand tower prices
+* Visible damage feedback
+* Better readability of battlefield events
+* Clear wave progress display
+
+### Visual Polish
+
+**UI**
+
+* Attractive ability icons
+* Consistent button style
+* Improved victory/defeat panels
+* Readable fonts
+
+**Battlefield**
+
+* Better map background
+* Clear enemy paths
+* Decorative edge elements
+* More varied tiles
+
+**Feedback**
+
+* Shot flash effects
+* Hit impact animations
+* Tower placement sound
+* Improved death effects
+
+
+
+
+**Текст, фиксирующий цель моих итераций**
+**Хочу сделать Tower Defense визуально приятнее и понятнее: 
+улучшить HUD, UI, читаемость поля боя и отклик действий игрока**
+
+
+### Polish + UX polish
+
+* понятный HUD
+* ясные цены башен
+* видимый урон
+* что происходит на карте
+* понятный прогресс волны
+
+### Визуальный polish:
+
+**UI**
+
+* красивые иконки умений
+* единый стиль кнопок
+* нормальные панели победы/поражения
+* читаемые шрифты
+
+**Battlefield**
+
+* фон карты
+* дорожки врагов
+* декор по краям карты
+* разнообразие тайлов
+
+**Feedback**
+
+* вспышка при выстреле
+* анимация попадания
+* звук установки башни
+* красивый death effect
