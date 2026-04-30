@@ -31,14 +31,14 @@ namespace SpaceShooter
 
         protected virtual void Awake()
         {
-            Debug.Log("AWAKE " + gameObject.name);
-            if (Instance != null)
+            Debug.Log($"LevelController created in scene: {gameObject.scene.name}");
+            if (Instance != null && Instance != this)
             {
                 Debug.LogWarning("MonoSingleton: object of type already exists, instance will be destroyed=" + typeof(T).Name);
                 Destroy(gameObject);
                 return;
             }
-
+           
             Instance = this as T;
 
             if (m_DoNotDestroyOnLoad)

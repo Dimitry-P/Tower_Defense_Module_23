@@ -4263,6 +4263,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SingleLevelTestObject
       objectReference: {fileID: 0}
+    - target: {fileID: 595435473991859828, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4946834200780393057, guid: b7d6d08308e6b6d47ae244651a877300, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.2384362
