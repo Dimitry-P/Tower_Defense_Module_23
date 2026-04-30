@@ -43,9 +43,9 @@ namespace TowerDefense
         {
             if (m_TimeButton == null) return;
             m_TimeButton.interactable = !Abilities.Instance.IsTimeAbilityOnCooldown &&
-     TDPlayer.Instance.Gold >= Abilities.Instance.wwwTimeAbilityGold;
+     TDPlayer.Instance.Gold >= Abilities.Instance.TimeAbilityGold;
 
-            m_FireButton.interactable = TDPlayer.Instance.Gold >= Abilities.Instance.wwwTimeAbilityGold;
+            m_FireButton.interactable = TDPlayer.Instance.Gold >= Abilities.Instance.TimeAbilityGold;
 
             m_EnergyBar.value = Abilities.Instance.Energy01;
         }
