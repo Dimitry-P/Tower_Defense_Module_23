@@ -371,7 +371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Radius: 2
-  m_Lead: 0.3
 --- !u!50 &7227898263401265305
 Rigidbody2D:
   serializedVersion: 4
@@ -421,8 +420,8 @@ MonoBehaviour:
   m_ExplosionPrefab: {fileID: 0}
   m_TeamId: 0
   m_ScoreValue: 0
-  m_Mass: 0
+  m_Mass: 1
   m_Thrust: 1
-  m_Mobility: 0
+  m_Mobility: 1
   m_MaxLinearVelocity: 2
   m_MaxAngularVelocity: 2

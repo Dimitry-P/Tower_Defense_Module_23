@@ -1860,7 +1860,7 @@ GameObject:
   - component: {fileID: 1799641213}
   - component: {fileID: 1799641215}
   m_Layer: 0
-  m_Name: MapTestObject
+  m_Name: SoundPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

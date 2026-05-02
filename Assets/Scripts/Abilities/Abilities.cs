@@ -11,15 +11,24 @@ namespace TowerDefense
     public class Abilities : MonoSingleton<Abilities>
     {
         private UpgradeAsset usingThisAbilityAssetNow;
-        private int divisor = 0;
+        private float divisor = 0;
 
-        private void Start()
+        private void OnEnable()
         {
             Enemy.OnEnemyKilled += OnEnemyKilledHandler;
         }
         private void OnEnemyKilledHandler(Enemy enemy)
         {
             AddEnergy(20f); 
+        }
+      
+        private void OnDisable()
+        {
+            Enemy.OnEnemyKilled -= OnEnemyKilledHandler;
+
+            EnemyWaveManager.OnEnemySpawn -= Slow;
+
+            m_IsTimeAbilityOnCooldown = false;
         }
 
         private void Update()
@@ -48,23 +57,25 @@ namespace TowerDefense
         {
             if (m_IsTimeAbilityOnCooldown)
                 return;
-            m_IsTimeAbilityOnCooldown = true;
+          
 
-            divisor = m_FireAbility.Damage;
+            divisor = 1f;
             if (Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow) > 1)
             {
                 for (int i = 1; i < Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow); i++)
                 {
-                    divisor += 2;
+                    divisor /= 2;
                 }
             }
 
             if (TDPlayer.Instance.Gold < m_TimeAbility.Cost)
                 return;
 
+            m_IsTimeAbilityOnCooldown = true;
+
             TDPlayer.Instance.ChangeGold(-m_TimeAbility.Cost);
 
-            runner.StartCoroutine(TimeRoutine(button, duration, cooldown, divisor));
+            runner.StartCoroutine(TimeRoutine(button, duration, cooldown));
             //"запусти корутину TimeRoutine"
             //корутина запускается НЕ в Singleton, а в runner(UI объекте)
             //ВАЖНЫЕ МОМЕНТЫ:
@@ -76,37 +87,42 @@ namespace TowerDefense
         }
 
 
+        private void Slow(Enemy ship) //"если появится враг, то замедли его"
+        {
+            var spaceShip = ship.GetComponent<SpaceShip>();
+
+            if (spaceShip != null && divisor > 0)
+                spaceShip.SetSlowMultiplier(divisor);
+        }
+
         //это корутина — метод, который выполняется во времени
-        private IEnumerator TimeRoutine(UnityEngine.UI.Button button, float duration, float cooldown, int divisor)
+        private IEnumerator TimeRoutine(UnityEngine.UI.Button button, float duration, float cooldown)
         {
             //button.interactable = false; //кнопка становится неактивной, игрок не может нажать повторно
-           
-            void Slow(Enemy ship)  //локальная функция: "если появится враг, то замедли его"
+
+            if (divisor > 0)
             {
-                var spaceShip = ship.GetComponent<SpaceShip>();
-
-                if (spaceShip != null)
+                foreach (var enemy in FindObjectsOfType<Enemy>())
                 {
-                    spaceShip.HalfMaxLinearVelocity(divisor);
+                    var ship = enemy.GetComponent<SpaceShip>();
+                    if (ship != null)
+                        ship.SetSlowMultiplier(divisor);
                 }
-                else
-                {
-                    
-                }
-                //ship.GetComponent<SpaceShip>().HalfMaxLinearVelocity();
+                //Unity находит всех врагов на сцене и каждому уменьшает скорость
             }
-
-            foreach (var ship in FindObjectsOfType<SpaceShip>()) //Unity находит всех врагов на сцене и каждому уменьшает скорость
-                ship.HalfMaxLinearVelocity(divisor);
+              
 
             EnemyWaveManager.OnEnemySpawn += Slow;  //подписка на новых врагов //каждый новый враг - автоматически замедляется
            
             yield return new WaitForSeconds(duration);  //ждём длительность эффекта //игра продолжает идти но этот метод "засыпает" на duration секунд
-          
-            foreach (var ship in FindObjectsOfType<SpaceShip>())  //возвращаем скорость //всем врагам возвращаем нормальную скорость
+
+            if (divisor > 0)
             {
-                ship.RestoreMaxLinearVelocity();
-            } 
+                foreach (var ship in FindObjectsOfType<SpaceShip>())  //возвращаем скорость //всем врагам возвращаем нормальную скорость
+                {
+                    ship.SetSlowMultiplier(1f);
+                }
+            }
 
             EnemyWaveManager.OnEnemySpawn -= Slow; //отписка. больше НЕ замедляем новых врагов, если забыть это — будет баг!!!
 

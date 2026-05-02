@@ -34,16 +34,7 @@ namespace SpaceShooter
         /// Максимальная линейная скорость.
         /// </summary>
         [SerializeField] private float m_MaxLinearVelocity;
-        private float m_MaxVelocityBackup;
-        public void HalfMaxLinearVelocity(int divisor) 
-        { 
-            m_MaxVelocityBackup = m_MaxLinearVelocity; 
-            m_MaxLinearVelocity /= divisor; 
-        }
-        public void RestoreMaxLinearVelocity() 
-        { 
-            m_MaxLinearVelocity = m_MaxVelocityBackup; 
-        }
+        private float baseSpeed;
 
 
         /// <summary>
@@ -86,6 +77,8 @@ namespace SpaceShooter
             m_Rigid.inertia = 1;
 
             //InitOffensive();
+          
+            baseSpeed = m_MaxLinearVelocity;
         }
 
         private void FixedUpdate()
@@ -99,19 +92,41 @@ namespace SpaceShooter
         /// <summary>
         /// Метод добавления сил кораблю для движения.
         /// </summary>
+
+        private float m_SlowMultiplier = 1f;
+
+        public void SetSlowMultiplier(float multiplier)
+        {
+            m_SlowMultiplier = multiplier;
+            Debug.Log("asdf666 "+ multiplier);
+        }
+
         private void UpdateRigidbody()
         {
             // прибавляем толкающую силу
-            m_Rigid.AddForce(m_Thrust * ThrustControl * transform.up * Time.fixedDeltaTime, ForceMode2D.Force);
+            m_Rigid.AddForce(m_Thrust * m_SlowMultiplier * ThrustControl * transform.up * Time.fixedDeltaTime, ForceMode2D.Force);
 
             // линейное вязкое трение -V * C
-            m_Rigid.AddForce(-m_Rigid.velocity * (m_Thrust / m_MaxLinearVelocity) * Time.fixedDeltaTime, ForceMode2D.Force);
+            m_Rigid.AddForce(-m_Rigid.velocity * (m_Thrust / Mathf.Max(m_MaxLinearVelocity, 0.01f)) * Time.fixedDeltaTime, ForceMode2D.Force);
 
             // добавляем вращение
             m_Rigid.AddTorque(m_Mobility * TorqueControl * Time.fixedDeltaTime, ForceMode2D.Force);
 
             // вязкое вращательное трение
-            m_Rigid.AddTorque(-m_Rigid.angularVelocity * (m_Mobility / m_MaxAngularVelocity) * Time.fixedDeltaTime, ForceMode2D.Force);
+            float safeAngular = Mathf.Max(m_MaxAngularVelocity, 0.01f);
+
+            m_Rigid.AddTorque(
+                -m_Rigid.angularVelocity * (m_Mobility / safeAngular) * Time.fixedDeltaTime,
+                ForceMode2D.Force
+            );
+            //m_Rigid.AddTorque(-m_Rigid.angularVelocity * (m_Mobility / m_MaxAngularVelocity) * Time.fixedDeltaTime, ForceMode2D.Force);
+
+
+            Debug.Log("asdf 1" + (m_Thrust / Mathf.Max(m_MaxLinearVelocity, 0.01f)));
+            Debug.Log("asdf 2 m_Thrust / m_MaxLinearVelocity " + (m_Mobility / safeAngular));
+            Debug.Log("asdf 3 m_Mobility " + m_Mobility);
+            Debug.Log("asdf 4 m_MaxLinearVelocity " + m_MaxLinearVelocity);
+            Debug.Log("asdf 5 m_MaxAngularVelocity " + m_MaxAngularVelocity);
         }
 
         //#region Offensive
@@ -215,11 +230,7 @@ namespace SpaceShooter
             base.Use(asset);
         }
 
-        internal void HalfMaxLinearVelocity(object divisor)
-        {
-            throw new NotImplementedException();
-        }
-
+    
         //#endregion
 
         //public void AssignWeapon(TurretProperties props)
