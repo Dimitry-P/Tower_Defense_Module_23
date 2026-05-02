@@ -52,7 +52,7 @@ namespace SpaceShooter
 
         #region Unity events
 
-        protected void Start()
+        protected virtual void Start()
         {
             m_Conditions = GetComponentsInChildren<ILevelCondition>();
         }

@@ -10,43 +10,54 @@ namespace TowerDefense
        
         private int totalCount = 0;
        
-        private new void Start()
+        protected override void Start()
         {
             base.Start();
-            TDPlayer.Instance.OnPlayerDead += () =>
-            {
-                StopLevelActivity();
-                LevelResultController.Instance.Show(false);
-            };
-            m_ReferenceTime += Time.time;
-            m_EventLevelCompleted.AddListener(() =>
-            {
-                StopLevelActivity();
-                if(m_ReferenceTime <= Time.time)
-                {
-                    levelScore -= 1;
-                }
-                print(levelScore);
-                totalCount = TDPlayer.Instance.Gold;
-                MapCompletion.SaveEpisodeResult(levelScore, Player.Instance.NumLives);
-            });
+            //подписка
+            TDPlayer.Instance.OnPlayerDead += OnPlayerDeadHandler;
+            m_EventLevelCompleted.AddListener(OnLevelCompleted);
+        }
 
-            //void LifeScoreChange(int _)
-            //{
-            //    levelScore -= 1;
-            //    TDPlayer.OnLifeUpdate -= LifeScoreChange;
-            //}
-            //TDPlayer.OnLifeUpdate += LifeScoreChange;
+        //сами методы
+         private void OnPlayerDeadHandler()
+         {
+            StopLevelActivity();
+            LevelResultController.Instance.Show(false);
+         }
+        private void OnLevelCompleted()
+        {
+            StopLevelActivity();
+
+            if (m_ReferenceTime <= Time.time)
+            {
+                levelScore -= 1;
+            }
+
+            print(levelScore);
+
+            totalCount = TDPlayer.Instance.Gold;
+
+            MapCompletion.SaveEpisodeResult(levelScore, Player.Instance.NumLives);
+        }
+
+        //отписка 
+        protected override void OnDestroy()
+        {
+            if (TDPlayer.Instance != null)
+            {
+                m_EventLevelCompleted.RemoveListener(OnLevelCompleted);
+                TDPlayer.Instance.OnPlayerDead -= OnPlayerDeadHandler;
+            }  
         }
 
         private void StopLevelActivity()
         {
-            foreach(var enemy in FindObjectsOfType<Enemy>())
+            foreach (var enemy in FindObjectsOfType<Enemy>())
             {
                 enemy.GetComponent<SpaceShip>().enabled = false;
                 enemy.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             }
-            void DisableAll<T>() where T: MonoBehaviour
+            void DisableAll<T>() where T : MonoBehaviour
             {
                 foreach (var obj in FindObjectsOfType<T>())
                 {
