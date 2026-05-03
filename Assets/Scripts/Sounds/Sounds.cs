@@ -27,9 +27,16 @@ namespace TowerDefense
                 }
                 for(int i = 0; i < target.m_Sounds.Length; i++) //Так как этот класс является внутренним классом класса Sounds, то он имеет доступ к его приватным переменным. 
                 {
-                    target.m_Sounds[i] = EditorGUILayout.ObjectField($"{(Sound)i}:", 
+                    var newClip = EditorGUILayout.ObjectField($"{(Sound)i}:", 
                         target.m_Sounds[i], typeof(AudioClip), false) as AudioClip;
-                        //ObjectField - это поле в инспекторе, в которое можно вводить объекты
+                    //ObjectField - это поле в инспекторе, в которое можно вводить объекты
+                    if (newClip != target.m_Sounds[i])
+                    {
+                        target.m_Sounds[i] = newClip;  //Он проверяет: действительно ли пользователь изменил значение в инспекторе
+                        EditorUtility.SetDirty(target); //  ВАЖНО
+                        //Что делает EditorUtility.SetDirty(target):
+                        //это говоришь Unity: “Этот объект изменился — обязательно сохрани его на диск”
+                    }
                 }
             }
         }

@@ -23,6 +23,11 @@ namespace SpaceShooter
         [SerializeField] private Text m_TotalKills;
 
 
+        private void OnEnable()
+        {
+            m_PanelSuccess.gameObject.SetActive(false);
+            m_PanelFailure.gameObject.SetActive(false);
+        }
         /// <summary>
         /// Показываем окошко результатов. Выставляем нужные кнопочки в зависимости от успеха.
         /// </summary>
