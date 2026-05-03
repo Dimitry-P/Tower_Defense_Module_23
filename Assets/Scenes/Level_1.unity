@@ -1564,7 +1564,7 @@ MonoBehaviour:
   - squads:
     - asset: {fileID: 11400000, guid: 72cf142ae2b40ea49a5eaed25bc8966f, type: 2}
       count: 3
-  prepareTime: 7
+  prepareTime: 6
   next: {fileID: 1006857779}
 --- !u!1 &796081990
 GameObject:
@@ -1931,7 +1931,7 @@ MonoBehaviour:
       count: 0
     - asset: {fileID: 11400000, guid: ed3b56a26de293d4ba17f8d2c3cf1c54, type: 2}
       count: 3
-  prepareTime: 8
+  prepareTime: 7
   next: {fileID: 1541547533}
 --- !u!1 &1026400134
 GameObject:
@@ -2951,7 +2951,7 @@ MonoBehaviour:
   - squads:
     - asset: {fileID: 11400000, guid: 72cf142ae2b40ea49a5eaed25bc8966f, type: 2}
       count: 4
-  prepareTime: 9
+  prepareTime: 8
   next: {fileID: 0}
 --- !u!1 &1549901565
 GameObject:
@@ -4251,6 +4251,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 68135023606258546, guid: 1a93c6b7b991e844e897a654f5a972e6, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1266441087970315265, guid: 1a93c6b7b991e844e897a654f5a972e6, type: 3}
       propertyPath: m_Name
       value: MisClick
@@ -4267,6 +4271,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5673923774718451474, guid: 1a93c6b7b991e844e897a654f5a972e6, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673923774718451474, guid: 1a93c6b7b991e844e897a654f5a972e6, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7531301124779811648, guid: 1a93c6b7b991e844e897a654f5a972e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
