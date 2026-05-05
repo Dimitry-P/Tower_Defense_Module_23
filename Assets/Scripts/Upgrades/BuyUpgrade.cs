@@ -19,7 +19,11 @@ namespace TowerDefense
         {
             ugradeIcon.sprite = asset.sprite;
             var savedLevel = Upgrades.GetUpgradeLevel(asset);
-           
+
+            if (savedLevel < 0)
+            {
+                savedLevel = 0;
+            }
             if (savedLevel >= asset.costByLevel.Length)
             {
                 level.text = $"а: {savedLevel} (Max)";
@@ -33,6 +37,7 @@ namespace TowerDefense
             {
                 level.text = $"Lvl: {savedLevel + 1}";
                 costNumber = asset.costByLevel[savedLevel];
+
                 costText.text = costNumber.ToString();
             }
         }

@@ -15,9 +15,26 @@ namespace TowerDefense
         public float radius;
         [SerializeField] private UpgradeAsset requiredUpgrade;
         [SerializeField] private int requiredUpgradeLevel;
-        public bool IsAvailable() => !requiredUpgrade ||
-            requiredUpgradeLevel <= Upgrades.GetUpgradeLevel(requiredUpgrade);
+        public bool IsAvailable()
+        {
+            Debug.Log("requiredUpgrade3333: " + requiredUpgrade);
+            Debug.Log("TowerAsset3333: " + name);
+            Debug.Log("requiredUpgrade == null3333: " + (requiredUpgrade == null));
+            Debug.Log("requiredUpgrade object3333: " + requiredUpgrade);
+            Debug.Log("requiredUpgrade name3333: " + (requiredUpgrade ? requiredUpgrade.name : "NULL"));
+            Debug.Log("Instance ID3333: " + (requiredUpgrade ? requiredUpgrade.GetInstanceID() : 0));
+            if (requiredUpgrade)
+            {
+                Debug.Log("Unity считает3333: НЕ null");
+            }
+            else
+            {
+                Debug.Log("Unity считает3333: null");
+            }
+            return !requiredUpgrade || requiredUpgradeLevel <= Upgrades.GetUpgradeLevel(requiredUpgrade);
+        }
         public TowerAsset[] m_UpgradesTo;
+
     }
 }
 
