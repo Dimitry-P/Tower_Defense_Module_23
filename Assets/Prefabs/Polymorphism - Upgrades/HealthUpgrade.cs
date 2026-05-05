@@ -13,8 +13,8 @@ namespace TowerDefense
 
         public override void ApplyPlayer(Player player, int level)
         {
-            if(level > 0 ) player.NumLives += multipliersByLevel[Mathf.Clamp(level - 1, 0, multipliersByLevel.Length - 1)];
-            Debug.Log(multipliersByLevel[Mathf.Clamp(level - 1, 0, multipliersByLevel.Length - 1)]+"444");
+            if (level > 0) player.NumLives += multipliersByLevel[Mathf.Clamp(level - 1, 0, multipliersByLevel.Length - 1)];
+            Debug.Log(multipliersByLevel[Mathf.Clamp(level - 1, 0, multipliersByLevel.Length - 1)] + "444");
             Debug.Log(player.NumLives +"444");
         }
     }

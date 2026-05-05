@@ -25,7 +25,10 @@ namespace TowerDefense
         private void Start()
         {
             var level = Upgrades.GetUpgradeLevel(healthUpgrade);
-            TakeDamage(-level * 5);
+            if(level > 0)
+            {
+                TakeDamage(-level * 5);
+            }
         }
 
         private int m_gold = 135;
