@@ -12,7 +12,7 @@ namespace TowerDefense
         public class UpgradeSave
         {
             public UpgradeAsset asset;
-            public int level = 0;
+            public int level;
             public TowerUpgrade upgradeSO;   // ссылка на RadiusUpgrade, DamageUpgrade и т.д.
             public string name; // если нужно для UI, можно оставить
         }
@@ -22,7 +22,11 @@ namespace TowerDefense
         private new void Awake()
         {
             base.Awake();
-
+            for (int i = 0; i < Instance.save.Length; i++)
+            {
+                Debug.Log("qwerty GetUpgradeLevel INITIAL = " + Instance.save[i].level);
+            }
+               
             UpgradeSave[] loaded = null;
             Saver<UpgradeSave[]>.TryLoad(filename, ref loaded);
 
@@ -47,8 +51,9 @@ namespace TowerDefense
             {
                 if (upgrade.asset == asset)
                 {
+                    Debug.Log("qwerty BuyUpgrade level BEFORE" + upgrade.level);
                     upgrade.level += 1;
-                   
+                    Debug.Log("qwerty BuyUpgrade level AFTER" + upgrade.level);
                     Saver<UpgradeSave[]>.Save(filename, Instance.save);
                    
                 }
@@ -96,6 +101,7 @@ namespace TowerDefense
                     Debug.Log("PARAM NAME = " + asset.name);
                     //UpgradeAsset-Ы ДАННОГО МАССИВА ЭТОТ МЕТОД БЕРЁТ ИЗ ИНСПЕКТОРА,
                     //НЕСМОТРЯ НА ТО ЧТО ФАЙЛ upgrade.dat ЕЩЁ НЕ СОЗДАН.
+                    Debug.Log("qwerty GetUpgradeLevel" + Instance.save[i].level);
                     return Instance.save[i].level;
                 }
             }
