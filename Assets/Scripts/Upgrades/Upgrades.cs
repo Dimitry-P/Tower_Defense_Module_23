@@ -52,6 +52,7 @@ namespace TowerDefense
                 if (upgrade.asset == asset)
                 {
                     Debug.Log("qwerty BuyUpgrade level BEFORE" + upgrade.level);
+                    if (upgrade.level < 0) upgrade.level = 0;
                     upgrade.level += 1;
                     Debug.Log("qwerty BuyUpgrade level AFTER" + upgrade.level);
                     Saver<UpgradeSave[]>.Save(filename, Instance.save);
