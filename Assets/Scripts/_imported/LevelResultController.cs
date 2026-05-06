@@ -89,7 +89,7 @@ namespace SpaceShooter
         /// <returns></returns>
         private void UpdateCurrentLevelStats()
         {
-            TotalStats.numKills += Player.Instance.NumKills;
+            //TotalStats.numKills += Player.Instance.NumKills;
             TotalStats.time += LevelController.Instance.LevelTime;
             TotalStats.score += Player.Instance.Score;
 

@@ -47,8 +47,15 @@ namespace TowerDefense
 
         public static void BuyUpgrade(UpgradeAsset asset)
         {
+            //if (Player.Instance == null)
+            //{
+            //    Debug.LogError("Player.Instance is NULL");
+            //    return;
+            //}
             foreach (var upgrade in Instance.save)
             {
+                Debug.Log("SO NULL? " + (upgrade.upgradeSO == null));
+
                 if (upgrade.asset == asset)
                 {
                     Debug.Log("qwerty BuyUpgrade level BEFORE" + upgrade.level);
@@ -56,11 +63,15 @@ namespace TowerDefense
                     upgrade.level += 1;
                     Debug.Log("qwerty BuyUpgrade level AFTER" + upgrade.level);
                     Saver<UpgradeSave[]>.Save(filename, Instance.save);
-                   
+                    if (upgrade.upgradeSO != null)
+                    {
+                        upgrade.upgradeSO.ApplyPlayer(upgrade.level);
+                        Debug.Log("SO NAME: " + upgrade.upgradeSO.name);
+                        Debug.Log("SO TYPE: " + upgrade.upgradeSO.GetType().Name);
+                    } 
                 }
             }
         }
-
        
 
         public static int GetTotalCost()

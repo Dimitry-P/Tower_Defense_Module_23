@@ -15,31 +15,11 @@ namespace SpaceShooter
     /// </summary>
     public class Player : MonoSingleton<Player>
     {
-        protected override void Awake()
-        {
-            base.Awake();
-
-            Debug.Log("Awake base lives = " + baseNumLives);
-
-            if (m_NumLives <= 0)
-                m_NumLives = baseNumLives; // без события
-        }
-
-        public void UpdateNumLivesInBranchLevels()
-        {
-            // Затем сразу загружаем из сохранения, если MapCompletion уже готов
-            if (MapCompletion.Instance != null && MapCompletion.Instance.Data != null)
-            {
-                Debug.Log("Load from save = " + MapCompletion.Instance.Data.numLivesTotal);
-                NumLives = MapCompletion.Instance.Data.numLivesTotal;
-            }
-        }
-
         private int baseNumLives = 10;
-      
         private static int m_NumLives;
-        public int NumLives 
-        {  
+
+        public int NumLives
+        {
             get { return m_NumLives; }
             set
             {
@@ -51,51 +31,45 @@ namespace SpaceShooter
         public event Action OnPlayerDead;
 
         [SerializeField] private SpaceShip m_Ship;
-        public SpaceShip ActiveShip => m_Ship;
-
         [SerializeField] private SpaceShip m_PlayerShipPrefab;
 
-        //[SerializeField] private CameraController m_CameraController;
-        //[SerializeField] private MovementController m_MovementController;
-        [SerializeField] private GameObject loosePanel;
-        public GameObject victoryPanel;
-        [SerializeField] protected Tower towerPrefab;
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if (m_NumLives <= 0)
+                m_NumLives = baseNumLives; // без события
+        }
 
         private void Start()
         {
-            if (m_Ship)
-                SubscribeToShip(m_Ship);
-            ApplyPlayerUpgrades();
+            if (m_Ship) SubscribeToShip(m_Ship);
         }
 
-        public void ApplyPlayerUpgrades()
+        private void OnEnable()
         {
-            if (Upgrades.Instance == null || Upgrades.Instance.save == null) return;
-
-            // Сброс к базовому значению (важно!)
-            //NumLives = baseNumLives;   // должно быть какое-то базовое значение
-
-            foreach (var savedUpgrade in Upgrades.Instance.save)
-            {
-                if (savedUpgrade.upgradeSO != null)
-                {
-                    savedUpgrade.upgradeSO.ApplyPlayer(this, savedUpgrade.level);
-                }
-            }
-            Debug.Log("ApplyPlayerUpgrades called");
+            // Сразу прмиенить апргрейды
+            NumLives += HealthUpgradeBonusSaver.bonus;
         }
+
+        //public void ApplyPlayerUpgrades()
+        //{
+        //    if (Upgrades.Instance == null || Upgrades.Instance.save == null) return; // Сброс к базовому значению (важно!) 
+        //    //NumLives = baseNumLives; 
+        //    // должно быть какое-то базовое значение
+        //    foreach (var savedUpgrade in Upgrades.Instance.save) 
+        //    {
+        //        if (savedUpgrade.upgradeSO != null) 
+        //        {
+        //            savedUpgrade.upgradeSO.ApplyPlayer(savedUpgrade.level);
+        //        } 
+        //    } 
+        //}
 
         private void SubscribeToShip(SpaceShip ship)
         {
             ship.EventOnDeath.RemoveListener(OnShipDeath);
             ship.EventOnDeath.AddListener(OnShipDeath);
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            if (m_Ship != null)
-                m_Ship.EventOnDeath.RemoveListener(OnShipDeath);
         }
 
         private void OnShipDeath()
@@ -107,7 +81,6 @@ namespace SpaceShooter
             else
             {
                 LevelSequenceController.Instance.FinishCurrentLevel(false);
-                //GameReset.ResetStatics();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
             }
         }
@@ -118,17 +91,34 @@ namespace SpaceShooter
             m_Ship = newPlayerShip.GetComponent<SpaceShip>();
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
         }
-            
-        #region Score (current level only)
 
-        public int Score { get; private set; }
+       
 
-        public int NumKills { get; private set; }
 
-        public void AddKill()
+
+
+        [SerializeField] private GameObject loosePanel;
+        public GameObject victoryPanel;
+        [SerializeField] protected Tower towerPrefab;
+        public SpaceShip ActiveShip => m_Ship;
+
+        //public void UpdateNumLivesInBranchLevels()
+        //{
+        //    if (MapCompletion.Instance != null && MapCompletion.Instance.Data != null)
+        //    {
+        //        NumLives = MapCompletion.Instance.Data.numLivesTotal;
+        //    }
+        //}
+
+        protected override void OnDestroy()
         {
-            NumKills++;
+            base.OnDestroy();
+            if (m_Ship != null)
+                m_Ship.EventOnDeath.RemoveListener(OnShipDeath);
         }
+
+        #region Score (current level only)
+        public int Score { get; private set; }
 
         public void AddScore(int num)
         {
