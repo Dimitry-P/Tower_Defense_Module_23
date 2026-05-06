@@ -11,7 +11,7 @@ namespace TowerDefense
         [SerializeField] private int[] multipliersByLevel;
         //= { 2, 3, 4, 5, 6, 7 }
 
-        public override void ApplyPlayer(Player player, int level)
+        public override void ApplyPlayer(int level)
         {
            
         }

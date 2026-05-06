@@ -22,14 +22,7 @@ namespace TowerDefense
 
       
 
-        private void Start()
-        {
-            var level = Upgrades.GetUpgradeLevel(healthUpgrade);
-            if(level > 0)
-            {
-                TakeDamage(-level * 5);
-            }
-        }
+       
 
         private int m_gold = 135;
         public int Gold { get { return m_gold; } set { m_gold = value; } }
@@ -70,6 +63,7 @@ namespace TowerDefense
 
         public void ReduceLife(int numLives_damage, string enemyName)
         {
+            Debug.Log("SET LIVES 5 : " + numLives_damage);
             TakeDamage(numLives_damage);
             OnLifeUpdate?.Invoke(Player.Instance.NumLives);
         }

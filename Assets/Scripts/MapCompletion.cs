@@ -115,10 +115,10 @@ namespace TowerDefense
             }
 
             // Теперь безопасно применяем к Player
-            if (Player.Instance != null)
-            {
-                Player.Instance.ApplyPlayerUpgrades();
-            }
+            //if (Player.Instance != null)
+            //{
+            //    Player.Instance.ApplyPlayerUpgrades();
+            //}
 
             // пересчёт totalScore и т.д.
         }
