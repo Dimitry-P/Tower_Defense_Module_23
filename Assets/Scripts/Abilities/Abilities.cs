@@ -10,13 +10,13 @@ namespace TowerDefense
 {
     public class Abilities : MonoSingleton<Abilities>
     {
-        private UpgradeAsset usingThisAbilityAssetNow;
         private float divisor = 0;
 
         private void OnEnable()
         {
             Enemy.OnEnemyKilled += OnEnemyKilledHandler;
             m_IsTimeAbilityOnCooldown = false;
+            EnemyWaveManager.OnEnemySpawn += Slow;
         }
         private void OnEnemyKilledHandler(Enemy enemy)
         {
@@ -26,10 +26,7 @@ namespace TowerDefense
         private void OnDisable()
         {
             Enemy.OnEnemyKilled -= OnEnemyKilledHandler;
-
             EnemyWaveManager.OnEnemySpawn -= Slow;
-
-            m_IsTimeAbilityOnCooldown = false;
         }
 
         private void Update()
@@ -42,7 +39,6 @@ namespace TowerDefense
         }
         public bool IsUnlocked(UpgradeAsset abilityAsset)
         {
-            usingThisAbilityAssetNow = abilityAsset;
            return Upgrades.GetUpgradeLevel(abilityAsset) > 0;
         }
 
@@ -54,16 +50,16 @@ namespace TowerDefense
         //Button button -- кнопка, которую надо заблокировать
         //float duration -- сколько длится эффект(замедление)
         //float cooldown, сколько длится перезарядка
-        public void UseTimeAbility(MonoBehaviour runner, UnityEngine.UI.Button button, float duration, float cooldown)
+        public void UseTimeAbility(UpgradeAsset abilityAsset, MonoBehaviour runner, UnityEngine.UI.Button button, float duration, float cooldown)
         {
             if (m_IsTimeAbilityOnCooldown)
                 return;
           
 
             divisor = 1f;
-            if (Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow) > 1)
+            if (Upgrades.GetUpgradeLevel(abilityAsset) > 0)
             {
-                for (int i = 1; i < Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow); i++)
+                for (int i = 0; i < Upgrades.GetUpgradeLevel(abilityAsset); i++)
                 {
                     divisor /= 2;
                 }
@@ -113,7 +109,7 @@ namespace TowerDefense
             }
 
             EnemyWaveManager.OnEnemySpawn -= Slow;
-          
+
             EnemyWaveManager.OnEnemySpawn += Slow;  //подписка на новых врагов //каждый новый враг - автоматически замедляется
            
             yield return new WaitForSeconds(duration);  //ждём длительность эффекта //игра продолжает идти но этот метод "засыпает" на duration секунд
@@ -126,7 +122,7 @@ namespace TowerDefense
                 }
             }
 
-            EnemyWaveManager.OnEnemySpawn -= Slow; //отписка. больше НЕ замедляем новых врагов, если забыть это — будет баг!!!
+            //EnemyWaveManager.OnEnemySpawn -= Slow; //отписка. больше НЕ замедляем новых врагов, если забыть это — будет баг!!!
 
             //yield return new WaitForSeconds(cooldown); //ждём кулдаун. ещё пауза — уже для кнопки
 
@@ -189,7 +185,7 @@ namespace TowerDefense
         //private int m_DamagePoints = 0;
         //public int DamagePoints { get { return m_DamagePoints; } set { m_DamagePoints = value; } }
         //public int alreadySavedDamage = 0;
-        public void UseFireAbility()
+        public void UseFireAbility(UpgradeAsset abilityAsset)
         {
             int damage = m_FireAbility.Damage;
 
@@ -211,32 +207,23 @@ namespace TowerDefense
 
                     if (enemy != null)
                     {
-                        Debug.Log("DAMAGE TO: " + enemy.name);
-                        Debug.Log("666 GetupgradeLevel= " + Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow));
-                        if (Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow) > 1)
+                        if (Upgrades.GetUpgradeLevel(abilityAsset) > 1)
                         {
-                            for(int i = 1; i < Upgrades.GetUpgradeLevel(usingThisAbilityAssetNow); i++)
+                            for(int i = 1; i < Upgrades.GetUpgradeLevel(abilityAsset); i++)
                             {
                                 damage += 2;
-                                Debug.Log($"666789 {i} = " + damage);
+                                Debug.Log($"asdf {i} = " + damage);
                             }
                         }
-                        Debug.Log("Damage without ENERGY ABILITY is: " + damage);
                         // ENERGY БОНУС
                         if (IsEnergyFull)
                         {
                             damage *= 2;
-                            Debug.Log("ENERGY BONUS ACTIVATED!");
                             ResetEnergy();
-                            Debug.Log("BECAUSE OF ENERGY ABILITY DAMAGE*2 = " + damage);
                         }
 
                         enemy.TakeDamage(damage, TDProjectile.DamageType.Magic);
-                        //m_DamagePoints = damage;
                         damage = m_FireAbility.Damage;
-                        //Debug.Log("666 1= " + m_DamagePoints);
-                        Debug.Log("666 2= " + damage);
-                       
                     }
                 }
             });

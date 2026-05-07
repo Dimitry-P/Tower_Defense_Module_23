@@ -57,14 +57,14 @@ namespace TowerDefense
             Debug.Log("Abilities: " + Abilities.Instance);
             Debug.Log("Button: " + m_TimeButton);
             Debug.Log("abilityManager = " + Abilities.Instance.name);
-            Abilities.Instance.UseTimeAbility(this, m_TimeButton, 5f, 5f);
+            Abilities.Instance.UseTimeAbility(abilityAsset, this, m_TimeButton, 5f, 5f);
         }
 
         [SerializeField] private FireAbility m_FireAbility;
         public void OnFireButtonClick()
         {
             Debug.Log("Abilities.Instance = " + Abilities.Instance);
-            Abilities.Instance.UseFireAbility();
+            Abilities.Instance.UseFireAbility(abilityAsset);
             TDPlayer.Instance.ChangeGold(-Abilities.Instance.FireAbilityGold);
         }
     }

@@ -98,7 +98,6 @@ namespace SpaceShooter
         public void SetSlowMultiplier(float multiplier)
         {
             m_SlowMultiplier = multiplier;
-            Debug.Log("asdf666 "+ multiplier);
         }
 
         private void UpdateRigidbody()

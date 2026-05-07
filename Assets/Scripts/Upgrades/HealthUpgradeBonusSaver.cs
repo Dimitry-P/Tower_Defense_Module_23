@@ -14,7 +14,16 @@ namespace TowerDefense
         }
         public void ShowHowMuchIsBonus()
         {
-            Debug.Log("devil " + bonus);
+            Debug.Log("555" + bonus);
+        }
+    }
+    public class RadiusUpgradeBonusSaver : MonoSingleton<RadiusUpgradeBonusSaver>
+    {
+        public static float radiusUpgradeBonus = 1f;
+       
+        protected override void Awake()
+        {
+            base.Awake(); // ВАЖНО!
         }
     }
 }
