@@ -9,6 +9,7 @@ namespace TowerDefense
     public class Tower : MonoBehaviour
     {
         [SerializeField] private float m_Radius;
+        private float baseRadius;
         private float m_Lead = 0.3f;
         private Turret[] turrets;
         private Rigidbody2D target = null; //RigidBody2D знает всю свою физику, включая направление движения
@@ -27,23 +28,23 @@ namespace TowerDefense
 
         private void Start()
         {
+            baseRadius = m_Radius;
             // Сразу прмиенить апргрейды
             ApplyAllUpgrades();
-        }
-
-        public void ModifyRadius(float levelNumber)
-        {
-            m_Radius *= levelNumber;
+            m_Radius = baseRadius * RadiusUpgradeBonusSaver.radiusUpgradeBonus;
         }
 
         private void ApplyAllUpgrades()
         {
+            Debug.Log("666CURRENT LEVEL = ");
             if (Upgrades.Instance == null || Upgrades.Instance.save == null) return;
 
             foreach (var savedUpgrade in Upgrades.Instance.save)
             {
+                Debug.Log("666CURRENT LEVEL = " + Upgrades.Instance.save);
                 if (savedUpgrade.upgradeSO != null) // upgradeSO название поля, может отличаться
                 {
+                    Debug.Log("666CURRENT LEVEL = " + savedUpgrade.level);
                     savedUpgrade.upgradeSO.Apply(this, savedUpgrade.level);
                     //В ЭТОЙ СТРОКЕ ПРОИСХОДИТ МАГИЯ!!!
                     //Проговорю всю цепочку действий:

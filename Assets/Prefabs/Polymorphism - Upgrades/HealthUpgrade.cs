@@ -26,8 +26,8 @@ namespace TowerDefense
 
 
             HealthUpgradeBonusSaver.bonus += delta;
-            Debug.Log("devil " + delta);
-            Debug.Log("devil " + lastAppliedLevel);
+            Debug.Log("555" + delta);
+            Debug.Log("555" + lastAppliedLevel);
             HealthUpgradeBonusSaver.Instance.ShowHowMuchIsBonus();
             delta = 0;
         }

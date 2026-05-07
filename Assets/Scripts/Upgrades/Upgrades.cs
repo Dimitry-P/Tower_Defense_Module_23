@@ -17,6 +17,11 @@ namespace TowerDefense
             public string name; // если нужно для UI, можно оставить
         }
 
+        private void OnEnable()
+        {
+            Debug.Log("HealthUpgrade55ENABLED: " + name);
+        }
+
         [SerializeField] public UpgradeSave[] save;
 
         private new void Awake()
@@ -54,21 +59,15 @@ namespace TowerDefense
             //}
             foreach (var upgrade in Instance.save)
             {
-                Debug.Log("SO NULL? " + (upgrade.upgradeSO == null));
-
                 if (upgrade.asset == asset)
                 {
-                    Debug.Log("qwerty BuyUpgrade level BEFORE" + upgrade.level);
                     if (upgrade.level < 0) upgrade.level = 0;
                     upgrade.level += 1;
-                    Debug.Log("qwerty BuyUpgrade level AFTER" + upgrade.level);
                     Saver<UpgradeSave[]>.Save(filename, Instance.save);
                     if (upgrade.upgradeSO != null)
                     {
                         upgrade.upgradeSO.ApplyPlayer(upgrade.level);
-                        Debug.Log("SO NAME: " + upgrade.upgradeSO.name);
-                        Debug.Log("SO TYPE: " + upgrade.upgradeSO.GetType().Name);
-                    } 
+                    }
                 }
             }
         }
