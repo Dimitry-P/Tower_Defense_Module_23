@@ -16,6 +16,7 @@ namespace TowerDefense
         private void OnEnable()
         {
             Enemy.OnEnemyKilled += OnEnemyKilledHandler;
+            m_IsTimeAbilityOnCooldown = false;
         }
         private void OnEnemyKilledHandler(Enemy enemy)
         {
@@ -110,8 +111,9 @@ namespace TowerDefense
                 }
                 //Unity находит всех врагов на сцене и каждому уменьшает скорость
             }
-              
 
+            EnemyWaveManager.OnEnemySpawn -= Slow;
+          
             EnemyWaveManager.OnEnemySpawn += Slow;  //подписка на новых врагов //каждый новый враг - автоматически замедляется
            
             yield return new WaitForSeconds(duration);  //ждём длительность эффекта //игра продолжает идти но этот метод "засыпает" на duration секунд
