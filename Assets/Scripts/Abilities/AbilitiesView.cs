@@ -13,7 +13,6 @@ namespace TowerDefense
         [SerializeField] private UnityEngine.UI.Image m_TargetingCircle;
         [SerializeField] private UnityEngine.UI.Button m_TimeButton;
         [SerializeField] private UnityEngine.UI.Button m_FireButton;
-
         [SerializeField] private UnityEngine.UI.Slider m_EnergyBar;
 
 
@@ -21,19 +20,10 @@ namespace TowerDefense
         {
             bool unlocked = Abilities.Instance.IsUnlocked(abilityAsset);
             m_View.SetActive(unlocked);
-            Debug.Log(m_View + " john");
-            Debug.Log(unlocked + " john");
-
 
             if (m_View != null)
             {
-                Debug.Log("john BEFORE activeSelf = " + m_View.activeSelf);
-                Debug.Log("john BEFORE activeInHierarchy = " + m_View.activeInHierarchy);
-
                 m_View.SetActive(unlocked);
-
-                Debug.Log("john AFTER activeSelf = " + m_View.activeSelf);
-                Debug.Log("john AFTER activeInHierarchy = " + m_View.activeInHierarchy);
             }
         }
 

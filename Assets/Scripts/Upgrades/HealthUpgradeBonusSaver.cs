@@ -14,7 +14,7 @@ namespace TowerDefense
         }
         public void ShowHowMuchIsBonus()
         {
-            Debug.Log("555" + bonus);
+            Debug.Log("bonus is " + bonus);
         }
     }
     public class RadiusUpgradeBonusSaver : MonoSingleton<RadiusUpgradeBonusSaver>

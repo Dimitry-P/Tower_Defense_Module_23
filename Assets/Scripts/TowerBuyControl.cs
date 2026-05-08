@@ -63,7 +63,6 @@ namespace TowerDefense
         private void GoldStatusCheck(int gold)
         {
             if (m_TowerAsset == null || m_Button == null || m_text == null)return;
-            Debug.Log(gold + "$$$$$");
             bool enoughGold = gold >= m_TowerAsset.gold;
             bool buttonState = m_Button.interactable;
             

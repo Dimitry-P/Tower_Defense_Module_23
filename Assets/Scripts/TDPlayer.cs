@@ -63,7 +63,6 @@ namespace TowerDefense
 
         public void ReduceLife(int numLives_damage, string enemyName)
         {
-            Debug.Log("SET LIVES 5 : " + numLives_damage);
             TakeDamage(numLives_damage);
             OnLifeUpdate?.Invoke(Player.Instance.NumLives);
         }

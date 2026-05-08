@@ -45,7 +45,6 @@ public class EgyptTower : Tower
         foreach (var enemy in allEnemies)
         {
             Destroy(enemy.gameObject);
-            Debug.Log("Destroyed");
         }
         Debug.Log("Before " + charges);
         charges--;

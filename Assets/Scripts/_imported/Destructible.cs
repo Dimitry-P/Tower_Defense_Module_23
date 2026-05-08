@@ -72,10 +72,7 @@ namespace SpaceShooter
         {
             if (m_Indestructible)
                 return;
-            Debug.Log("ENERGY ABILITY - Before Shot HP of Enemy was = " + m_CurrentHitPoints);
-            Debug.Log("ENERGY ABILITY - Damage is = " + damage);
             m_CurrentHitPoints -= damage;
-            Debug.Log("ENERGY ABILITY - AFTER Shot HP of Enemy is = " + m_CurrentHitPoints);
             if (m_CurrentHitPoints <= 0)
             {
                 OnDeath();

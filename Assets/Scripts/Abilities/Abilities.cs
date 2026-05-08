@@ -34,7 +34,6 @@ namespace TowerDefense
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Abilities.Instance.AddEnergy(100);
-                Debug.Log("100%%");
             }
         }
         public bool IsUnlocked(UpgradeAsset abilityAsset)
@@ -79,8 +78,6 @@ namespace TowerDefense
             //1. Почему нужен runner? Coroutine можно запускать только из MonoBehaviour
             //2. Почему передаём кнопку?  Singleton НЕ должен знать про UI
             //3. Почему нужна отписка? - Иначе все будущие враги будут ВСЕГДА замедлены
-            Debug.Log("INSTANCE 777= " + m_TimeAbility);
-            Debug.Log("COST 777= " + m_TimeAbility.Cost);
         }
 
 
@@ -193,8 +190,6 @@ namespace TowerDefense
             {
                 Vector3 worldPos = Camera.main.ScreenToWorldPoint(v);
                 worldPos.z = 0;
-                Debug.Log("SCREEN: " + v);
-                Debug.Log("WORLD: " + worldPos);
 
                 foreach (var collider in Physics2D.OverlapCircleAll(worldPos, 5))
                 {
