@@ -19,7 +19,7 @@ namespace TowerDefense
 
         private void OnEnable()
         {
-            Debug.Log("HealthUpgrade55ENABLED: " + name);
+           
         }
 
         [SerializeField] public UpgradeSave[] save;
@@ -29,7 +29,7 @@ namespace TowerDefense
             base.Awake();
             for (int i = 0; i < Instance.save.Length; i++)
             {
-                Debug.Log("qwerty GetUpgradeLevel INITIAL = " + Instance.save[i].level);
+                Debug.Log("GetUpgradeLevel INITIAL = " + Instance.save[i].level);
             }
                
             UpgradeSave[] loaded = null;
@@ -112,7 +112,6 @@ namespace TowerDefense
                     Debug.Log("PARAM NAME = " + asset.name);
                     //UpgradeAsset-Ы ДАННОГО МАССИВА ЭТОТ МЕТОД БЕРЁТ ИЗ ИНСПЕКТОРА,
                     //НЕСМОТРЯ НА ТО ЧТО ФАЙЛ upgrade.dat ЕЩЁ НЕ СОЗДАН.
-                    Debug.Log("qwerty GetUpgradeLevel" + Instance.save[i].level);
                     return Instance.save[i].level;
                 }
             }

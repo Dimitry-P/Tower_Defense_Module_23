@@ -36,15 +36,12 @@ namespace TowerDefense
 
         private void ApplyAllUpgrades()
         {
-            Debug.Log("666CURRENT LEVEL = ");
             if (Upgrades.Instance == null || Upgrades.Instance.save == null) return;
 
             foreach (var savedUpgrade in Upgrades.Instance.save)
             {
-                Debug.Log("666CURRENT LEVEL = " + Upgrades.Instance.save);
                 if (savedUpgrade.upgradeSO != null) // upgradeSO название поля, может отличаться
                 {
-                    Debug.Log("666CURRENT LEVEL = " + savedUpgrade.level);
                     savedUpgrade.upgradeSO.Apply(this, savedUpgrade.level);
                     //В ЭТОЙ СТРОКЕ ПРОИСХОДИТ МАГИЯ!!!
                     //Проговорю всю цепочку действий:
@@ -97,7 +94,6 @@ namespace TowerDefense
                     target = enter.transform.root.GetComponent<Rigidbody2D>();
                 }
             }
-            Debug.Log(m_Radius+"РАДИУС");
         }
         void OnDrawGizmos()
         {

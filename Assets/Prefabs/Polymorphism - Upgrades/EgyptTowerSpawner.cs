@@ -64,7 +64,6 @@ namespace TowerDefense
             if (currentTower != null)
             {
                 currentTower.SetUpgradeLevel(currentUpgradeLevel);
-                Debug.Log("Egypt Tower charges reset for new level");
             }
         }
     }
