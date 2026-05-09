@@ -12,9 +12,13 @@ namespace TowerDefense
         {
             base.Awake(); // ВАЖНО!
         }
-        public void ShowHowMuchIsBonus()
+        public void SetLastAppliedLevel(int level)
         {
-            Debug.Log("bonus is " + bonus);
+            if (bonus != 0) return;
+            else
+            {
+                HealthUpgrade.lastAppliedLevel = level;
+            }
         }
     }
     public class RadiusUpgradeBonusSaver : MonoSingleton<RadiusUpgradeBonusSaver>

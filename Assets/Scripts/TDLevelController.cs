@@ -8,8 +8,6 @@ namespace TowerDefense
     {
         private int levelScore = 3;
        
-        private int totalCount = 0;
-       
         protected override void Start()
         {
             base.Start();
@@ -35,9 +33,7 @@ namespace TowerDefense
 
             print(levelScore);
 
-            totalCount = TDPlayer.Instance.Gold;
-
-            MapCompletion.SaveEpisodeResult(levelScore, Player.Instance.NumLives);
+            MapCompletion.SaveEpisodeResult(levelScore, Player.Instance.NumLives, TDPlayer.Instance.Gold);
         }
 
         //отписка 

@@ -20,11 +20,17 @@ namespace TowerDefense
 
         [SerializeField] private UpgradeAsset healthUpgrade;
 
-      
-
        
+        protected override void Awake()
+        {
+            base.Awake();
 
-        private int m_gold = 135;
+            if (m_gold <= 0)
+                m_gold = baseGoldCount; 
+        }
+
+        private int baseGoldCount = 135;
+        private static int m_gold;
         public int Gold { get { return m_gold; } set { m_gold = value; } }
 
         private event Action<int> OnGoldUpdate;
@@ -32,8 +38,7 @@ namespace TowerDefense
         {
             Debug.Log("GoldChanged INVOKE from: " + Environment.StackTrace);
             OnGoldUpdate += act;
-            act(Instance.m_gold);
-            Debug.Log(Instance.m_gold);
+            act(Gold);
         }
         public void GoldUpdateUnsubscribe(Action<int> act)
         {
