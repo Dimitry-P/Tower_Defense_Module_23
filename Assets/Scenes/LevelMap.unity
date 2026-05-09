@@ -642,6 +642,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &538723929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 538723930}
+  - component: {fileID: 538723932}
+  - component: {fileID: 538723931}
+  m_Layer: 0
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &538723930
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538723929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1036499044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 7.6, y: -0.79998016}
+  m_SizeDelta: {x: 15, y: 15}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &538723931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538723929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f96374c9ec97d9540bb01dfe3225bafa, type: 2}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &538723932
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538723929}
+  m_CullTransparentMesh: 1
 --- !u!1 &548152275
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1074,7 @@ MonoBehaviour:
     unlockedLevels: 0
     numLivesTotal: 10
     damageUpgrade: 0
+    currentGoldCount: 0
 --- !u!114 &793497653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,7 +1103,7 @@ MonoBehaviour:
     name: 
   - asset: {fileID: 11400000, guid: 0f23a1f08dfd7b14f919496f73445ad6, type: 2}
     level: -1
-    upgradeSO: {fileID: 11400000, guid: 20c8defb62d92f340835659ce408c6a4, type: 2}
+    upgradeSO: {fileID: 0}
     name: 
 --- !u!114 &793497654
 MonoBehaviour:
@@ -1175,9 +1251,16 @@ PrefabInstance:
       propertyPath: asset
       value: 
       objectReference: {fileID: 11400000, guid: b86a3ea4c301db047aef08993a9bcd95, type: 2}
+    - target: {fileID: 9097042299560404013, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5345107518389994578, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 538723930}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
 --- !u!224 &1036499042 stripped
@@ -1196,6 +1279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915eb8a420891934baf0ea3362508572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1036499044 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5345107518389994578, guid: 6928a3de2a0aef24e8fef40bc99562ce, type: 3}
+  m_PrefabInstance: {fileID: 1036499041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1044432472
 GameObject:
   m_ObjectHideFlags: 0
