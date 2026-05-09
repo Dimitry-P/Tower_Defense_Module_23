@@ -9,7 +9,7 @@ namespace TowerDefense
     public class HealthUpgrade : TowerUpgrade
     {
         [SerializeField] private int[] multipliersByLevel;
-        private int lastAppliedLevel = 0;
+        public static int lastAppliedLevel = 0;
 
         public override void ApplyPlayer(int level)
         {
@@ -22,11 +22,11 @@ namespace TowerDefense
                 delta += multipliersByLevel[Mathf.Clamp(i - 1, 0, multipliersByLevel.Length - 1)];
             }
 
-            lastAppliedLevel = level;
+           
 
 
-            HealthUpgradeBonusSaver.bonus += delta;
-            HealthUpgradeBonusSaver.Instance.ShowHowMuchIsBonus();
+            HealthUpgradeBonusSaver.bonus = delta;
+            HealthUpgradeBonusSaver.Instance.SetLastAppliedLevel(level);
             delta = 0;
         }
     }

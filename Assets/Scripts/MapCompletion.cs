@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Хранит в себе инфо о том, на сколько очков был выполнен каждый из уровней.
 //Инфо о завершении карты будет храниться внутри MapCompletion
@@ -11,6 +12,9 @@ namespace TowerDefense
     public class MapCompletion : MonoSingleton<MapCompletion>
     {
         public const string filename = "completion.dat";
+        private bool continueButtonWasPushed_Lives = true;
+        private bool continueButtonWasPushed_Gold = true;
+
 
         [Serializable]
         public class EpisodeScore
@@ -25,6 +29,7 @@ namespace TowerDefense
             public int unlockedLevels = 0;
             public int numLivesTotal;
             public int damageUpgrade;
+            public int currentGoldCount;
         }
 
         [SerializeField] private Episode[] allEpisodes;  // Сюда в инспекторе перетащить все Episode
@@ -34,7 +39,7 @@ namespace TowerDefense
         public CompletionData Data => data;
         public int UnlockedLevels => data.unlockedLevels;
 
-        public static void SaveEpisodeResult(int levelScore, int numLives)
+        public static void SaveEpisodeResult(int levelScore, int numLives, int currentGold)
         {
             if (Instance)
             {
@@ -49,7 +54,7 @@ namespace TowerDefense
                             Instance.data.unlockedLevels++;
                             Debug.Log("Saving lives = " + numLives);
                             Instance.data.numLivesTotal = numLives;
-                            //Instance.data.damageUpgrade = Abilities.Instance.DamagePoints;
+                            Instance.data.currentGoldCount = currentGold;
                             Saver<CompletionData>.Save(filename, Instance.data);
                         }
                     }
@@ -101,33 +106,39 @@ namespace TowerDefense
             }
         }
 
-        private void Start()   // именно Start, а не Awake!
+
+        private static TDPlayer tdPlayer;
+
+        private void OnEnable()
         {
-            Saver<CompletionData>.TryLoad(filename, ref data);
-
-            if (data == null)
-            {
-                data = new CompletionData();
-                // ... инициализация эпизодов ...
-                Player.Instance.NumLives = data.numLivesTotal;   // важно задать начальное
-                //Abilities.Instance.alreadySavedDamage = data.damageUpgrade;   // сохранённое значение апгрейднутого умения
-               
-            }
-
-            // Теперь безопасно применяем к Player
-            //if (Player.Instance != null)
-            //{
-            //    Player.Instance.ApplyPlayerUpgrades();
-            //}
-
-            // пересчёт totalScore и т.д.
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            tdPlayer = FindObjectOfType<TDPlayer>();
         }
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (Player.Instance != null && continueButtonWasPushed_Lives == true)
+            {
+                Player.Instance.NumLives = data.numLivesTotal;
+                continueButtonWasPushed_Lives = false;
+            }
+            if (tdPlayer != null && continueButtonWasPushed_Gold && data.currentGoldCount != 0)
+            {
+                tdPlayer.Gold = data.currentGoldCount;
+                continueButtonWasPushed_Gold = false;
+            }
+        }
+
+
 
         public int GetEpisodeScore(Episode m_episode)
         {
             foreach (var data in data.episodes)
             {
-                if(data.episode == m_episode)
+                if (data.episode == m_episode)
                 {
                     return data.score;
                 }

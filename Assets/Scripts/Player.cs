@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static TowerDefense.TextUpdate;
@@ -39,17 +40,13 @@ namespace SpaceShooter
 
             if (m_NumLives <= 0)
                 m_NumLives = baseNumLives; // без события
+
+            TDPlayer.RaiseLifeUpdate(m_NumLives);
         }
 
         private void Start()
         {
             if (m_Ship) SubscribeToShip(m_Ship);
-        }
-
-        private void OnEnable()
-        {
-            // Сразу прмиенить апргрейды
-            NumLives += HealthUpgradeBonusSaver.bonus;
         }
 
         //public void ApplyPlayerUpgrades()
@@ -91,11 +88,6 @@ namespace SpaceShooter
             m_Ship = newPlayerShip.GetComponent<SpaceShip>();
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
         }
-
-       
-
-
-
 
         [SerializeField] private GameObject loosePanel;
         public GameObject victoryPanel;
