@@ -80,6 +80,7 @@ namespace SpaceShooter
 
                 if (enemy != null)
                 {
+                    Abilities.m_BlockEnergyGain = false;
                     Enemy.OnEnemyKilled?.Invoke(enemy);
                 }
             }

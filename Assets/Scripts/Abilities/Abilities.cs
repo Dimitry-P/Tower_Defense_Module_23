@@ -11,22 +11,31 @@ namespace TowerDefense
     public class Abilities : MonoSingleton<Abilities>
     {
         private float divisor = 0;
+        public static bool m_BlockEnergyGain = true;
 
         private void OnEnable()
         {
             Enemy.OnEnemyKilled += OnEnemyKilledHandler;
             m_IsTimeAbilityOnCooldown = false;
             EnemyWaveManager.OnEnemySpawn += Slow;
+            m_BlockEnergyGain = false;
         }
         private void OnEnemyKilledHandler(Enemy enemy)
         {
-            AddEnergy(20f); 
+            if (m_BlockEnergyGain)
+                return;
+            else if(enemy != null && m_BlockEnergyGain == false)
+            {
+                AddEnergy(20f);
+            }
         }
       
         private void OnDisable()
         {
             Enemy.OnEnemyKilled -= OnEnemyKilledHandler;
             EnemyWaveManager.OnEnemySpawn -= Slow;
+            m_BlockEnergyGain = true;
+            m_IsTimeAbilityOnCooldown = false;
         }
 
         private void Update()
@@ -249,8 +258,8 @@ namespace TowerDefense
         public void ResetEnergy()
         {
             m_Energy = 0f;
+            m_BlockEnergyGain = true;
         }
-
     }
 }
 
