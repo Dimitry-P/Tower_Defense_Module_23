@@ -1216,7 +1216,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 317211487}
         m_TargetAssemblyTypeName: TowerDefense.MainMenu, Assembly-CSharp
-        m_MethodName: Quit
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

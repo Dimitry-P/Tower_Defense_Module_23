@@ -23,9 +23,10 @@ namespace TowerDefense
         {
             SceneManager.LoadScene(1);
         }
-        public void Quit()
+        public void ExitGame()
         {
             Application.Quit();
+            Debug.Log("Game exited (works only in build)");
         }
     }
 }
