@@ -18,6 +18,7 @@ namespace SpaceShooter
     {
         private int baseNumLives = 10;
         private static int m_NumLives;
+        private static int m_gold;
 
         public int NumLives
         {
@@ -26,6 +27,13 @@ namespace SpaceShooter
             {
                 m_NumLives = Mathf.Max(0, value);
                 TDPlayer.RaiseLifeUpdate(m_NumLives); // просто вызываем событие
+            }
+        }
+        public int Gold { get { return m_gold; }
+            set
+            {
+                m_gold = value;
+                TDPlayer.RaiseGoldUpdate(m_gold); // просто вызываем событие
             }
         }
 
@@ -40,6 +48,7 @@ namespace SpaceShooter
 
             if (m_NumLives <= 0)
                 m_NumLives = baseNumLives; // без события
+            
 
             TDPlayer.RaiseLifeUpdate(m_NumLives);
         }

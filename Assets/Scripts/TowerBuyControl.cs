@@ -34,12 +34,12 @@ namespace TowerDefense
 
         private void OnEnable()
         {
-            TDPlayer.Instance.GoldUpdateSubscribe(GoldStatusCheck);
+            TDPlayer.GoldUpdateSubscribe(GoldStatusCheck);
         }
 
         private void OnDisable()
         {
-            TDPlayer.Instance.GoldUpdateUnsubscribe(GoldStatusCheck);
+            TDPlayer.GoldUpdateUnsubscribe(GoldStatusCheck);
         }
 
         public void SetTowerAsset(TowerAsset asset)
