@@ -22,7 +22,7 @@ namespace TowerDefense
             switch (source)
             {
                 case UpdateSource.Gold:
-                    TDPlayer.Instance.GoldUpdateSubscribe(UpdateText);
+                    TDPlayer.GoldUpdateSubscribe(UpdateText);
                     break;
                 case UpdateSource.Life:
                     TDPlayer.LifeUpdateSubscribe(UpdateText);
@@ -35,7 +35,7 @@ namespace TowerDefense
             switch (source)
             {
                 case UpdateSource.Gold:
-                    TDPlayer.Instance.GoldUpdateUnsubscribe(UpdateText);
+                    TDPlayer.GoldUpdateUnsubscribe(UpdateText);
                     break;
                 case UpdateSource.Life:
                     TDPlayer.LifeUpdateUnsubscribe(UpdateText);

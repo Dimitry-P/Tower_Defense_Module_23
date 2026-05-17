@@ -47,8 +47,8 @@ namespace TowerDefense
                 { //Сохранение новых очков прохождения и жизней
                     if (item.episode == LevelSequenceController.Instance.CurrentEpisode)
                     {
-                        if (levelScore > item.score)
-                        {
+                        //if (levelScore > item.score)
+                        //{
                             Instance.totalScore += levelScore - item.score;
                             item.score = levelScore;
                             Instance.data.unlockedLevels++;
@@ -56,7 +56,7 @@ namespace TowerDefense
                             Instance.data.numLivesTotal = numLives;
                             Instance.data.currentGoldCount = currentGold;
                             Saver<CompletionData>.Save(filename, Instance.data);
-                        }
+                        //}
                     }
                 }
             }
@@ -82,9 +82,7 @@ namespace TowerDefense
         private new void Awake()
         {
             base.Awake();
-
             Saver<CompletionData>.TryLoad(filename, ref data);
-
             if (data == null)
             {
                 data = new CompletionData();
@@ -106,13 +104,9 @@ namespace TowerDefense
             }
         }
 
-
-        private static TDPlayer tdPlayer;
-
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
-            tdPlayer = FindObjectOfType<TDPlayer>();
         }
         private void OnDisable()
         {
@@ -125,9 +119,18 @@ namespace TowerDefense
                 Player.Instance.NumLives = data.numLivesTotal;
                 continueButtonWasPushed_Lives = false;
             }
-            if (tdPlayer != null && continueButtonWasPushed_Gold && data.currentGoldCount != 0)
+
+            if (TDPlayer.Instance != null && continueButtonWasPushed_Gold)
             {
-                tdPlayer.Gold = data.currentGoldCount;
+                if (data.currentGoldCount > 0)
+                {
+                    TDPlayer.Instance.Gold = data.currentGoldCount;
+                }
+                else
+                {
+                    TDPlayer.Instance.Gold = 135;
+                }
+
                 continueButtonWasPushed_Gold = false;
             }
         }

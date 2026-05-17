@@ -20,27 +20,22 @@ namespace TowerDefense
 
         [SerializeField] private UpgradeAsset healthUpgrade;
 
-       
+        private int baseGoldCount = 135;
         protected override void Awake()
         {
             base.Awake();
-
-            if (m_gold <= 0)
-                m_gold = baseGoldCount; 
+            if (Gold <= 0)
+                Gold = baseGoldCount;
         }
 
-        private int baseGoldCount = 135;
-        private static int m_gold;
-        public int Gold { get { return m_gold; } set { m_gold = value; } }
-
-        private event Action<int> OnGoldUpdate;
-        public void GoldUpdateSubscribe(Action<int> act)
+        public static event Action<int> OnGoldUpdate;
+        public static void GoldUpdateSubscribe(Action<int> act)
         {
             Debug.Log("GoldChanged INVOKE from: " + Environment.StackTrace);
             OnGoldUpdate += act;
-            act(Gold);
+            act(Player.Instance.Gold);
         }
-        public void GoldUpdateUnsubscribe(Action<int> act)
+        public static void GoldUpdateUnsubscribe(Action<int> act)
         {
             OnGoldUpdate -= act;
         }
@@ -50,6 +45,12 @@ namespace TowerDefense
         {
             OnLifeUpdate?.Invoke(lives);
         }
+
+        public static void RaiseGoldUpdate(int gold) //метод-обёртка внутри TDPlayer, который будет вызывать событие.
+        {
+            OnGoldUpdate?.Invoke(gold);
+        }
+
         public static void LifeUpdateSubscribe(Action<int> act)
         {
             OnLifeUpdate += act;
@@ -62,8 +63,8 @@ namespace TowerDefense
 
         public void ChangeGold(int change)
         {
-            m_gold += change;
-            OnGoldUpdate?.Invoke(m_gold);
+            Gold += change;
+            OnGoldUpdate?.Invoke(Gold);
         }
 
         public void ReduceLife(int numLives_damage, string enemyName)
